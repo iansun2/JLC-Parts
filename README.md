@@ -51,3 +51,21 @@ python jlc_fetcher.py --lib base --max 0 --out data/mosfets_basic.csv
 # 貼上其他 JLCPCB 分類網址擴充至同一份 CSV：
 python jlc_fetcher.py --url "https://jlcpcb.com/parts/2nd/Diodes/Schottky_Barrier_Diodes_SBD_2942" --max 3000 --out data/jlc_parts_db.csv
 ```
+
+### 方式三：Docker Compose（Linux 伺服器）
+
+資料庫 `data/jlc_parts.db`（約 560 MB）不包含在 Git 倉庫中，請先自行放入 `data/` 目錄，或用 `jlc_fetcher.py` 重新建立。`data/` 會掛載進容器，在網頁中新下載的元件也會保存在主機上。
+
+```bash
+# 建置並於背景啟動 (http://<主機 IP>:8385)
+docker compose up -d --build
+
+# 查看日誌
+docker compose logs -f
+
+# 停止並移除容器
+docker compose down
+```
+
+- **連接埠**：預設 `0.0.0.0:8385` 對外開放。本工具**沒有登入驗證**，若只想本機使用，請將 `docker-compose.yml` 中的 `ports` 改為 `"127.0.0.1:8385:8080"`。
+- **開機自動啟動**：容器設定 `restart: unless-stopped`，只要 Docker 服務本身開機自動啟動（`systemctl enable docker`），容器就會隨主機開機自動執行。若曾手動 `docker compose stop` / `down`，則需再執行一次 `docker compose up -d`。
