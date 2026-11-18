@@ -1,0 +1,12 @@
+services:
+  jlc-parts:
+    build: .
+    image: jlc-parts:latest
+    container_name: jlc-parts
+    restart: unless-stopped
+    ports:
+      # Exposed on all interfaces. The app has no login; use "127.0.0.1:8385:8080" to restrict to localhost.
+      - "0.0.0.0:8385:8080"
+    volumes:
+      # SQLite DB + category map live on the host so they persist and aren't baked into the image
+      - ./data:/app/data

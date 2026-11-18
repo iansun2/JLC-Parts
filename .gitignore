@@ -1,0 +1,26 @@
+# Databases (jlc_parts.db is ~560 MB, over GitHub's 100 MB file limit)
+data/*.db
+data/*.sqlite
+data/*.sqlite-journal
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+data/*.csv
+# Keep the category map (small, needed by the app)
+!data/jlc_category_map.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs / local
+*.log
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

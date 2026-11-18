@@ -1,0 +1,3694 @@
+{
+  "2": {
+    "href": "/parts/1st/Capacitors_2",
+    "name": "Capacitors"
+  },
+  "2226": {
+    "href": "/parts/2nd/Capacitors/Aluminum_Electrolytic_Capacitors_(Can_Screw_Terminals)_2226",
+    "name": "Aluminum Electrolytic Capacitors (Can - Screw Terminals)"
+  },
+  "2931": {
+    "href": "/parts/2nd/Capacitors/Aluminum_Electrolytic_Capacitors_Leaded_2931",
+    "name": "Aluminum Electrolytic Capacitors - Leaded"
+  },
+  "2965": {
+    "href": "/parts/2nd/Capacitors/Aluminum_Electrolytic_Capacitors_SMD_2965",
+    "name": "Aluminum Electrolytic Capacitors - SMD"
+  },
+  "2151": {
+    "href": "/parts/2nd/Capacitors/Capacitor_Networks_Arrays_2151",
+    "name": "Capacitor Networks, Arrays"
+  },
+  "3718": {
+    "href": "/parts/2nd/Capacitors/Disc_Capacitors_3718",
+    "name": "Disc Capacitors"
+  },
+  "3244": {
+    "href": "/parts/2nd/Capacitors/Film_Capacitors_3244",
+    "name": "Film Capacitors"
+  },
+  "2242": {
+    "href": "/parts/2nd/Capacitors/Horn-Type_Electrolytic_Capacitors_2242",
+    "name": "Horn-Type Electrolytic Capacitors"
+  },
+  "2109": {
+    "href": "/parts/2nd/Capacitors/Hybrid_Aluminum_Electrolytic_Capacitors_2109",
+    "name": "Hybrid Aluminum Electrolytic Capacitors"
+  },
+  "2251": {
+    "href": "/parts/2nd/Capacitors/Mica_and_PTFE_Capacitors_2251",
+    "name": "Mica and PTFE Capacitors"
+  },
+  "2973": {
+    "href": "/parts/2nd/Capacitors/Multilayer_Ceramic_Capacitors_MLCC_Leaded_2973",
+    "name": "Multilayer Ceramic Capacitors MLCC - Leaded"
+  },
+  "2929": {
+    "href": "/parts/2nd/Capacitors/Multilayer_Ceramic_Capacitors_MLCC_SMD_SMT_2929",
+    "name": "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+  },
+  "3282": {
+    "href": "/parts/2nd/Capacitors/Niobium_Oxide_Capacitors_3282",
+    "name": "Niobium Oxide Capacitors"
+  },
+  "2250": {
+    "href": "/parts/2nd/Capacitors/Paper_Dielectric_Capacitors_2250",
+    "name": "Paper Dielectric Capacitors"
+  },
+  "3196": {
+    "href": "/parts/2nd/Capacitors/Polymer_Aluminum_Capacitors_3196",
+    "name": "Polymer Aluminum Capacitors"
+  },
+  "3057": {
+    "href": "/parts/2nd/Capacitors/Polypropylene_Film_Capacitors_(CBB)_3057",
+    "name": "Polypropylene Film Capacitors (CBB)"
+  },
+  "2998": {
+    "href": "/parts/2nd/Capacitors/Safety_Capacitors_2998",
+    "name": "Safety Capacitors"
+  },
+  "2252": {
+    "href": "/parts/2nd/Capacitors/Silicon_Capacitors_2252",
+    "name": "Silicon Capacitors"
+  },
+  "3232": {
+    "href": "/parts/2nd/Capacitors/Supercapacitors_3232",
+    "name": "Supercapacitors"
+  },
+  "2930": {
+    "href": "/parts/2nd/Capacitors/Tantalum_Capacitors_2930",
+    "name": "Tantalum Capacitors"
+  },
+  "2972": {
+    "href": "/parts/2nd/Capacitors/Through_Hole_Ceramic_Capacitors_2972",
+    "name": "Through Hole Ceramic Capacitors"
+  },
+  "3055": {
+    "href": "/parts/2nd/Capacitors/Trimmers_Variable_Capacitors_3055",
+    "name": "Trimmers, Variable Capacitors"
+  },
+  "9": {
+    "href": "/parts/1st/Power_Management_(PMIC)_9",
+    "name": "Power Management (PMIC)"
+  },
+  "3004": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/AC-DC_Controllers_and_Regulators_3004",
+    "name": "AC-DC Controllers and Regulators"
+  },
+  "3098": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Battery_Management_3098",
+    "name": "Battery Management"
+  },
+  "2105": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Charge_Pumps_2105",
+    "name": "Charge Pumps"
+  },
+  "2328": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Current_Source__Constant_Current_Source_2328",
+    "name": "Current Source / Constant Current Source"
+  },
+  "2326": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/DC-DC_Controllers_2326",
+    "name": "DC-DC Controllers"
+  },
+  "3005": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/DC-DC_Converters_3005",
+    "name": "DC-DC Converters"
+  },
+  "2106": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Isolated_DC_DC_Converters_2106",
+    "name": "Isolated DC/DC Converters"
+  },
+  "2107": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Isolators_Gate_Drivers_2107",
+    "name": "Isolators - Gate Drivers"
+  },
+  "1626": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Leakage_Protection_ICs_1626",
+    "name": "Leakage Protection ICs"
+  },
+  "2587": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/LED_Protection_2587",
+    "name": "LED Protection"
+  },
+  "3097": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Motor_Driver_ICs_3097",
+    "name": "Motor Driver ICs"
+  },
+  "1640": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/ORing_Controllers_1640",
+    "name": "ORing Controllers"
+  },
+  "1637": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/PFC_Controllers_1637",
+    "name": "PFC Controllers"
+  },
+  "3231": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Power_Distribution_Switches_3231",
+    "name": "Power Distribution Switches"
+  },
+  "3006": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Power_Management_Specialized_3006",
+    "name": "Power Management - Specialized"
+  },
+  "2327": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Power_Over_Ethernet_(PoE)_Controllers_2327",
+    "name": "Power Over Ethernet (PoE) Controllers"
+  },
+  "1641": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Power_Sequencers_1641",
+    "name": "Power Sequencers"
+  },
+  "3202": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Supervisor_and_Reset_ICs_3202",
+    "name": "Supervisor and Reset ICs"
+  },
+  "2570": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Surge_Protection_Devices_(SPDs)_2570",
+    "name": "Surge Protection Devices (SPDs)"
+  },
+  "1638": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Synchronous_Rectifier_Controllers_1638",
+    "name": "Synchronous Rectifier Controllers"
+  },
+  "2108": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Transformer_Drivers_2108",
+    "name": "Transformer Drivers"
+  },
+  "1639": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/USB_PD_1639",
+    "name": "USB PD"
+  },
+  "3007": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Voltage_Reference_3007",
+    "name": "Voltage Reference"
+  },
+  "2956": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Voltage_Regulators_Linear_Low_Drop_Out_(LDO)_Regulators_2956",
+    "name": "Voltage Regulators - Linear, Low Drop Out (LDO) Regulators"
+  },
+  "2529": {
+    "href": "/parts/2nd/Power_Management_(PMIC)/Wireless_Charge-Discharge_ICs_2529",
+    "name": "Wireless Charge-Discharge ICs"
+  },
+  "31": {
+    "href": "/parts/1st/IoT_Communication_Modules_31",
+    "name": "IoT/Communication Modules"
+  },
+  "2279": {
+    "href": "/parts/2nd/IoT_Communication_Modules/2G_3G_4G_5G_Modules_2279",
+    "name": "2G/3G/4G/5G Modules"
+  },
+  "2282": {
+    "href": "/parts/2nd/IoT_Communication_Modules/Bluetooth_Modules_2282",
+    "name": "Bluetooth Modules"
+  },
+  "2283": {
+    "href": "/parts/2nd/IoT_Communication_Modules/CAN_Bus_Modules_2283",
+    "name": "CAN Bus Modules"
+  },
+  "2286": {
+    "href": "/parts/2nd/IoT_Communication_Modules/Ethernet_Modules_2286",
+    "name": "Ethernet Modules"
+  },
+  "3206": {
+    "href": "/parts/2nd/IoT_Communication_Modules/GNSS_Modules_3206",
+    "name": "GNSS Modules"
+  },
+  "2280": {
+    "href": "/parts/2nd/IoT_Communication_Modules/LoRa_Modules_2280",
+    "name": "LoRa Modules"
+  },
+  "3207": {
+    "href": "/parts/2nd/IoT_Communication_Modules/RF_Modules_3207",
+    "name": "RF Modules"
+  },
+  "2278": {
+    "href": "/parts/2nd/IoT_Communication_Modules/RFID_Modules_2278",
+    "name": "RFID Modules"
+  },
+  "2285": {
+    "href": "/parts/2nd/IoT_Communication_Modules/RS232_Bus_Modules_2285",
+    "name": "RS232 Bus Modules"
+  },
+  "2284": {
+    "href": "/parts/2nd/IoT_Communication_Modules/RS485_Bus_Modules_2284",
+    "name": "RS485 Bus Modules"
+  },
+  "3300": {
+    "href": "/parts/2nd/IoT_Communication_Modules/USB_Conversion_Modules_3300",
+    "name": "USB Conversion Modules"
+  },
+  "3205": {
+    "href": "/parts/2nd/IoT_Communication_Modules/WiFi_Modules_3205",
+    "name": "WiFi Modules"
+  },
+  "2281": {
+    "href": "/parts/2nd/IoT_Communication_Modules/ZigBee_Modules_2281",
+    "name": "ZigBee Modules"
+  },
+  "5": {
+    "href": "/parts/1st/Transistors_Thyristors_5",
+    "name": "Transistors/Thyristors"
+  },
+  "2934": {
+    "href": "/parts/2nd/Transistors_Thyristors/Bipolar_(BJT)_2934",
+    "name": "Bipolar (BJT)"
+  },
+  "2308": {
+    "href": "/parts/2nd/Transistors_Thyristors/Darlington_Transistor_Arrays_2308",
+    "name": "Darlington Transistor Arrays"
+  },
+  "2991": {
+    "href": "/parts/2nd/Transistors_Thyristors/Darlington_Transistors_2991",
+    "name": "Darlington Transistors"
+  },
+  "3061": {
+    "href": "/parts/2nd/Transistors_Thyristors/Digital_Transistors_3061",
+    "name": "Digital Transistors"
+  },
+  "3193": {
+    "href": "/parts/2nd/Transistors_Thyristors/IGBT_Transistors__Modules_3193",
+    "name": "IGBT Transistors / Modules"
+  },
+  "2277": {
+    "href": "/parts/2nd/Transistors_Thyristors/Intelligent_Power_Modules_(IPM)_2277",
+    "name": "Intelligent Power Modules (IPM)"
+  },
+  "2220": {
+    "href": "/parts/2nd/Transistors_Thyristors/JFETs_2220",
+    "name": "JFETs"
+  },
+  "2954": {
+    "href": "/parts/2nd/Transistors_Thyristors/MOSFETs_2954",
+    "name": "MOSFETs"
+  },
+  "2238": {
+    "href": "/parts/2nd/Transistors_Thyristors/Pre-ordered_transistors_2238",
+    "name": "Pre-ordered transistors"
+  },
+  "2256": {
+    "href": "/parts/2nd/Transistors_Thyristors/Semiconductor_Discharge_Tubes_(TSS)_2256",
+    "name": "Semiconductor Discharge Tubes (TSS)"
+  },
+  "2957": {
+    "href": "/parts/2nd/Transistors_Thyristors/Thyristors_(SCR)_Modules_2957",
+    "name": "Thyristors (SCR)/Modules"
+  },
+  "8": {
+    "href": "/parts/1st/Connectors_8",
+    "name": "Connectors"
+  },
+  "2057": {
+    "href": "/parts/2nd/Connectors/AC_Power_Connectors_2057",
+    "name": "AC Power Connectors"
+  },
+  "3080": {
+    "href": "/parts/2nd/Connectors/Audio_Connectors_3080",
+    "name": "Audio Connectors"
+  },
+  "2608": {
+    "href": "/parts/2nd/Connectors/Automobile_Connectors_2608",
+    "name": "Automobile Connectors"
+  },
+  "2146": {
+    "href": "/parts/2nd/Connectors/Backplane_Connector_2146",
+    "name": "Backplane Connector"
+  },
+  "2137": {
+    "href": "/parts/2nd/Connectors/Barrier_Terminal_Blocks_2137",
+    "name": "Barrier Terminal Blocks"
+  },
+  "2048": {
+    "href": "/parts/2nd/Connectors/Blade__Shrapnel_Contact_Battery_Connectors_2048",
+    "name": "Blade / Shrapnel Contact Battery Connectors"
+  },
+  "3223": {
+    "href": "/parts/2nd/Connectors/Board-to-Board_and_Backplane_Connector_3223",
+    "name": "Board-to-Board and Backplane Connector"
+  },
+  "2989": {
+    "href": "/parts/2nd/Connectors/Button_And_Strip_Battery_Connector_2989",
+    "name": "Button And Strip Battery Connector"
+  },
+  "3131": {
+    "href": "/parts/2nd/Connectors/Circular_Connectors_Cable_Connectors_3131",
+    "name": "Circular Connectors &amp; Cable Connectors"
+  },
+  "2050": {
+    "href": "/parts/2nd/Connectors/Circular_DIN_Connectors_2050",
+    "name": "Circular DIN Connectors"
+  },
+  "2136": {
+    "href": "/parts/2nd/Connectors/Coaxial_Connectors_(RF)_2136",
+    "name": "Coaxial Connectors (RF)"
+  },
+  "2588": {
+    "href": "/parts/2nd/Connectors/Cold-pressed_Terminals_2588",
+    "name": "Cold-pressed Terminals"
+  },
+  "3287": {
+    "href": "/parts/2nd/Connectors/Connector_Accessories_3287",
+    "name": "Connector Accessories"
+  },
+  "2143": {
+    "href": "/parts/2nd/Connectors/Connector_Housings_2143",
+    "name": "Connector Housings"
+  },
+  "3114": {
+    "href": "/parts/2nd/Connectors/D-Sub__VGA_Connectors_3114",
+    "name": "D-Sub / VGA Connectors"
+  },
+  "3059": {
+    "href": "/parts/2nd/Connectors/DC_Power_Connectors_3059",
+    "name": "DC Power Connectors"
+  },
+  "2059": {
+    "href": "/parts/2nd/Connectors/DIN41612_Connectors_2059",
+    "name": "DIN41612 Connectors"
+  },
+  "2055": {
+    "href": "/parts/2nd/Connectors/DisplayPort_(DP)_Connector_2055",
+    "name": "DisplayPort (DP) Connector"
+  },
+  "3197": {
+    "href": "/parts/2nd/Connectors/DVI_Connectors_3197",
+    "name": "DVI Connectors"
+  },
+  "2147": {
+    "href": "/parts/2nd/Connectors/Edgeboard_Connectors_2147",
+    "name": "Edgeboard Connectors"
+  },
+  "2983": {
+    "href": "/parts/2nd/Connectors/Ethernet_Connectors__Modular_Connectors_(RJ45_RJ11)_2983",
+    "name": "Ethernet Connectors / Modular Connectors (RJ45 RJ11)"
+  },
+  "2060": {
+    "href": "/parts/2nd/Connectors/Feed-Voltage_Radio-Frequency_Insulator_2060",
+    "name": "Feed-Voltage/Radio-Frequency Insulator"
+  },
+  "3128": {
+    "href": "/parts/2nd/Connectors/Female_Headers_3128",
+    "name": "Female Headers"
+  },
+  "3190": {
+    "href": "/parts/2nd/Connectors/FFC_Cable_(Flexible_Flat_Cable)_3190",
+    "name": "FFC Cable (Flexible Flat Cable)"
+  },
+  "3051": {
+    "href": "/parts/2nd/Connectors/FFC_FPC_(Flat_Flexible)_Connector_Assemblies_3051",
+    "name": "FFC, FPC (Flat Flexible) Connector Assemblies"
+  },
+  "3173": {
+    "href": "/parts/2nd/Connectors/Fiber_Optic_Connectors_3173",
+    "name": "Fiber Optic Connectors"
+  },
+  "2053": {
+    "href": "/parts/2nd/Connectors/Hard_Disk_Connector_(SAS_SATA_M.2)_2053",
+    "name": "Hard Disk Connector (SAS/SATA/M.2)"
+  },
+  "3260": {
+    "href": "/parts/2nd/Connectors/HDMI_Connectors_3260",
+    "name": "HDMI Connectors"
+  },
+  "2134": {
+    "href": "/parts/2nd/Connectors/Housing_Contact_2134",
+    "name": "Housing Contact"
+  },
+  "2131": {
+    "href": "/parts/2nd/Connectors/Housings_(Wire_To_Board__Wire_To_Wire_)_2131",
+    "name": "Housings (Wire To Board / Wire To Wire )"
+  },
+  "2943": {
+    "href": "/parts/2nd/Connectors/IC__Transistor_Socket_2943",
+    "name": "IC / Transistor Socket"
+  },
+  "3224": {
+    "href": "/parts/2nd/Connectors/IDC_Connectors_3224",
+    "name": "IDC Connectors"
+  },
+  "2056": {
+    "href": "/parts/2nd/Connectors/IEEE_1394__Firewire_Connector_2056",
+    "name": "IEEE 1394 / Firewire Connector"
+  },
+  "2054": {
+    "href": "/parts/2nd/Connectors/Memory_Connector_(DDR)_2054",
+    "name": "Memory Connector (DDR)"
+  },
+  "2058": {
+    "href": "/parts/2nd/Connectors/Micro-Match_Connector_2058",
+    "name": "Micro-Match Connector"
+  },
+  "2051": {
+    "href": "/parts/2nd/Connectors/Optical_Module_Connector_2051",
+    "name": "Optical Module Connector"
+  },
+  "2052": {
+    "href": "/parts/2nd/Connectors/PCI__PCIe_Connector_2052",
+    "name": "PCI / PCIe Connector"
+  },
+  "2223": {
+    "href": "/parts/2nd/Connectors/Photovoltaic(Solar_Panel)Connectors_2223",
+    "name": "Photovoltaic(Solar Panel)Connectors"
+  },
+  "2047": {
+    "href": "/parts/2nd/Connectors/Pin__Jack_2047",
+    "name": "Pin / Jack"
+  },
+  "3127": {
+    "href": "/parts/2nd/Connectors/Pin_Headers_3127",
+    "name": "Pin Headers"
+  },
+  "2135": {
+    "href": "/parts/2nd/Connectors/Pluggable_System_Terminal_Block_2135",
+    "name": "Pluggable System Terminal Block"
+  },
+  "103": {
+    "href": "/parts/2nd/Connectors/Pogo_Pin_Spring_Probe_Connector_103",
+    "name": "Pogo Pin Spring Probe Connector"
+  },
+  "2237": {
+    "href": "/parts/2nd/Connectors/Pre-ordered_Connectors_2237",
+    "name": "Pre-ordered Connectors"
+  },
+  "2061": {
+    "href": "/parts/2nd/Connectors/RCA_Connector_2061",
+    "name": "RCA Connector"
+  },
+  "2204": {
+    "href": "/parts/2nd/Connectors/Screw_Terminal_Blocks_2204",
+    "name": "Screw Terminal Blocks"
+  },
+  "2589": {
+    "href": "/parts/2nd/Connectors/SD_Card__Memory_Card_Connector_2589",
+    "name": "SD Card / Memory Card Connector"
+  },
+  "3129": {
+    "href": "/parts/2nd/Connectors/Shunts_Jumpers_3129",
+    "name": "Shunts, Jumpers"
+  },
+  "3121": {
+    "href": "/parts/2nd/Connectors/SIM_Card_Connectors_3121",
+    "name": "SIM Card Connectors"
+  },
+  "2974": {
+    "href": "/parts/2nd/Connectors/Spring_Clamp_System_Terminal_Block_2974",
+    "name": "Spring Clamp System Terminal Block"
+  },
+  "2541": {
+    "href": "/parts/2nd/Connectors/Test_Points__Test_Rings_2541",
+    "name": "Test Points / Test Rings"
+  },
+  "2945": {
+    "href": "/parts/2nd/Connectors/USB_Connectors_2945",
+    "name": "USB Connectors"
+  },
+  "2132": {
+    "href": "/parts/2nd/Connectors/Wire_To_Board_Connector_2132",
+    "name": "Wire To Board Connector"
+  },
+  "2046": {
+    "href": "/parts/2nd/Connectors/Wiring_Quick-Connect_Terminals_2046",
+    "name": "Wiring Quick-Connect Terminals"
+  },
+  "2049": {
+    "href": "/parts/2nd/Connectors/XLR_(Cannon)_Connectors_2049",
+    "name": "XLR (Cannon) Connectors"
+  },
+  "22": {
+    "href": "/parts/1st/Sensors_22",
+    "name": "Sensors"
+  },
+  "3079": {
+    "href": "/parts/2nd/Sensors/Accelerometers_3079",
+    "name": "Accelerometers"
+  },
+  "3192": {
+    "href": "/parts/2nd/Sensors/Ambient_Light_Sensors_3192",
+    "name": "Ambient Light Sensors"
+  },
+  "3340": {
+    "href": "/parts/2nd/Sensors/Capacitive_Sensor_IC_3340",
+    "name": "Capacitive Sensor IC"
+  },
+  "2022": {
+    "href": "/parts/2nd/Sensors/Differential_Pressure_Sensor_2022",
+    "name": "Differential Pressure Sensor"
+  },
+  "2157": {
+    "href": "/parts/2nd/Sensors/Fiber_Optic__Laser_Sensors_2157",
+    "name": "Fiber Optic / Laser Sensors"
+  },
+  "2535": {
+    "href": "/parts/2nd/Sensors/Float_Level_Senors_2535",
+    "name": "Float Level Senors"
+  },
+  "1278": {
+    "href": "/parts/2nd/Sensors/Flow_Sensors_1278",
+    "name": "Flow Sensors"
+  },
+  "2216": {
+    "href": "/parts/2nd/Sensors/Force_Sensors_Load_Cells_2216",
+    "name": "Force Sensors, Load Cells"
+  },
+  "2024": {
+    "href": "/parts/2nd/Sensors/Gas_Flow_Sensors_2024",
+    "name": "Gas Flow Sensors"
+  },
+  "3296": {
+    "href": "/parts/2nd/Sensors/Gas_Sensors_3296",
+    "name": "Gas Sensors"
+  },
+  "90": {
+    "href": "/parts/2nd/Sensors/Heart_Rate_Sensors_90",
+    "name": "Heart Rate Sensors"
+  },
+  "2539": {
+    "href": "/parts/2nd/Sensors/Human_Body_Sensing_Sensor_2539",
+    "name": "Human Body Sensing Sensor"
+  },
+  "3078": {
+    "href": "/parts/2nd/Sensors/Image_Sensors_3078",
+    "name": "Image Sensors"
+  },
+  "2977": {
+    "href": "/parts/2nd/Sensors/NTC_Thermistors_2977",
+    "name": "NTC Thermistors"
+  },
+  "2533": {
+    "href": "/parts/2nd/Sensors/Photointerrupters_Slot_Type_Logic_Output_2533",
+    "name": "Photointerrupters - Slot Type - Logic Output"
+  },
+  "3054": {
+    "href": "/parts/2nd/Sensors/Photoresistors_3054",
+    "name": "Photoresistors"
+  },
+  "2023": {
+    "href": "/parts/2nd/Sensors/PM2.5_Sensors_2023",
+    "name": "PM2.5 Sensors"
+  },
+  "2187": {
+    "href": "/parts/2nd/Sensors/Position_Sensors_2187",
+    "name": "Position Sensors"
+  },
+  "3298": {
+    "href": "/parts/2nd/Sensors/Pressure_Sensors_3298",
+    "name": "Pressure Sensors"
+  },
+  "2540": {
+    "href": "/parts/2nd/Sensors/Proximity_Sensors_2540",
+    "name": "Proximity Sensors"
+  },
+  "3047": {
+    "href": "/parts/2nd/Sensors/PTC_Thermistors_3047",
+    "name": "PTC Thermistors"
+  },
+  "3299": {
+    "href": "/parts/2nd/Sensors/Sensor_Modules_3299",
+    "name": "Sensor Modules"
+  },
+  "2156": {
+    "href": "/parts/2nd/Sensors/Specialized_Sensors_2156",
+    "name": "Specialized Sensors"
+  },
+  "3191": {
+    "href": "/parts/2nd/Sensors/Temperature_and_Humidity_Sensor_3191",
+    "name": "Temperature and Humidity Sensor"
+  },
+  "3076": {
+    "href": "/parts/2nd/Sensors/Temperature_Sensors_3076",
+    "name": "Temperature Sensors"
+  },
+  "3283": {
+    "href": "/parts/2nd/Sensors/Thermostat_Switches_3283",
+    "name": "Thermostat Switches"
+  },
+  "3174": {
+    "href": "/parts/2nd/Sensors/Touch_Sensors_3174",
+    "name": "Touch Sensors"
+  },
+  "2210": {
+    "href": "/parts/2nd/Sensors/Ultrasonic_Receivers_Transmitters_2210",
+    "name": "Ultrasonic Receivers, Transmitters"
+  },
+  "2537": {
+    "href": "/parts/2nd/Sensors/Vibration_Sensors_2537",
+    "name": "Vibration Sensors"
+  },
+  "2025": {
+    "href": "/parts/2nd/Sensors/VOC_Sensors_2025",
+    "name": "VOC Sensors"
+  },
+  "3": {
+    "href": "/parts/1st/Inductors_Coils_Chokes_3",
+    "name": "Inductors, Coils, Chokes"
+  },
+  "2300": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Accessories_Inductors_Transformers_2300",
+    "name": "Accessories - Inductors/Transformers"
+  },
+  "2298": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Adjustable_Inductors_2298",
+    "name": "Adjustable Inductors"
+  },
+  "2297": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Audio_Transformers_2297",
+    "name": "Audio Transformers"
+  },
+  "2301": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Color_Ring_Inductors__Through_Hole_Inductors_2301",
+    "name": "Color Ring Inductors / Through Hole Inductors"
+  },
+  "3210": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Current_Sense_Transformers_3210",
+    "name": "Current Sense Transformers"
+  },
+  "2936": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Inductors_(SMD)_2936",
+    "name": "Inductors (SMD)"
+  },
+  "3741": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Molding_Power_Inductors_3741",
+    "name": "Molding Power Inductors"
+  },
+  "3050": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Power_Inductors_3050",
+    "name": "Power Inductors"
+  },
+  "3120": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Power_Transformers_3120",
+    "name": "Power Transformers"
+  },
+  "2240": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Pre-ordered_RLCs_2240",
+    "name": "Pre-ordered RLCs"
+  },
+  "2296": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Pulse_Transformers_2296",
+    "name": "Pulse Transformers"
+  },
+  "3049": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Pulse_Transformers(LAN)_3049",
+    "name": "Pulse Transformers(LAN)"
+  },
+  "2299": {
+    "href": "/parts/2nd/Inductors_Coils_Chokes/Wireless_Charging_Coils_2299",
+    "name": "Wireless Charging Coils"
+  },
+  "11": {
+    "href": "/parts/1st/Circuit_Protection_11",
+    "name": "Circuit Protection"
+  },
+  "3177": {
+    "href": "/parts/2nd/Circuit_Protection/Automotive_Fuses_3177",
+    "name": "Automotive Fuses"
+  },
+  "3281": {
+    "href": "/parts/2nd/Circuit_Protection/Disposable_fuses_3281",
+    "name": "Disposable fuses"
+  },
+  "3035": {
+    "href": "/parts/2nd/Circuit_Protection/ESD_and_Surge_Protection_(TVS_ESD)_3035",
+    "name": "ESD and Surge Protection (TVS/ESD)"
+  },
+  "3068": {
+    "href": "/parts/2nd/Circuit_Protection/ESD_Protection_Devices_3068",
+    "name": "ESD Protection Devices"
+  },
+  "2961": {
+    "href": "/parts/2nd/Circuit_Protection/Fuseholders_2961",
+    "name": "Fuseholders"
+  },
+  "2255": {
+    "href": "/parts/2nd/Circuit_Protection/Gas_Discharge_Tube_Arresters_(GDT)_2255",
+    "name": "Gas Discharge Tube Arresters (GDT)"
+  },
+  "2257": {
+    "href": "/parts/2nd/Circuit_Protection/Glass_Discharge_Tubes_2257",
+    "name": "Glass Discharge Tubes"
+  },
+  "3294": {
+    "href": "/parts/2nd/Circuit_Protection/Resettable_Fuses_3294",
+    "name": "Resettable Fuses"
+  },
+  "2958": {
+    "href": "/parts/2nd/Circuit_Protection/Thermal_Fuses_(TCO)_2958",
+    "name": "Thermal Fuses (TCO)"
+  },
+  "3003": {
+    "href": "/parts/2nd/Circuit_Protection/Varistors_3003",
+    "name": "Varistors"
+  },
+  "27": {
+    "href": "/parts/1st/Interface_27",
+    "name": "Interface"
+  },
+  "2574": {
+    "href": "/parts/2nd/Interface/Analog_Switches_Special_Purpose_2574",
+    "name": "Analog Switches - Special Purpose"
+  },
+  "3103": {
+    "href": "/parts/2nd/Interface/Analog_Switches_Multiplexers_3103",
+    "name": "Analog Switches, Multiplexers"
+  },
+  "2578": {
+    "href": "/parts/2nd/Interface/Audio_Interface_ICs_2578",
+    "name": "Audio Interface ICs"
+  },
+  "2126": {
+    "href": "/parts/2nd/Interface/CAN_Controllers_2126",
+    "name": "CAN Controllers"
+  },
+  "3093": {
+    "href": "/parts/2nd/Interface/CAN_Transceivers_3093",
+    "name": "CAN Transceivers"
+  },
+  "2127": {
+    "href": "/parts/2nd/Interface/Ethernet_Controllers_2127",
+    "name": "Ethernet Controllers"
+  },
+  "2128": {
+    "href": "/parts/2nd/Interface/Ethernet_Switches_2128",
+    "name": "Ethernet Switches"
+  },
+  "3072": {
+    "href": "/parts/2nd/Interface/Ethernet_Transceivers_3072",
+    "name": "Ethernet Transceivers"
+  },
+  "2178": {
+    "href": "/parts/2nd/Interface/I_O_Expanders_2178",
+    "name": "I/O Expanders"
+  },
+  "2577": {
+    "href": "/parts/2nd/Interface/Interface_PCIs__PCIEs_2577",
+    "name": "Interface - PCIs / PCIEs"
+  },
+  "2175": {
+    "href": "/parts/2nd/Interface/Interface_Specialized_2175",
+    "name": "Interface - Specialized"
+  },
+  "2183": {
+    "href": "/parts/2nd/Interface/LIN_Transceivers_2183",
+    "name": "LIN Transceivers"
+  },
+  "3094": {
+    "href": "/parts/2nd/Interface/LVDS_ICs_3094",
+    "name": "LVDS ICs"
+  },
+  "2239": {
+    "href": "/parts/2nd/Interface/Pre-ordered_Chips_2239",
+    "name": "Pre-ordered Chips"
+  },
+  "3071": {
+    "href": "/parts/2nd/Interface/RS-485__RS-422_ICs_3071",
+    "name": "RS-485 / RS-422 ICs"
+  },
+  "3070": {
+    "href": "/parts/2nd/Interface/RS232_ICs_3070",
+    "name": "RS232 ICs"
+  },
+  "2197": {
+    "href": "/parts/2nd/Interface/Security_Verification__Encryption_ICs_2197",
+    "name": "Security Verification / Encryption ICs"
+  },
+  "2184": {
+    "href": "/parts/2nd/Interface/Serializers_Deserializers_2184",
+    "name": "Serializers, Deserializers"
+  },
+  "2177": {
+    "href": "/parts/2nd/Interface/Signal_Buffers_Repeaters_Splitters_2177",
+    "name": "Signal Buffers, Repeaters, Splitters"
+  },
+  "2174": {
+    "href": "/parts/2nd/Interface/Telecom_Interface_ICs_2174",
+    "name": "Telecom Interface ICs"
+  },
+  "2575": {
+    "href": "/parts/2nd/Interface/UART_2575",
+    "name": "UART"
+  },
+  "3069": {
+    "href": "/parts/2nd/Interface/USB_Converters_3069",
+    "name": "USB Converters"
+  },
+  "1622": {
+    "href": "/parts/2nd/Interface/USB_HUB_Controllers_1622",
+    "name": "USB HUB Controllers"
+  },
+  "3115": {
+    "href": "/parts/2nd/Interface/Video_Interface_ICs_3115",
+    "name": "Video Interface ICs"
+  },
+  "33": {
+    "href": "/parts/1st/RF_and_Wireless_33",
+    "name": "RF and Wireless"
+  },
+  "3182": {
+    "href": "/parts/2nd/RF_and_Wireless/Antennas_3182",
+    "name": "Antennas"
+  },
+  "2192": {
+    "href": "/parts/2nd/RF_and_Wireless/Balun_2192",
+    "name": "Balun"
+  },
+  "2142": {
+    "href": "/parts/2nd/RF_and_Wireless/Duplexers_2142",
+    "name": "Duplexers"
+  },
+  "3088": {
+    "href": "/parts/2nd/RF_and_Wireless/Low_Noise_Amplifiers_(LNA)_RF_3088",
+    "name": "Low Noise Amplifiers (LNA) - RF"
+  },
+  "3247": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Amplifiers_3247",
+    "name": "RF Amplifiers"
+  },
+  "3278": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Attenuators_3278",
+    "name": "RF Attenuators"
+  },
+  "2586": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Cables_2586",
+    "name": "RF Cables"
+  },
+  "3249": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Detectors_3249",
+    "name": "RF Detectors"
+  },
+  "3290": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Directional_Coupler_3290",
+    "name": "RF Directional Coupler"
+  },
+  "2556": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Front_End_Circuits_2556",
+    "name": "RF Front End Circuits"
+  },
+  "2228": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Misc_ICs_and_Modules_2228",
+    "name": "RF Misc ICs and Modules"
+  },
+  "3248": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Mixers_3248",
+    "name": "RF Mixers"
+  },
+  "2555": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Modulators_and_Demodulators_2555",
+    "name": "RF Modulators and Demodulators"
+  },
+  "2557": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Power_Amplifiers_2557",
+    "name": "RF Power Amplifiers"
+  },
+  "2559": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Power_Splitters__Combiners_2559",
+    "name": "RF Power Splitters / Combiners"
+  },
+  "3242": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Switches_3242",
+    "name": "RF Switches"
+  },
+  "3048": {
+    "href": "/parts/2nd/RF_and_Wireless/RF_Transceiver_ICs_3048",
+    "name": "RF Transceiver ICs"
+  },
+  "3243": {
+    "href": "/parts/2nd/RF_and_Wireless/RFID_ICs_3243",
+    "name": "RFID ICs"
+  },
+  "2558": {
+    "href": "/parts/2nd/RF_and_Wireless/Tunable_Filters_2558",
+    "name": "Tunable Filters"
+  },
+  "29": {
+    "href": "/parts/1st/Data_Acquisition_29",
+    "name": "Data Acquisition"
+  },
+  "2552": {
+    "href": "/parts/2nd/Data_Acquisition/ADCs_DACs_Special_Purpose_2552",
+    "name": "ADCs/DACs - Special Purpose"
+  },
+  "2553": {
+    "href": "/parts/2nd/Data_Acquisition/Analog_Front_End_(AFE)_2553",
+    "name": "Analog Front End (AFE)"
+  },
+  "3100": {
+    "href": "/parts/2nd/Data_Acquisition/Analog_to_Digital_Converters_(ADC)_3100",
+    "name": "Analog to Digital Converters (ADC)"
+  },
+  "3105": {
+    "href": "/parts/2nd/Data_Acquisition/Digital_Potentiometers_3105",
+    "name": "Digital Potentiometers"
+  },
+  "3101": {
+    "href": "/parts/2nd/Data_Acquisition/Digital_to_Analog_Converters_(DAC)_3101",
+    "name": "Digital to Analog Converters (DAC)"
+  },
+  "3144": {
+    "href": "/parts/2nd/Data_Acquisition/Direct_Digital_Synthesis_(DDS)_3144",
+    "name": "Direct Digital Synthesis (DDS)"
+  },
+  "3104": {
+    "href": "/parts/2nd/Data_Acquisition/Energy_Metering_3104",
+    "name": "Energy Metering"
+  },
+  "2550": {
+    "href": "/parts/2nd/Data_Acquisition/RMS_to_DC_Converters_2550",
+    "name": "RMS to DC Converters"
+  },
+  "3291": {
+    "href": "/parts/2nd/Data_Acquisition/Touch_Screen_Controllers_3291",
+    "name": "Touch Screen Controllers"
+  },
+  "2551": {
+    "href": "/parts/2nd/Data_Acquisition/V_F_and_F_V_Converters_2551",
+    "name": "V/F and F/V Converters"
+  },
+  "21": {
+    "href": "/parts/1st/Memory_21",
+    "name": "Memory"
+  },
+  "3167": {
+    "href": "/parts/2nd/Memory/DDR_SDRAM_3167",
+    "name": "DDR SDRAM"
+  },
+  "2325": {
+    "href": "/parts/2nd/Memory/DRAM_2325",
+    "name": "DRAM"
+  },
+  "3019": {
+    "href": "/parts/2nd/Memory/EEPROM_3019",
+    "name": "EEPROM"
+  },
+  "2323": {
+    "href": "/parts/2nd/Memory/eMMC_2323",
+    "name": "eMMC"
+  },
+  "3141": {
+    "href": "/parts/2nd/Memory/Font_chips_3141",
+    "name": "Font chips"
+  },
+  "3021": {
+    "href": "/parts/2nd/Memory/FRAM_3021",
+    "name": "FRAM"
+  },
+  "2125": {
+    "href": "/parts/2nd/Memory/iButton_Memory_2125",
+    "name": "iButton Memory"
+  },
+  "2320": {
+    "href": "/parts/2nd/Memory/Memory_Configuration_Proms_for_FPGAs_2320",
+    "name": "Memory - Configuration Proms for FPGAs"
+  },
+  "2321": {
+    "href": "/parts/2nd/Memory/Memory_Serial_MCP_(Multi_Chip_Package)_2321",
+    "name": "Memory - Serial MCP (Multi Chip Package)"
+  },
+  "2319": {
+    "href": "/parts/2nd/Memory/Memory_Controllers_2319",
+    "name": "Memory Controllers"
+  },
+  "2322": {
+    "href": "/parts/2nd/Memory/NAND_FLASH_2322",
+    "name": "NAND FLASH"
+  },
+  "3143": {
+    "href": "/parts/2nd/Memory/Non-Volatile_Memory_(ROM)_3143",
+    "name": "Non-Volatile Memory (ROM)"
+  },
+  "3018": {
+    "href": "/parts/2nd/Memory/NOR_FLASH_3018",
+    "name": "NOR FLASH"
+  },
+  "2124": {
+    "href": "/parts/2nd/Memory/nvSRAM_2124",
+    "name": "nvSRAM"
+  },
+  "2123": {
+    "href": "/parts/2nd/Memory/PSRAM_2123",
+    "name": "PSRAM"
+  },
+  "2324": {
+    "href": "/parts/2nd/Memory/Random_Access_Memory_(RAM)_2324",
+    "name": "Random Access Memory (RAM)"
+  },
+  "3295": {
+    "href": "/parts/2nd/Memory/SDRAM_3295",
+    "name": "SDRAM"
+  },
+  "3020": {
+    "href": "/parts/2nd/Memory/SRAM_3020",
+    "name": "SRAM"
+  },
+  "2122": {
+    "href": "/parts/2nd/Memory/SSRAM_2122",
+    "name": "SSRAM"
+  },
+  "2121": {
+    "href": "/parts/2nd/Memory/UFS_2121",
+    "name": "UFS"
+  },
+  "1": {
+    "href": "/parts/1st/Resistors_1",
+    "name": "Resistors"
+  },
+  "2145": {
+    "href": "/parts/2nd/Resistors/Aluminum_Case_Porcelain_Tube_Resistance_2145",
+    "name": "Aluminum Case/Porcelain Tube Resistance"
+  },
+  "2980": {
+    "href": "/parts/2nd/Resistors/Chip_Resistor_Surface_Mount_2980",
+    "name": "Chip Resistor - Surface Mount"
+  },
+  "3179": {
+    "href": "/parts/2nd/Resistors/Current_Sense_Resistors__Shunt_Resistors_3179",
+    "name": "Current Sense Resistors / Shunt Resistors"
+  },
+  "3033": {
+    "href": "/parts/2nd/Resistors/Potentiometers_Variable_Resistors_3033",
+    "name": "Potentiometers, Variable Resistors"
+  },
+  "2928": {
+    "href": "/parts/2nd/Resistors/Resistor_Networks_Arrays_2928",
+    "name": "Resistor Networks, Arrays"
+  },
+  "2295": {
+    "href": "/parts/2nd/Resistors/Through_Hole_Resistors_2295",
+    "name": "Through Hole Resistors"
+  },
+  "63": {
+    "href": "/parts/1st/Signal_Isolation_Devices_63",
+    "name": "Signal Isolation Devices"
+  },
+  "2073": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/DI_DO_Isolators_2073",
+    "name": "DI/DO Isolators"
+  },
+  "3073": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Digital_Isolators_3073",
+    "name": "Digital Isolators"
+  },
+  "2085": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Digital_Isolators_(with_Power)_2085",
+    "name": "Digital Isolators (with Power)"
+  },
+  "2071": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/I2C_Isolators_2071",
+    "name": "I2C Isolators"
+  },
+  "2072": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_ADCs_2072",
+    "name": "Isolated ADCs"
+  },
+  "2080": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_ADCs_with_power_2080",
+    "name": "Isolated ADCs with power"
+  },
+  "2070": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_CAN_Transceivers_2070",
+    "name": "Isolated CAN Transceivers"
+  },
+  "2088": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_CAN_Transceivers_(with_Power)_2088",
+    "name": "Isolated CAN Transceivers (with Power)"
+  },
+  "2077": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_Comparators_2077",
+    "name": "Isolated Comparators"
+  },
+  "2087": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_I2C_(with_Power)_2087",
+    "name": "Isolated I2C (with Power)"
+  },
+  "2076": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_LVDS_Buffers_2076",
+    "name": "Isolated LVDS Buffers"
+  },
+  "2078": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_RS-232_Transceivers_2078",
+    "name": "Isolated RS-232 Transceivers"
+  },
+  "2083": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_RS-232_Transceivers_(with_Power)_2083",
+    "name": "Isolated RS-232 Transceivers (with Power)"
+  },
+  "2069": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_RS-485_422_Transceivers_2069",
+    "name": "Isolated RS-485/422 Transceivers"
+  },
+  "2086": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_RS-485_422_Transceivers_with_power_2086",
+    "name": "Isolated RS-485/422 Transceivers with power"
+  },
+  "2075": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_USB_ICs_2075",
+    "name": "Isolated USB ICs"
+  },
+  "2082": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolated_USB_ICs_with_power_2082",
+    "name": "Isolated USB ICs with power"
+  },
+  "2315": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolation_Amplifiers_2315",
+    "name": "Isolation Amplifiers"
+  },
+  "2084": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolation_Amplifiers_with_power_2084",
+    "name": "Isolation Amplifiers with power"
+  },
+  "2110": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Isolation-Solid_State_Relays_2110",
+    "name": "Isolation-Solid State Relays"
+  },
+  "2074": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/Optocoupler_Emulator_(Optocoupler_Replacement)_2074",
+    "name": "Optocoupler Emulator (Optocoupler Replacement)"
+  },
+  "2079": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/SPI_Isolators_2079",
+    "name": "SPI Isolators"
+  },
+  "2081": {
+    "href": "/parts/2nd/Signal_Isolation_Devices/SPI_Isolators_with_power_2081",
+    "name": "SPI Isolators with power"
+  },
+  "45": {
+    "href": "/parts/1st/Relays_45",
+    "name": "Relays"
+  },
+  "2563": {
+    "href": "/parts/2nd/Relays/Automotive_Relays_2563",
+    "name": "Automotive Relays"
+  },
+  "2113": {
+    "href": "/parts/2nd/Relays/High_Frequency__RF_Relay_2113",
+    "name": "High Frequency / RF Relay"
+  },
+  "2562": {
+    "href": "/parts/2nd/Relays/Magnetic_Latching_Relays_2562",
+    "name": "Magnetic Latching Relays"
+  },
+  "3039": {
+    "href": "/parts/2nd/Relays/Power_Relays_3039",
+    "name": "Power Relays"
+  },
+  "2564": {
+    "href": "/parts/2nd/Relays/Reed_Relays_2564",
+    "name": "Reed Relays"
+  },
+  "2185": {
+    "href": "/parts/2nd/Relays/Relay_Sockets_and_Accessories_2185",
+    "name": "Relay Sockets and Accessories"
+  },
+  "2561": {
+    "href": "/parts/2nd/Relays/Signal_Relays_2561",
+    "name": "Signal Relays"
+  },
+  "23": {
+    "href": "/parts/1st/Amplifiers_Comparators_23",
+    "name": "Amplifiers/Comparators"
+  },
+  "3031": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Audio_Amplifiers_3031",
+    "name": "Audio Amplifiers"
+  },
+  "3030": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Comparators_3030",
+    "name": "Comparators"
+  },
+  "2317": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Current_Sense_Amplifiers_2317",
+    "name": "Current Sense Amplifiers"
+  },
+  "3091": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Differential_Amplifiers_3091",
+    "name": "Differential Amplifiers"
+  },
+  "3087": {
+    "href": "/parts/2nd/Amplifiers_Comparators/FET_Input_Amplifiers_3087",
+    "name": "FET Input Amplifiers"
+  },
+  "3083": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Instrumentation_Amplifiers_3083",
+    "name": "Instrumentation Amplifiers"
+  },
+  "2247": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Linear_Analog_Multipliers_Dividers_2247",
+    "name": "Linear - Analog Multipliers, Dividers"
+  },
+  "3029": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Operational_Amplifier_3029",
+    "name": "Operational Amplifier"
+  },
+  "3086": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Precision_Op_Amps_3086",
+    "name": "Precision Op Amps"
+  },
+  "2318": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Programmable__Variable_Gain_Amplifiers_(PGA_VGA)_2318",
+    "name": "Programmable / Variable Gain Amplifiers (PGA/VGA)"
+  },
+  "2314": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Sample__Hold_Amplifiers_2314",
+    "name": "Sample / Hold Amplifiers"
+  },
+  "3306": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Special_Purpose_Amplifiers_3306",
+    "name": "Special Purpose Amplifiers"
+  },
+  "2316": {
+    "href": "/parts/2nd/Amplifiers_Comparators/Video_Amplifiers_2316",
+    "name": "Video Amplifiers"
+  },
+  "10": {
+    "href": "/parts/1st/Audio_Products__Vibration_Motors_10",
+    "name": "Audio Products / Vibration Motors"
+  },
+  "2307": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/Buzzer_Plates_2307",
+    "name": "Buzzer Plates"
+  },
+  "2955": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/Buzzers_2955",
+    "name": "Buzzers"
+  },
+  "2306": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/MEMS_Microphones_2306",
+    "name": "MEMS Microphones"
+  },
+  "3045": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/Microphones_3045",
+    "name": "Microphones"
+  },
+  "3044": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/Speakers_3044",
+    "name": "Speakers"
+  },
+  "3176": {
+    "href": "/parts/2nd/Audio_Products__Vibration_Motors/Vibration_Motors_3176",
+    "name": "Vibration Motors"
+  },
+  "62": {
+    "href": "/parts/1st/Building_materials__Building_hardware_62",
+    "name": "Building materials / Building hardware"
+  },
+  "1582": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/Decorative_panel_1582",
+    "name": "Decorative panel"
+  },
+  "2020": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/Insulation_Pipe_2020",
+    "name": "Insulation Pipe"
+  },
+  "1955": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/Iron_wire_1955",
+    "name": "Iron wire"
+  },
+  "1621": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/Partition_board_1621",
+    "name": "Partition board"
+  },
+  "1597": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/PVC_board_1597",
+    "name": "PVC board"
+  },
+  "3396": {
+    "href": "/parts/2nd/Building_materials__Building_hardware/Water_heater_3396",
+    "name": "Water heater"
+  },
+  "20": {
+    "href": "/parts/1st/Clock_Timing_20",
+    "name": "Clock/Timing"
+  },
+  "2101": {
+    "href": "/parts/2nd/Clock_Timing/555_Timers__Counters_2101",
+    "name": "555 Timers / Counters"
+  },
+  "2171": {
+    "href": "/parts/2nd/Clock_Timing/Application_Specific_Clock_Timing_2171",
+    "name": "Application Specific Clock/Timing"
+  },
+  "2582": {
+    "href": "/parts/2nd/Clock_Timing/Clock_and_Data_Recovery__Retiming_2582",
+    "name": "Clock and Data Recovery / Retiming"
+  },
+  "2172": {
+    "href": "/parts/2nd/Clock_Timing/Clock_Buffers_Drivers_Distributors_2172",
+    "name": "Clock Buffers, Drivers, Distributors"
+  },
+  "2173": {
+    "href": "/parts/2nd/Clock_Timing/Clock_Generators_PLLs_Frequency_Synthesizers_2173",
+    "name": "Clock Generators, PLLs, Frequency Synthesizers"
+  },
+  "2119": {
+    "href": "/parts/2nd/Clock_Timing/Clock_Multipliers_2119",
+    "name": "Clock Multipliers"
+  },
+  "2579": {
+    "href": "/parts/2nd/Clock_Timing/Jitter_Attenuators_2579",
+    "name": "Jitter Attenuators"
+  },
+  "2102": {
+    "href": "/parts/2nd/Clock_Timing/Network_Clock_Synchronization(SyncE_IEEE_1588)_2102",
+    "name": "Network Clock Synchronization(SyncE,IEEE 1588)"
+  },
+  "3017": {
+    "href": "/parts/2nd/Clock_Timing/Real_Time_Clocks_3017",
+    "name": "Real Time Clocks"
+  },
+  "2581": {
+    "href": "/parts/2nd/Clock_Timing/Time_Delays_2581",
+    "name": "Time Delays"
+  },
+  "2580": {
+    "href": "/parts/2nd/Clock_Timing/Timers__Counters_2580",
+    "name": "Timers / Counters"
+  },
+  "59": {
+    "href": "/parts/1st/Consumables_and_auxiliary_materials_59",
+    "name": "Consumables and auxiliary materials"
+  },
+  "110": {
+    "href": "/parts/2nd/Consumables_and_auxiliary_materials/Chip_test_socket_110",
+    "name": "Chip test socket"
+  },
+  "87": {
+    "href": "/parts/2nd/Consumables_and_auxiliary_materials/Plastic_shell_87",
+    "name": "Plastic shell"
+  },
+  "3456": {
+    "href": "/parts/2nd/Consumables_and_auxiliary_materials/Silicone_pad_3456",
+    "name": "Silicone pad"
+  },
+  "7": {
+    "href": "/parts/1st/Crystals_Oscillators_Resonators_7",
+    "name": "Crystals, Oscillators, Resonators"
+  },
+  "3038": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Ceramic_Resonators_3038",
+    "name": "Ceramic Resonators"
+  },
+  "2942": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Crystal_Oscillators_2942",
+    "name": "Crystal Oscillators"
+  },
+  "3043": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Crystals_3043",
+    "name": "Crystals"
+  },
+  "2104": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Digitally_Controlled_Oscillators(DCOs)_2104",
+    "name": "Digitally Controlled Oscillators(DCOs)"
+  },
+  "2312": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Oven_Controlled_Crystal_Oscillators_(OCXOs)_2312",
+    "name": "Oven Controlled Crystal Oscillators (OCXOs)"
+  },
+  "2243": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Programmable_Oscillators_2243",
+    "name": "Programmable Oscillators"
+  },
+  "2313": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/SAW_Oscillators_2313",
+    "name": "SAW Oscillators"
+  },
+  "3037": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/SAW_Resonators_3037",
+    "name": "SAW Resonators"
+  },
+  "1646": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Spread_Spectrum_Oscillators(SSOs)_1646",
+    "name": "Spread Spectrum Oscillators(SSOs)"
+  },
+  "2311": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Temperature_Compensated_Crystal_Oscillators_(TCXO)_2311",
+    "name": "Temperature Compensated Crystal Oscillators (TCXO)"
+  },
+  "2120": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Temperature_Sensing_Resonators_2120",
+    "name": "Temperature Sensing Resonators"
+  },
+  "2560": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Voltage_Controlled_Oscillators_(VCOs)_2560",
+    "name": "Voltage Controlled Oscillators (VCOs)"
+  },
+  "2111": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Voltage_Controlled_Temperature_Compensated_Oscillators_(VCTXO)_2111",
+    "name": "Voltage Controlled Temperature Compensated Oscillators (VCTXO)"
+  },
+  "2310": {
+    "href": "/parts/2nd/Crystals_Oscillators_Resonators/Voltage-Controlled_Crystal_Oscillators_(VCXOs)_2310",
+    "name": "Voltage-Controlled Crystal Oscillators (VCXOs)"
+  },
+  "32": {
+    "href": "/parts/1st/Development_Boards_Tools_32",
+    "name": "Development Boards &amp; Tools"
+  },
+  "2199": {
+    "href": "/parts/2nd/Development_Boards_Tools/Development_Boards_Kits_2199",
+    "name": "Development Boards &amp; Kits"
+  },
+  "2200": {
+    "href": "/parts/2nd/Development_Boards_Tools/Programmers_Emulators_and_Debuggers_2200",
+    "name": "Programmers, Emulators, and Debuggers"
+  },
+  "2215": {
+    "href": "/parts/2nd/Development_Boards_Tools/Raspberry_Pi_2215",
+    "name": "Raspberry Pi"
+  },
+  "4": {
+    "href": "/parts/1st/Diodes_4",
+    "name": "Diodes"
+  },
+  "3169": {
+    "href": "/parts/2nd/Diodes/Avalanche_Diodes_3169",
+    "name": "Avalanche Diodes"
+  },
+  "2951": {
+    "href": "/parts/2nd/Diodes/Bridge_Rectifiers_2951",
+    "name": "Bridge Rectifiers"
+  },
+  "2946": {
+    "href": "/parts/2nd/Diodes/Diodes_General_Purpose_2946",
+    "name": "Diodes - General Purpose"
+  },
+  "2947": {
+    "href": "/parts/2nd/Diodes/Diodes_Rectifiers_Fast_Recovery_2947",
+    "name": "Diodes - Rectifiers - Fast Recovery"
+  },
+  "3233": {
+    "href": "/parts/2nd/Diodes/Diodes_Variable_Capacitance_3233",
+    "name": "Diodes - Variable Capacitance"
+  },
+  "2948": {
+    "href": "/parts/2nd/Diodes/Fast_Recovery__High_Efficiency_Diodes_2948",
+    "name": "Fast Recovery / High Efficiency Diodes"
+  },
+  "3171": {
+    "href": "/parts/2nd/Diodes/High_Effic_Rectifier_3171",
+    "name": "High Effic Rectifier"
+  },
+  "1645": {
+    "href": "/parts/2nd/Diodes/PIN_Diodes_1645",
+    "name": "PIN Diodes"
+  },
+  "2949": {
+    "href": "/parts/2nd/Diodes/Schottky_Diodes_2949",
+    "name": "Schottky Diodes"
+  },
+  "2254": {
+    "href": "/parts/2nd/Diodes/Super_Barrier_Rectifiers_(SBR)_2254",
+    "name": "Super Barrier Rectifiers (SBR)"
+  },
+  "2952": {
+    "href": "/parts/2nd/Diodes/Switching_Diodes_2952",
+    "name": "Switching Diodes"
+  },
+  "2953": {
+    "href": "/parts/2nd/Diodes/Trigger_Diodes_2953",
+    "name": "Trigger Diodes"
+  },
+  "2933": {
+    "href": "/parts/2nd/Diodes/Zener_Diodes_2933",
+    "name": "Zener Diodes"
+  },
+  "65": {
+    "href": "/parts/1st/Displays_65",
+    "name": "Displays"
+  },
+  "2089": {
+    "href": "/parts/2nd/Displays/E-ink_Display_2089",
+    "name": "E-ink Display"
+  },
+  "2206": {
+    "href": "/parts/2nd/Displays/LCD_Screen_2206",
+    "name": "LCD Screen"
+  },
+  "3125": {
+    "href": "/parts/2nd/Displays/LED_Dot_Matrix_and_Cluster_3125",
+    "name": "LED Dot Matrix and Cluster"
+  },
+  "3040": {
+    "href": "/parts/2nd/Displays/LED_Segment_Displays_3040",
+    "name": "LED Segment Displays"
+  },
+  "2205": {
+    "href": "/parts/2nd/Displays/OLED_Display_2205",
+    "name": "OLED Display"
+  },
+  "2208": {
+    "href": "/parts/2nd/Displays/Vacuum_Fluorescent_Display_Screen_2208",
+    "name": "Vacuum Fluorescent Display Screen"
+  },
+  "43": {
+    "href": "/parts/1st/Educational_Kits_43",
+    "name": "Educational Kits"
+  },
+  "3222": {
+    "href": "/parts/2nd/Educational_Kits/Modules_3222",
+    "name": "Modules"
+  },
+  "2288": {
+    "href": "/parts/2nd/Educational_Kits/Motor_Driver_Boards_Modules_2288",
+    "name": "Motor Driver Boards, Modules"
+  },
+  "2287": {
+    "href": "/parts/2nd/Educational_Kits/V-Audio_Modules_2287",
+    "name": "V-Audio Modules"
+  },
+  "18": {
+    "href": "/parts/1st/Embedded_Processors_Controllers_18",
+    "name": "Embedded Processors &amp; Controllers"
+  },
+  "3063": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/ADI_3063",
+    "name": "ADI"
+  },
+  "2994": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/ATMEL_AVR_2994",
+    "name": "ATMEL &amp; AVR"
+  },
+  "2225": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/CPLD_FPGA_2225",
+    "name": "CPLD/FPGA"
+  },
+  "2996": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/CYPRESS_2996",
+    "name": "CYPRESS"
+  },
+  "2583": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/Digital_Signal_Processors_(DSP_DSC)_2583",
+    "name": "Digital Signal Processors (DSP/DSC)"
+  },
+  "2245": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/HDSC_2245",
+    "name": "HDSC"
+  },
+  "3002": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/MEGAWIN_3002",
+    "name": "MEGAWIN"
+  },
+  "2992": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/MICROCHIP_2992",
+    "name": "MICROCHIP"
+  },
+  "2584": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/Microcontrollers_(MCU_MPU_SOC)_2584",
+    "name": "Microcontrollers (MCU/MPU/SOC)"
+  },
+  "3023": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/NUVOTON_3023",
+    "name": "NUVOTON"
+  },
+  "2993": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/NXP_MCU_2993",
+    "name": "NXP MCU"
+  },
+  "2180": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/Other_Processors_and_Microcontrollers_(MCUs)_2180",
+    "name": "Other Processors and Microcontrollers (MCUs)"
+  },
+  "2241": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/Pre-ordered_MCUs_2241",
+    "name": "Pre-ordered MCUs"
+  },
+  "2585": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/Programmable_Logic_Device_(CPLDs_FPGAs)_2585",
+    "name": "Programmable Logic Device (CPLDs/FPGAs)"
+  },
+  "3161": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/SAMSUNG_3161",
+    "name": "SAMSUNG"
+  },
+  "3092": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/SILICON_LABS_3092",
+    "name": "SILICON LABS"
+  },
+  "2182": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/sinowealth_2182",
+    "name": "sinowealth"
+  },
+  "2181": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/SOC_2181",
+    "name": "SOC"
+  },
+  "2995": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/ST_Microelectronics_2995",
+    "name": "ST Microelectronics"
+  },
+  "3024": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/STC_3024",
+    "name": "STC"
+  },
+  "2997": {
+    "href": "/parts/2nd/Embedded_Processors_Controllers/TI_MCU_2997",
+    "name": "TI MCU"
+  },
+  "44": {
+    "href": "/parts/1st/Evaluation_Boards_44",
+    "name": "Evaluation Boards"
+  },
+  "2290": {
+    "href": "/parts/2nd/Evaluation_Boards/Evaluation_Boards_MCU_2290",
+    "name": "Evaluation Boards - MCU"
+  },
+  "2289": {
+    "href": "/parts/2nd/Evaluation_Boards/Evaluation_Boards_Power_Supply_2289",
+    "name": "Evaluation Boards - Power Supply"
+  },
+  "2291": {
+    "href": "/parts/2nd/Evaluation_Boards/Evaluation_Boards_Sensors_2291",
+    "name": "Evaluation Boards - Sensors"
+  },
+  "2292": {
+    "href": "/parts/2nd/Evaluation_Boards/Evaluation_Boards_Specialized_ICs_2292",
+    "name": "Evaluation Boards - Specialized ICs"
+  },
+  "3455": {
+    "href": "/parts/2nd/Evaluation_Boards/LiChuang_service_3455",
+    "name": "LiChuang service"
+  },
+  "34": {
+    "href": "/parts/1st/Filters_34",
+    "name": "Filters"
+  },
+  "3310": {
+    "href": "/parts/2nd/Filters/Active_Filters_3310",
+    "name": "Active Filters"
+  },
+  "3253": {
+    "href": "/parts/2nd/Filters/Ceramic_Filters_3253",
+    "name": "Ceramic Filters"
+  },
+  "3309": {
+    "href": "/parts/2nd/Filters/Clamp_Filters_(Ferrite_Core_with_Case)_3309",
+    "name": "Clamp Filters (Ferrite Core with Case)"
+  },
+  "3124": {
+    "href": "/parts/2nd/Filters/Common_Mode_Filters_3124",
+    "name": "Common Mode Filters"
+  },
+  "2303": {
+    "href": "/parts/2nd/Filters/Crystal_Filters_2303",
+    "name": "Crystal Filters"
+  },
+  "3311": {
+    "href": "/parts/2nd/Filters/EMC_Filters_3311",
+    "name": "EMC Filters"
+  },
+  "3308": {
+    "href": "/parts/2nd/Filters/EMI_RFI_Filters_(LC_RC_Networks)_3308",
+    "name": "EMI/RFI Filters (LC, RC Networks)"
+  },
+  "3256": {
+    "href": "/parts/2nd/Filters/Feed_Through_Capacitors_3256",
+    "name": "Feed Through Capacitors"
+  },
+  "3036": {
+    "href": "/parts/2nd/Filters/Ferrite_Beads_3036",
+    "name": "Ferrite Beads"
+  },
+  "2305": {
+    "href": "/parts/2nd/Filters/Noise_Suppressors_2305",
+    "name": "Noise Suppressors"
+  },
+  "3254": {
+    "href": "/parts/2nd/Filters/RF_Filters_3254",
+    "name": "RF Filters"
+  },
+  "3255": {
+    "href": "/parts/2nd/Filters/SAW_Filters_3255",
+    "name": "SAW Filters"
+  },
+  "2304": {
+    "href": "/parts/2nd/Filters/Switched_Capacitor_Filters_2304",
+    "name": "Switched Capacitor Filters"
+  },
+  "67": {
+    "href": "/parts/1st/Gallium_Nitride_(GaN)_Devices_67",
+    "name": "Gallium Nitride (GaN) Devices"
+  },
+  "2093": {
+    "href": "/parts/2nd/Gallium_Nitride_(GaN)_Devices/GaN_Transistors(GaN_HEMT)_2093",
+    "name": "GaN Transistors(GaN HEMT)"
+  },
+  "3333": {
+    "href": "/parts/1st/Global_Sourcing_Parts_3333",
+    "name": "Global Sourcing Parts"
+  },
+  "3334": {
+    "href": "/parts/2nd/Global_Sourcing_Parts/Global_Sourcing_Parts_3334",
+    "name": "Global Sourcing Parts"
+  },
+  "52": {
+    "href": "/parts/1st/Handling_Packaging_Storage_52",
+    "name": "Handling/Packaging/Storage"
+  },
+  "3750": {
+    "href": "/parts/2nd/Handling_Packaging_Storage/Anti-Static_CPP_Resealable_Bag_3750",
+    "name": "Anti-Static CPP Resealable Bag"
+  },
+  "2621": {
+    "href": "/parts/2nd/Handling_Packaging_Storage/Cable_Tie_2621",
+    "name": "Cable Tie"
+  },
+  "47": {
+    "href": "/parts/1st/Hardware_Fasteners_47",
+    "name": "Hardware Fasteners"
+  },
+  "3626": {
+    "href": "/parts/2nd/Hardware_Fasteners/Aluminum_Profile_Heat_Dissipation_Accessories_3626",
+    "name": "Aluminum Profile Heat Dissipation Accessories"
+  },
+  "704": {
+    "href": "/parts/2nd/Hardware_Fasteners/American_fine_thread_wire_screw_sleeve_704",
+    "name": "American fine thread wire screw sleeve"
+  },
+  "810": {
+    "href": "/parts/2nd/Hardware_Fasteners/Angular_contact_ball_bearing_810",
+    "name": "Angular contact ball bearing"
+  },
+  "2043": {
+    "href": "/parts/2nd/Hardware_Fasteners/Bolt_2043",
+    "name": "Bolt"
+  },
+  "3723": {
+    "href": "/parts/2nd/Hardware_Fasteners/Brass_Heat-Set_Threaded_Insert_3723",
+    "name": "Brass Heat-Set Threaded Insert"
+  },
+  "3722": {
+    "href": "/parts/2nd/Hardware_Fasteners/Brass_Knurled_Insert_Nut_3722",
+    "name": "Brass Knurled Insert Nut"
+  },
+  "3724": {
+    "href": "/parts/2nd/Hardware_Fasteners/Brass_Straight_Knurled_Insert_Nut_3724",
+    "name": "Brass Straight Knurled Insert Nut"
+  },
+  "683": {
+    "href": "/parts/2nd/Hardware_Fasteners/Carriage_bolt_683",
+    "name": "Carriage bolt"
+  },
+  "635": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cassette_nuts_635",
+    "name": "Cassette nuts"
+  },
+  "1660": {
+    "href": "/parts/2nd/Hardware_Fasteners/Combination_washer_1660",
+    "name": "Combination washer"
+  },
+  "2038": {
+    "href": "/parts/2nd/Hardware_Fasteners/Composite_gasket_2038",
+    "name": "Composite gasket"
+  },
+  "754": {
+    "href": "/parts/2nd/Hardware_Fasteners/Compression_Spring_754",
+    "name": "Compression Spring"
+  },
+  "678": {
+    "href": "/parts/2nd/Hardware_Fasteners/Conical_pin_678",
+    "name": "Conical pin"
+  },
+  "713": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_pan_head_machine_screw_three_combinations_713",
+    "name": "Cross pan head machine screw three combinations"
+  },
+  "724": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_pan_head_machine_screws_724",
+    "name": "Cross pan head machine screws"
+  },
+  "745": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_countersunk_flat_tail_self-tapping_screws_745",
+    "name": "Cross slot countersunk flat tail self-tapping screws"
+  },
+  "640": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_countersunk_machine_screw_640",
+    "name": "Cross slot countersunk machine screw"
+  },
+  "655": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_countersunk_screw_with_drill_tail_self-tapping_screw_655",
+    "name": "Cross slot countersunk screw with drill tail self-tapping screw"
+  },
+  "654": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_countersunk_self-tapping_screw_654",
+    "name": "Cross slot countersunk self-tapping screw"
+  },
+  "641": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_large_flat_head_machine_screw_641",
+    "name": "Cross slot large flat head machine screw"
+  },
+  "656": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_large_flat_head_self-tapping_screw_656",
+    "name": "Cross slot large flat head self-tapping screw"
+  },
+  "642": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_pan_head_machine_screw_642",
+    "name": "Cross slot pan head machine screw"
+  },
+  "727": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_pan_head_screws_and_spring_washer_combination_727",
+    "name": "Cross slot pan head screws and spring washer combination"
+  },
+  "657": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_pan_head_self-tapping_screw_657",
+    "name": "Cross slot pan head self-tapping screw"
+  },
+  "734": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_pan_head_self-tapping_screws_with_insulation_734",
+    "name": "Cross slot pan head self-tapping screws with insulation"
+  },
+  "744": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cross_slot_round_head_flat_tail_self-tapping_screws_744",
+    "name": "Cross slot round head flat tail self-tapping screws"
+  },
+  "665": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cylindrical_pins_665",
+    "name": "Cylindrical pins"
+  },
+  "817": {
+    "href": "/parts/2nd/Hardware_Fasteners/Cylindrical_roller_bearings_817",
+    "name": "Cylindrical roller bearings"
+  },
+  "812": {
+    "href": "/parts/2nd/Hardware_Fasteners/Deep_groove_ball_bearing_812",
+    "name": "Deep groove ball bearing"
+  },
+  "677": {
+    "href": "/parts/2nd/Hardware_Fasteners/Elastic_cylindrical_pin_677",
+    "name": "Elastic cylindrical pin"
+  },
+  "741": {
+    "href": "/parts/2nd/Hardware_Fasteners/External_hexagon_bolts_and_nut_kit_741",
+    "name": "External hexagon bolts and nut kit"
+  },
+  "730": {
+    "href": "/parts/2nd/Hardware_Fasteners/External_hexagon_self-tapping_screws_730",
+    "name": "External hexagon self-tapping screws"
+  },
+  "3669": {
+    "href": "/parts/2nd/Hardware_Fasteners/Female-Female_Hex_Standoff_3669",
+    "name": "Female-Female Hex Standoff"
+  },
+  "3670": {
+    "href": "/parts/2nd/Hardware_Fasteners/Female-Female_Round_Standoff_3670",
+    "name": "Female-Female Round Standoff"
+  },
+  "3347": {
+    "href": "/parts/2nd/Hardware_Fasteners/Ferrite_magnetic_beads_3347",
+    "name": "Ferrite magnetic beads"
+  },
+  "3740": {
+    "href": "/parts/2nd/Hardware_Fasteners/Fields_3740",
+    "name": "Fields"
+  },
+  "667": {
+    "href": "/parts/2nd/Hardware_Fasteners/Flat_key_667",
+    "name": "Flat key"
+  },
+  "296": {
+    "href": "/parts/2nd/Hardware_Fasteners/Flat_washers_296",
+    "name": "Flat washers"
+  },
+  "2981": {
+    "href": "/parts/2nd/Hardware_Fasteners/Heat_sink__cooling_fin_2981",
+    "name": "Heat sink / cooling fin"
+  },
+  "3606": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hex_socket_screw_with_flat_washer_spring_washer_assembly_3606",
+    "name": "Hex socket screw with flat washer &amp; spring washer assembly"
+  },
+  "273": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hex_socket_screws_with_countersunk_head_273",
+    "name": "Hex socket screws with countersunk head"
+  },
+  "3599": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hex_Washer_Head_Self-Drilling_Screw_3599",
+    "name": "Hex Washer Head Self-Drilling Screw"
+  },
+  "276": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hexagon_socket_cylindrical_head_screw_276",
+    "name": "Hexagon socket cylindrical head screw"
+  },
+  "3605": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hexagon_socket_flange_screw_with_serrated_flange_3605",
+    "name": "Hexagon socket flange screw with serrated flange"
+  },
+  "624": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hexagonal_nuts_624",
+    "name": "Hexagonal nuts"
+  },
+  "625": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hexagonal_nylon_locking_nuts_625",
+    "name": "Hexagonal nylon locking nuts"
+  },
+  "1661": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hose_clamp_1661",
+    "name": "Hose clamp"
+  },
+  "3481": {
+    "href": "/parts/2nd/Hardware_Fasteners/Hot-dip_galvanized_screw_3481",
+    "name": "Hot-dip galvanized screw"
+  },
+  "3479": {
+    "href": "/parts/2nd/Hardware_Fasteners/Inductor_core_3479",
+    "name": "Inductor core"
+  },
+  "714": {
+    "href": "/parts/2nd/Hardware_Fasteners/Internal_hexagon_cylindrical_head_flat_washer_three_combinations_714",
+    "name": "Internal hexagon cylindrical head flat washer three combinations"
+  },
+  "653": {
+    "href": "/parts/2nd/Hardware_Fasteners/Internal_hexagonal_flat_round_head_screw_with_washer_653",
+    "name": "Internal hexagonal flat round head screw with washer"
+  },
+  "784": {
+    "href": "/parts/2nd/Hardware_Fasteners/Joint_784",
+    "name": "Joint"
+  },
+  "3499": {
+    "href": "/parts/2nd/Hardware_Fasteners/LED_isolation_column_3499",
+    "name": "LED isolation column"
+  },
+  "3668": {
+    "href": "/parts/2nd/Hardware_Fasteners/Male-Female_Round_Standoff_3668",
+    "name": "Male-Female Round Standoff"
+  },
+  "2036": {
+    "href": "/parts/2nd/Hardware_Fasteners/Metal_gasket_2036",
+    "name": "Metal gasket"
+  },
+  "2008": {
+    "href": "/parts/2nd/Hardware_Fasteners/Metal_Products_SMT_Copper_Sheet_2008",
+    "name": "Metal Products SMT Copper Sheet"
+  },
+  "818": {
+    "href": "/parts/2nd/Hardware_Fasteners/Needle_bearings_818",
+    "name": "Needle bearings"
+  },
+  "1662": {
+    "href": "/parts/2nd/Hardware_Fasteners/Nut_1662",
+    "name": "Nut"
+  },
+  "2041": {
+    "href": "/parts/2nd/Hardware_Fasteners/Oil_seal_2041",
+    "name": "Oil seal"
+  },
+  "666": {
+    "href": "/parts/2nd/Hardware_Fasteners/Open_type_flat_round_head_blind_rivet_666",
+    "name": "Open type flat round head blind rivet"
+  },
+  "945": {
+    "href": "/parts/2nd/Hardware_Fasteners/Other_hardware_945",
+    "name": "Other hardware"
+  },
+  "940": {
+    "href": "/parts/2nd/Hardware_Fasteners/Other_nuts_940",
+    "name": "Other nuts"
+  },
+  "939": {
+    "href": "/parts/2nd/Hardware_Fasteners/Other_rivets_939",
+    "name": "Other rivets"
+  },
+  "938": {
+    "href": "/parts/2nd/Hardware_Fasteners/Other_screws_938",
+    "name": "Other screws"
+  },
+  "948": {
+    "href": "/parts/2nd/Hardware_Fasteners/Other_Seals_948",
+    "name": "Other Seals"
+  },
+  "3491": {
+    "href": "/parts/2nd/Hardware_Fasteners/Outer_hex_bolts_3491",
+    "name": "Outer hex bolts"
+  },
+  "2035": {
+    "href": "/parts/2nd/Hardware_Fasteners/Packing_2035",
+    "name": "Packing"
+  },
+  "778": {
+    "href": "/parts/2nd/Hardware_Fasteners/padlock_778",
+    "name": "padlock"
+  },
+  "723": {
+    "href": "/parts/2nd/Hardware_Fasteners/Patch_round_nut_723",
+    "name": "Patch round nut"
+  },
+  "3465": {
+    "href": "/parts/2nd/Hardware_Fasteners/PC_Board_Spacer_3465",
+    "name": "PC Board Spacer"
+  },
+  "3604": {
+    "href": "/parts/2nd/Hardware_Fasteners/Phillips_hex_washer_head_machine_screw_with_recess_3604",
+    "name": "Phillips hex washer head machine screw with recess"
+  },
+  "3607": {
+    "href": "/parts/2nd/Hardware_Fasteners/Phillips_pan_head_washer_self-drilling_screw_3607",
+    "name": "Phillips pan head washer self-drilling screw"
+  },
+  "1695": {
+    "href": "/parts/2nd/Hardware_Fasteners/Pin_key_1695",
+    "name": "Pin &amp; key"
+  },
+  "1667": {
+    "href": "/parts/2nd/Hardware_Fasteners/Plastic_cable_drag_chain_1667",
+    "name": "Plastic cable drag chain"
+  },
+  "673": {
+    "href": "/parts/2nd/Hardware_Fasteners/Press_rivet_nut_673",
+    "name": "Press rivet nut"
+  },
+  "1488": {
+    "href": "/parts/2nd/Hardware_Fasteners/Probe_1488",
+    "name": "Probe"
+  },
+  "3609": {
+    "href": "/parts/2nd/Hardware_Fasteners/Round_head_bolt_3609",
+    "name": "Round head bolt"
+  },
+  "1696": {
+    "href": "/parts/2nd/Hardware_Fasteners/Screw_bolt_1696",
+    "name": "Screw &amp; bolt"
+  },
+  "676": {
+    "href": "/parts/2nd/Hardware_Fasteners/Screw_tail_pin_shaft_676",
+    "name": "Screw tail pin shaft"
+  },
+  "816": {
+    "href": "/parts/2nd/Hardware_Fasteners/Self-aligning_roller_bearings_816",
+    "name": "Self-aligning roller bearings"
+  },
+  "717": {
+    "href": "/parts/2nd/Hardware_Fasteners/Self-Clinching_Studs_717",
+    "name": "Self-Clinching Studs"
+  },
+  "785": {
+    "href": "/parts/2nd/Hardware_Fasteners/Shielding_clip_785",
+    "name": "Shielding clip"
+  },
+  "720": {
+    "href": "/parts/2nd/Hardware_Fasteners/Single-ended_hex_stud_720",
+    "name": "Single-ended hex stud"
+  },
+  "646": {
+    "href": "/parts/2nd/Hardware_Fasteners/Slotted_countersunk_machine_screw_646",
+    "name": "Slotted countersunk machine screw"
+  },
+  "647": {
+    "href": "/parts/2nd/Hardware_Fasteners/Slotted_pan_head_machine_screw_647",
+    "name": "Slotted pan head machine screw"
+  },
+  "627": {
+    "href": "/parts/2nd/Hardware_Fasteners/Slotted_Round_Nuts_627",
+    "name": "Slotted Round Nuts"
+  },
+  "753": {
+    "href": "/parts/2nd/Hardware_Fasteners/SMD_hex_nut_columns_753",
+    "name": "SMD hex nut columns"
+  },
+  "3601": {
+    "href": "/parts/2nd/Hardware_Fasteners/Socket_flat_countersunk_head_screw_3601",
+    "name": "Socket flat countersunk head screw"
+  },
+  "3602": {
+    "href": "/parts/2nd/Hardware_Fasteners/Socket_flat-head_machine_screw_3602",
+    "name": "Socket flat-head machine screw"
+  },
+  "3574": {
+    "href": "/parts/2nd/Hardware_Fasteners/Solder_Terminal_3574",
+    "name": "Solder Terminal"
+  },
+  "664": {
+    "href": "/parts/2nd/Hardware_Fasteners/split_pin_664",
+    "name": "split pin"
+  },
+  "2066": {
+    "href": "/parts/2nd/Hardware_Fasteners/Spring_2066",
+    "name": "Spring"
+  },
+  "749": {
+    "href": "/parts/2nd/Hardware_Fasteners/Star_pan_head_machine_screws_749",
+    "name": "Star pan head machine screws"
+  },
+  "731": {
+    "href": "/parts/2nd/Hardware_Fasteners/Star_slot_countersunk_self-tapping_screws_731",
+    "name": "Star slot countersunk self-tapping screws"
+  },
+  "732": {
+    "href": "/parts/2nd/Hardware_Fasteners/Star_slot_pan_head_self-tapping_screws_732",
+    "name": "Star slot pan head self-tapping screws"
+  },
+  "884": {
+    "href": "/parts/2nd/Hardware_Fasteners/Straight_pipe_straight_connector_884",
+    "name": "Straight pipe/straight connector"
+  },
+  "1674": {
+    "href": "/parts/2nd/Hardware_Fasteners/Studs_Screws_1674",
+    "name": "Studs &amp; Screws"
+  },
+  "3725": {
+    "href": "/parts/2nd/Hardware_Fasteners/Surface_Mount_Jumper_3725",
+    "name": "Surface Mount Jumper"
+  },
+  "687": {
+    "href": "/parts/2nd/Hardware_Fasteners/Swivel_bolt_687",
+    "name": "Swivel bolt"
+  },
+  "684": {
+    "href": "/parts/2nd/Hardware_Fasteners/T-bolt_684",
+    "name": "T-bolt"
+  },
+  "3355": {
+    "href": "/parts/2nd/Hardware_Fasteners/TapeMagneticBeads_3355",
+    "name": "TapeMagneticBeads"
+  },
+  "2596": {
+    "href": "/parts/2nd/Hardware_Fasteners/Threaded_Inserts_2596",
+    "name": "Threaded Inserts"
+  },
+  "736": {
+    "href": "/parts/2nd/Hardware_Fasteners/Through_hole_embedded_round_nuts_736",
+    "name": "Through hole embedded round nuts"
+  },
+  "758": {
+    "href": "/parts/2nd/Hardware_Fasteners/Torsion_spring_758",
+    "name": "Torsion spring"
+  },
+  "3608": {
+    "href": "/parts/2nd/Hardware_Fasteners/Torx_Flat_Head_Machine_Screw_3608",
+    "name": "Torx Flat Head Machine Screw"
+  },
+  "3600": {
+    "href": "/parts/2nd/Hardware_Fasteners/Torx_Machine_Screw_with_Plain_Spring_Washer_Combo_3600",
+    "name": "Torx Machine Screw with Plain &amp; Spring Washer Combo"
+  },
+  "1643": {
+    "href": "/parts/2nd/Hardware_Fasteners/Type_T_magnetic_ring_1643",
+    "name": "Type T magnetic ring"
+  },
+  "3598": {
+    "href": "/parts/2nd/Hardware_Fasteners/Weld_Screw_3598",
+    "name": "Weld Screw"
+  },
+  "726": {
+    "href": "/parts/2nd/Hardware_Fasteners/Welding_studs_726",
+    "name": "Welding studs"
+  },
+  "46": {
+    "href": "/parts/1st/Industrial_control_electrical_46",
+    "name": "Industrial control electrical"
+  },
+  "1103": {
+    "href": "/parts/2nd/Industrial_control_electrical/AC_contactor_1103",
+    "name": "AC contactor"
+  },
+  "3738": {
+    "href": "/parts/2nd/Industrial_control_electrical/AC_Cooling_Fan_3738",
+    "name": "AC Cooling Fan"
+  },
+  "3353": {
+    "href": "/parts/2nd/Industrial_control_electrical/AmorphousCores_3353",
+    "name": "AmorphousCores"
+  },
+  "539": {
+    "href": "/parts/2nd/Industrial_control_electrical/Antenna_spring_539",
+    "name": "Antenna spring"
+  },
+  "86": {
+    "href": "/parts/2nd/Industrial_control_electrical/Aviation_connector_waterproof_connector_86",
+    "name": "Aviation connector/waterproof connector"
+  },
+  "3742": {
+    "href": "/parts/2nd/Industrial_control_electrical/Batter_Holder_3742",
+    "name": "Batter Holder"
+  },
+  "1303": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_accessories_1303",
+    "name": "Battery accessories"
+  },
+  "3747": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_Clip_3747",
+    "name": "Battery Clip"
+  },
+  "1651": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_connector_1651",
+    "name": "Battery connector"
+  },
+  "3745": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_Contact_3745",
+    "name": "Battery Contact"
+  },
+  "3739": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_holder_base_3739",
+    "name": "Battery holder base"
+  },
+  "3743": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_Snap_3743",
+    "name": "Battery Snap"
+  },
+  "3744": {
+    "href": "/parts/2nd/Industrial_control_electrical/Battery_Spring_Contact_3744",
+    "name": "Battery Spring Contact"
+  },
+  "1669": {
+    "href": "/parts/2nd/Industrial_control_electrical/Board_end_1669",
+    "name": "Board end"
+  },
+  "1644": {
+    "href": "/parts/2nd/Industrial_control_electrical/Buckled_magnetic_ring_1644",
+    "name": "Buckled magnetic ring"
+  },
+  "427": {
+    "href": "/parts/2nd/Industrial_control_electrical/Button_indicator_light_accessories_427",
+    "name": "Button indicator light accessories"
+  },
+  "1193": {
+    "href": "/parts/2nd/Industrial_control_electrical/Button_switch_accessories_1193",
+    "name": "Button switch accessories"
+  },
+  "1102": {
+    "href": "/parts/2nd/Industrial_control_electrical/Buzzer_Electronic_Beeper_1102",
+    "name": "Buzzer/Electronic Beeper"
+  },
+  "956": {
+    "href": "/parts/2nd/Industrial_control_electrical/Ceramic_plugin_capacitor_956",
+    "name": "Ceramic plugin capacitor"
+  },
+  "3752": {
+    "href": "/parts/2nd/Industrial_control_electrical/Coaxial_Connector_3752",
+    "name": "Coaxial Connector"
+  },
+  "1199": {
+    "href": "/parts/2nd/Industrial_control_electrical/Cold_press_terminals_Terminal_blocks_1199",
+    "name": "Cold press terminals/Terminal blocks"
+  },
+  "862": {
+    "href": "/parts/2nd/Industrial_control_electrical/Communication_accessories_862",
+    "name": "Communication accessories"
+  },
+  "1292": {
+    "href": "/parts/2nd/Industrial_control_electrical/Connecting_accessories_1292",
+    "name": "Connecting accessories"
+  },
+  "1104": {
+    "href": "/parts/2nd/Industrial_control_electrical/Contactor_accessories_1104",
+    "name": "Contactor accessories"
+  },
+  "2276": {
+    "href": "/parts/2nd/Industrial_control_electrical/Cooling_fan_2276",
+    "name": "Cooling fan"
+  },
+  "1293": {
+    "href": "/parts/2nd/Industrial_control_electrical/Crimp_contact_pins_1293",
+    "name": "Crimp contact pins"
+  },
+  "174": {
+    "href": "/parts/2nd/Industrial_control_electrical/Cylindrical_battery_174",
+    "name": "Cylindrical battery"
+  },
+  "3737": {
+    "href": "/parts/2nd/Industrial_control_electrical/Data_Collector_3737",
+    "name": "Data Collector"
+  },
+  "1106": {
+    "href": "/parts/2nd/Industrial_control_electrical/DC_contactor_1106",
+    "name": "DC contactor"
+  },
+  "916": {
+    "href": "/parts/2nd/Industrial_control_electrical/Distribution_frame_916",
+    "name": "Distribution frame"
+  },
+  "1677": {
+    "href": "/parts/2nd/Industrial_control_electrical/Electric_Energy_Meter_1677",
+    "name": "Electric Energy Meter"
+  },
+  "3391": {
+    "href": "/parts/2nd/Industrial_control_electrical/Electrode_plug_3391",
+    "name": "Electrode plug"
+  },
+  "1186": {
+    "href": "/parts/2nd/Industrial_control_electrical/Electromagnetic_relays_1186",
+    "name": "Electromagnetic relays"
+  },
+  "1275": {
+    "href": "/parts/2nd/Industrial_control_electrical/Electromechanical_Contactor_1275",
+    "name": "Electromechanical Contactor"
+  },
+  "1281": {
+    "href": "/parts/2nd/Industrial_control_electrical/Encoder_1281",
+    "name": "Encoder"
+  },
+  "1300": {
+    "href": "/parts/2nd/Industrial_control_electrical/Equipment_circuit_breaker_1300",
+    "name": "Equipment circuit breaker"
+  },
+  "964": {
+    "href": "/parts/2nd/Industrial_control_electrical/Fiber_optic_sensor_964",
+    "name": "Fiber optic sensor"
+  },
+  "1176": {
+    "href": "/parts/2nd/Industrial_control_electrical/Filter_capacitors_1176",
+    "name": "Filter capacitors"
+  },
+  "3354": {
+    "href": "/parts/2nd/Industrial_control_electrical/Fs_FlatMagneticRing_3354",
+    "name": "Fs FlatMagneticRing"
+  },
+  "1109": {
+    "href": "/parts/2nd/Industrial_control_electrical/Fuse_1109",
+    "name": "Fuse"
+  },
+  "2214": {
+    "href": "/parts/2nd/Industrial_control_electrical/Fuse_Current_Protector_2214",
+    "name": "Fuse/Current Protector"
+  },
+  "912": {
+    "href": "/parts/2nd/Industrial_control_electrical/Guide_rail_switching_power_supply_912",
+    "name": "Guide rail switching power supply"
+  },
+  "3227": {
+    "href": "/parts/2nd/Industrial_control_electrical/Heat_shrink_tubing_3227",
+    "name": "Heat shrink tubing"
+  },
+  "1101": {
+    "href": "/parts/2nd/Industrial_control_electrical/Indicator_Light_1101",
+    "name": "Indicator Light"
+  },
+  "3633": {
+    "href": "/parts/2nd/Industrial_control_electrical/Industrial_Computer_3633",
+    "name": "Industrial Computer"
+  },
+  "1174": {
+    "href": "/parts/2nd/Industrial_control_electrical/Industrial_terminal_blocks_1174",
+    "name": "Industrial terminal blocks"
+  },
+  "438": {
+    "href": "/parts/2nd/Industrial_control_electrical/Insulation_tape_adhesive_tape_438",
+    "name": "Insulation tape/ adhesive tape"
+  },
+  "1116": {
+    "href": "/parts/2nd/Industrial_control_electrical/Intermediate_Relay_1116",
+    "name": "Intermediate Relay"
+  },
+  "3351": {
+    "href": "/parts/2nd/Industrial_control_electrical/Inverter_3351",
+    "name": "Inverter"
+  },
+  "959": {
+    "href": "/parts/2nd/Industrial_control_electrical/Key_lock_switch_959",
+    "name": "Key lock switch"
+  },
+  "1288": {
+    "href": "/parts/2nd/Industrial_control_electrical/LED_light_strip_1288",
+    "name": "LED light strip"
+  },
+  "1215": {
+    "href": "/parts/2nd/Industrial_control_electrical/LED_Tube_1215",
+    "name": "LED Tube"
+  },
+  "1187": {
+    "href": "/parts/2nd/Industrial_control_electrical/Level_relays_1187",
+    "name": "Level relays"
+  },
+  "1185": {
+    "href": "/parts/2nd/Industrial_control_electrical/Lighting_transformers_1185",
+    "name": "Lighting transformers"
+  },
+  "1119": {
+    "href": "/parts/2nd/Industrial_control_electrical/Limit_Switch_Travel_Switch_1119",
+    "name": "Limit Switch/Travel Switch"
+  },
+  "3754": {
+    "href": "/parts/2nd/Industrial_control_electrical/Lithium_Manganese_Button_Battery_3754",
+    "name": "Lithium Manganese Button Battery"
+  },
+  "1993": {
+    "href": "/parts/2nd/Industrial_control_electrical/Lithium-Ion_Battery_1993",
+    "name": "Lithium-Ion Battery"
+  },
+  "3748": {
+    "href": "/parts/2nd/Industrial_control_electrical/Micro_blower_3748",
+    "name": "Micro blower"
+  },
+  "1218": {
+    "href": "/parts/2nd/Industrial_control_electrical/Micro_switch_1218",
+    "name": "Micro switch"
+  },
+  "1111": {
+    "href": "/parts/2nd/Industrial_control_electrical/Miniature_Circuit_Breaker_1111",
+    "name": "Miniature Circuit Breaker"
+  },
+  "1205": {
+    "href": "/parts/2nd/Industrial_control_electrical/Miniature_leakage_protection_circuit_breaker_1205",
+    "name": "Miniature leakage protection circuit breaker"
+  },
+  "1112": {
+    "href": "/parts/2nd/Industrial_control_electrical/Motor_Protective_Circuit_Breaker_1112",
+    "name": "Motor Protective Circuit Breaker"
+  },
+  "572": {
+    "href": "/parts/2nd/Industrial_control_electrical/Motor_starter_572",
+    "name": "Motor starter"
+  },
+  "3356": {
+    "href": "/parts/2nd/Industrial_control_electrical/NanocrystallineMagneticRing_3356",
+    "name": "NanocrystallineMagneticRing"
+  },
+  "957": {
+    "href": "/parts/2nd/Industrial_control_electrical/Other_contactors_957",
+    "name": "Other contactors"
+  },
+  "175": {
+    "href": "/parts/2nd/Industrial_control_electrical/Other_electrical_auxiliary_materials_175",
+    "name": "Other electrical auxiliary materials"
+  },
+  "952": {
+    "href": "/parts/2nd/Industrial_control_electrical/Other_industrial_control_products_952",
+    "name": "Other industrial control products"
+  },
+  "3339": {
+    "href": "/parts/2nd/Industrial_control_electrical/Other_modules_collectors_3339",
+    "name": "Other modules/collectors"
+  },
+  "953": {
+    "href": "/parts/2nd/Industrial_control_electrical/Other_sensors_953",
+    "name": "Other sensors"
+  },
+  "1118": {
+    "href": "/parts/2nd/Industrial_control_electrical/Overload_relay_1118",
+    "name": "Overload relay"
+  },
+  "1439": {
+    "href": "/parts/2nd/Industrial_control_electrical/Passive_Filter_1439",
+    "name": "Passive Filter"
+  },
+  "960": {
+    "href": "/parts/2nd/Industrial_control_electrical/Photoelectric_sensor_960",
+    "name": "Photoelectric sensor"
+  },
+  "1297": {
+    "href": "/parts/2nd/Industrial_control_electrical/Pin_plug_1297",
+    "name": "Pin plug"
+  },
+  "580": {
+    "href": "/parts/2nd/Industrial_control_electrical/plug_580",
+    "name": "plug"
+  },
+  "1307": {
+    "href": "/parts/2nd/Industrial_control_electrical/Plug-in_cross_link_assembly_1307",
+    "name": "Plug-in cross link assembly"
+  },
+  "571": {
+    "href": "/parts/2nd/Industrial_control_electrical/Potentiometer_571",
+    "name": "Potentiometer"
+  },
+  "2944": {
+    "href": "/parts/2nd/Industrial_control_electrical/Power_connector__plug_connector_2944",
+    "name": "Power connector / plug connector"
+  },
+  "1678": {
+    "href": "/parts/2nd/Industrial_control_electrical/Power_meter_1678",
+    "name": "Power meter"
+  },
+  "1209": {
+    "href": "/parts/2nd/Industrial_control_electrical/Power_Module_Power_Supply_1209",
+    "name": "Power Module/Power Supply"
+  },
+  "1277": {
+    "href": "/parts/2nd/Industrial_control_electrical/Proximity_Sensor_Proximity_Switch_1277",
+    "name": "Proximity Sensor/Proximity Switch"
+  },
+  "1100": {
+    "href": "/parts/2nd/Industrial_control_electrical/Push_Button_Switch_1100",
+    "name": "Push Button Switch"
+  },
+  "1316": {
+    "href": "/parts/2nd/Industrial_control_electrical/Radiator_fan_accessories_1316",
+    "name": "Radiator fan accessories"
+  },
+  "1694": {
+    "href": "/parts/2nd/Industrial_control_electrical/relay_1694",
+    "name": "relay"
+  },
+  "1117": {
+    "href": "/parts/2nd/Industrial_control_electrical/Relay_accessories_1117",
+    "name": "Relay accessories"
+  },
+  "1302": {
+    "href": "/parts/2nd/Industrial_control_electrical/Relay_base_1302",
+    "name": "Relay base"
+  },
+  "1642": {
+    "href": "/parts/2nd/Industrial_control_electrical/RH_type_magnetic_ring_1642",
+    "name": "RH type magnetic ring"
+  },
+  "1274": {
+    "href": "/parts/2nd/Industrial_control_electrical/Safety_Relay_1274",
+    "name": "Safety Relay"
+  },
+  "1272": {
+    "href": "/parts/2nd/Industrial_control_electrical/Safety_switch_1272",
+    "name": "Safety switch"
+  },
+  "1221": {
+    "href": "/parts/2nd/Industrial_control_electrical/Selector_Switch_1221",
+    "name": "Selector Switch"
+  },
+  "965": {
+    "href": "/parts/2nd/Industrial_control_electrical/Sensor_accessories_965",
+    "name": "Sensor accessories"
+  },
+  "1279": {
+    "href": "/parts/2nd/Industrial_control_electrical/Servo_Motor_1279",
+    "name": "Servo Motor"
+  },
+  "2521": {
+    "href": "/parts/2nd/Industrial_control_electrical/Socket_power_strip_extension_cord_2521",
+    "name": "Socket/power strip/extension cord"
+  },
+  "165": {
+    "href": "/parts/2nd/Industrial_control_electrical/Soft_pack_battery_165",
+    "name": "Soft pack battery"
+  },
+  "1295": {
+    "href": "/parts/2nd/Industrial_control_electrical/Solid_state_relay_1295",
+    "name": "Solid state relay"
+  },
+  "1276": {
+    "href": "/parts/2nd/Industrial_control_electrical/Solid_state_relays_1276",
+    "name": "Solid state relays"
+  },
+  "168": {
+    "href": "/parts/2nd/Industrial_control_electrical/Square_battery_168",
+    "name": "Square battery"
+  },
+  "574": {
+    "href": "/parts/2nd/Industrial_control_electrical/Stepper_motor_574",
+    "name": "Stepper motor"
+  },
+  "1178": {
+    "href": "/parts/2nd/Industrial_control_electrical/Surge_protectors_Lightning_protectors_1178",
+    "name": "Surge protectors/Lightning protectors"
+  },
+  "2990": {
+    "href": "/parts/2nd/Industrial_control_electrical/Switching_power_supply_2990",
+    "name": "Switching power supply"
+  },
+  "1115": {
+    "href": "/parts/2nd/Industrial_control_electrical/Switching_Power_Supply_Accessories_1115",
+    "name": "Switching Power Supply Accessories"
+  },
+  "1217": {
+    "href": "/parts/2nd/Industrial_control_electrical/Tactile_Switch_Push_Button_Switch_1217",
+    "name": "Tactile Switch/Push Button Switch"
+  },
+  "1280": {
+    "href": "/parts/2nd/Industrial_control_electrical/Temperature_Controller_1280",
+    "name": "Temperature Controller"
+  },
+  "1294": {
+    "href": "/parts/2nd/Industrial_control_electrical/terminal_accessories_1294",
+    "name": "terminal  accessories"
+  },
+  "1216": {
+    "href": "/parts/2nd/Industrial_control_electrical/Terminal_strips_1216",
+    "name": "Terminal strips"
+  },
+  "3575": {
+    "href": "/parts/2nd/Industrial_control_electrical/Thermal_Sensor_3575",
+    "name": "Thermal Sensor"
+  },
+  "3736": {
+    "href": "/parts/2nd/Industrial_control_electrical/Thermoelectric_Cooler_3736",
+    "name": "Thermoelectric Cooler"
+  },
+  "1121": {
+    "href": "/parts/2nd/Industrial_control_electrical/Time_relay_1121",
+    "name": "Time relay"
+  },
+  "2719": {
+    "href": "/parts/2nd/Industrial_control_electrical/Touch_screen_2719",
+    "name": "Touch screen"
+  },
+  "1038": {
+    "href": "/parts/2nd/Industrial_control_electrical/Transformer_Electromagnetic_inducer_1038",
+    "name": "Transformer/Electromagnetic inducer"
+  },
+  "3444": {
+    "href": "/parts/2nd/Industrial_control_electrical/Transmitter_3444",
+    "name": "Transmitter"
+  },
+  "955": {
+    "href": "/parts/2nd/Industrial_control_electrical/Ultra_high_voltage_capacitor_955",
+    "name": "Ultra high voltage capacitor"
+  },
+  "913": {
+    "href": "/parts/2nd/Industrial_control_electrical/Waterproof_LED_driver_power_supply_913",
+    "name": "Waterproof LED driver power supply"
+  },
+  "179": {
+    "href": "/parts/2nd/Industrial_control_electrical/Wire_organizer_179",
+    "name": "Wire organizer"
+  },
+  "58": {
+    "href": "/parts/1st/Industrial_reagents_lubrication_rust_removal_58",
+    "name": "Industrial reagents/lubrication/rust removal"
+  },
+  "448": {
+    "href": "/parts/2nd/Industrial_reagents_lubrication_rust_removal/Accelerator_primer_448",
+    "name": "Accelerator/primer"
+  },
+  "3492": {
+    "href": "/parts/2nd/Industrial_reagents_lubrication_rust_removal/diesel_engine_oil_3492",
+    "name": "diesel engine oil"
+  },
+  "1229": {
+    "href": "/parts/2nd/Industrial_reagents_lubrication_rust_removal/Metal_repair_agent_1229",
+    "name": "Metal repair agent"
+  },
+  "26": {
+    "href": "/parts/1st/Instrumentation_and_meters_26",
+    "name": "Instrumentation and meters"
+  },
+  "3510": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Body_Worn_Camera_3510",
+    "name": "Body Worn Camera"
+  },
+  "3219": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Conductive_Silver_Paste_3219",
+    "name": "Conductive Silver Paste"
+  },
+  "3701": {
+    "href": "/parts/2nd/Instrumentation_and_meters/DAQ_3701",
+    "name": "DAQ"
+  },
+  "1680": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Frequency_Meter_1680",
+    "name": "Frequency Meter"
+  },
+  "1054": {
+    "href": "/parts/2nd/Instrumentation_and_meters/GPS_measuring_instrument_1054",
+    "name": "GPS measuring instrument"
+  },
+  "3639": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Infrared_Thermal_Imager_Accessories_3639",
+    "name": "Infrared Thermal Imager Accessories"
+  },
+  "3703": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Microscope_Accessories_3703",
+    "name": "Microscope Accessories"
+  },
+  "3638": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Ohmmeter_3638",
+    "name": "Ohmmeter"
+  },
+  "1428": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Pneumatic_gauge_1428",
+    "name": "Pneumatic gauge"
+  },
+  "1679": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Power_Factor_Meter_1679",
+    "name": "Power Factor Meter"
+  },
+  "3546": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Pressure_Controllers_3546",
+    "name": "Pressure Controllers"
+  },
+  "3624": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Refrigerant_Gauge_Set_3624",
+    "name": "Refrigerant Gauge Set"
+  },
+  "81": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Resistance-capacitance_inductance_measurement_RLC_bridge_81",
+    "name": "Resistance-capacitance inductance measurement/RLC bridge"
+  },
+  "3659": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Tension_meter_3659",
+    "name": "Tension meter"
+  },
+  "903": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Torsion_tester_903",
+    "name": "Torsion tester"
+  },
+  "1478": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Ultrasonic_level_gauge_1478",
+    "name": "Ultrasonic level gauge"
+  },
+  "3623": {
+    "href": "/parts/2nd/Instrumentation_and_meters/USB_tester_3623",
+    "name": "USB tester"
+  },
+  "3417": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Vibration-proof_Pressure_Gauge_3417",
+    "name": "Vibration-proof Pressure Gauge"
+  },
+  "1676": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Volt_Meter_1676",
+    "name": "Volt Meter"
+  },
+  "3405": {
+    "href": "/parts/2nd/Instrumentation_and_meters/Water_Quality_Analyzer_3405",
+    "name": "Water Quality Analyzer"
+  },
+  "54": {
+    "href": "/parts/1st/Lathes_and_accessories_54",
+    "name": "Lathes and accessories"
+  },
+  "3688": {
+    "href": "/parts/2nd/Lathes_and_accessories/Block_3688",
+    "name": "Block"
+  },
+  "3692": {
+    "href": "/parts/2nd/Lathes_and_accessories/Center_3692",
+    "name": "Center"
+  },
+  "3699": {
+    "href": "/parts/2nd/Lathes_and_accessories/Chuck_3699",
+    "name": "Chuck"
+  },
+  "3651": {
+    "href": "/parts/2nd/Lathes_and_accessories/clamping_auxiliary_3651",
+    "name": "clamping auxiliary"
+  },
+  "3689": {
+    "href": "/parts/2nd/Lathes_and_accessories/Clamping_Plate_3689",
+    "name": "Clamping Plate"
+  },
+  "3667": {
+    "href": "/parts/2nd/Lathes_and_accessories/demagnetizer_3667",
+    "name": "demagnetizer"
+  },
+  "3673": {
+    "href": "/parts/2nd/Lathes_and_accessories/Drawbar__Pull_stud_3673",
+    "name": "Drawbar / Pull stud"
+  },
+  "3694": {
+    "href": "/parts/2nd/Lathes_and_accessories/Drive_Clamp_3694",
+    "name": "Drive Clamp"
+  },
+  "3666": {
+    "href": "/parts/2nd/Lathes_and_accessories/Extension_Fixture_3666",
+    "name": "Extension Fixture"
+  },
+  "3476": {
+    "href": "/parts/2nd/Lathes_and_accessories/Generator_3476",
+    "name": "Generator"
+  },
+  "3662": {
+    "href": "/parts/2nd/Lathes_and_accessories/indexing_head_3662",
+    "name": "indexing head"
+  },
+  "3399": {
+    "href": "/parts/2nd/Lathes_and_accessories/Industrial_Belts_3399",
+    "name": "Industrial Belts"
+  },
+  "3697": {
+    "href": "/parts/2nd/Lathes_and_accessories/knife_sharpener_3697",
+    "name": "knife sharpener"
+  },
+  "3674": {
+    "href": "/parts/2nd/Lathes_and_accessories/Magnetic_Block_3674",
+    "name": "Magnetic Block"
+  },
+  "3679": {
+    "href": "/parts/2nd/Lathes_and_accessories/Magnetic_Chip_Collector_3679",
+    "name": "Magnetic Chip Collector"
+  },
+  "3681": {
+    "href": "/parts/2nd/Lathes_and_accessories/Magnetic_Chuck_3681",
+    "name": "Magnetic Chuck"
+  },
+  "3682": {
+    "href": "/parts/2nd/Lathes_and_accessories/Magnetic_Pickup_Tool_3682",
+    "name": "Magnetic Pickup Tool"
+  },
+  "3693": {
+    "href": "/parts/2nd/Lathes_and_accessories/Magnetic_Tapping_Attachment_3693",
+    "name": "Magnetic Tapping Attachment"
+  },
+  "3678": {
+    "href": "/parts/2nd/Lathes_and_accessories/Milling_Chuck_3678",
+    "name": "Milling Chuck"
+  },
+  "3663": {
+    "href": "/parts/2nd/Lathes_and_accessories/permanent-magnetic_chuck_3663",
+    "name": "permanent-magnetic chuck"
+  },
+  "3653": {
+    "href": "/parts/2nd/Lathes_and_accessories/Pneumatic_Tapping_Machine_3653",
+    "name": "Pneumatic Tapping Machine"
+  },
+  "3657": {
+    "href": "/parts/2nd/Lathes_and_accessories/punch_former_3657",
+    "name": "punch former"
+  },
+  "3687": {
+    "href": "/parts/2nd/Lathes_and_accessories/Right_Angle_Attachment_3687",
+    "name": "Right Angle Attachment"
+  },
+  "3677": {
+    "href": "/parts/2nd/Lathes_and_accessories/Rotary_Table_3677",
+    "name": "Rotary Table"
+  },
+  "3672": {
+    "href": "/parts/2nd/Lathes_and_accessories/Safety_Operator_3672",
+    "name": "Safety Operator"
+  },
+  "3596": {
+    "href": "/parts/2nd/Lathes_and_accessories/ScrewNut_3596",
+    "name": "ScrewNut"
+  },
+  "3665": {
+    "href": "/parts/2nd/Lathes_and_accessories/sine_table_3665",
+    "name": "sine table"
+  },
+  "3686": {
+    "href": "/parts/2nd/Lathes_and_accessories/Tap_Collet_Chuck_3686",
+    "name": "Tap Collet Chuck"
+  },
+  "3680": {
+    "href": "/parts/2nd/Lathes_and_accessories/Tool_Locking_Collar_3680",
+    "name": "Tool Locking Collar"
+  },
+  "3652": {
+    "href": "/parts/2nd/Lathes_and_accessories/V-Block_3652",
+    "name": "V-Block"
+  },
+  "3664": {
+    "href": "/parts/2nd/Lathes_and_accessories/vacuum_chuck_3664",
+    "name": "vacuum chuck"
+  },
+  "3654": {
+    "href": "/parts/2nd/Lathes_and_accessories/Wire_EDM_Clamp_Plate_3654",
+    "name": "Wire EDM Clamp Plate"
+  },
+  "3684": {
+    "href": "/parts/2nd/Lathes_and_accessories/Z-Axis_Height_Setter_3684",
+    "name": "Z-Axis Height Setter"
+  },
+  "3685": {
+    "href": "/parts/2nd/Lathes_and_accessories/Z-Axis_Setup_Device_3685",
+    "name": "Z-Axis Setup Device"
+  },
+  "28": {
+    "href": "/parts/1st/LED_Drivers_28",
+    "name": "LED Drivers"
+  },
+  "2542": {
+    "href": "/parts/2nd/LED_Drivers/Digital_Tube_Drivers_2542",
+    "name": "Digital Tube Drivers"
+  },
+  "2530": {
+    "href": "/parts/2nd/LED_Drivers/Laser_Drivers_2530",
+    "name": "Laser Drivers"
+  },
+  "3075": {
+    "href": "/parts/2nd/LED_Drivers/LCD_Drivers_3075",
+    "name": "LCD Drivers"
+  },
+  "3074": {
+    "href": "/parts/2nd/LED_Drivers/LED_Drivers_3074",
+    "name": "LED Drivers"
+  },
+  "2193": {
+    "href": "/parts/2nd/LED_Drivers/Lighting_Drivers_Controllers_2193",
+    "name": "Lighting Drivers &amp; Controllers"
+  },
+  "2544": {
+    "href": "/parts/2nd/LED_Drivers/OLED_Drivers_2544",
+    "name": "OLED Drivers"
+  },
+  "2543": {
+    "href": "/parts/2nd/LED_Drivers/VFD_Drivers_2543",
+    "name": "VFD Drivers"
+  },
+  "19": {
+    "href": "/parts/1st/Logic_19",
+    "name": "Logic"
+  },
+  "2169": {
+    "href": "/parts/2nd/Logic/Buffers_Drivers_Receivers_Transceivers_2169",
+    "name": "Buffers, Drivers, Receivers, Transceivers"
+  },
+  "2167": {
+    "href": "/parts/2nd/Logic/Counters_Dividers_2167",
+    "name": "Counters, Dividers"
+  },
+  "2568": {
+    "href": "/parts/2nd/Logic/Digital_Comparators_2568",
+    "name": "Digital Comparators"
+  },
+  "2566": {
+    "href": "/parts/2nd/Logic/FIFOs_Memory_2566",
+    "name": "FIFOs Memory"
+  },
+  "2163": {
+    "href": "/parts/2nd/Logic/Flip_Flops_2163",
+    "name": "Flip Flops"
+  },
+  "2567": {
+    "href": "/parts/2nd/Logic/Inverters_2567",
+    "name": "Inverters"
+  },
+  "2170": {
+    "href": "/parts/2nd/Logic/Latches_2170",
+    "name": "Latches"
+  },
+  "2168": {
+    "href": "/parts/2nd/Logic/Logic_Gates_2168",
+    "name": "Logic Gates"
+  },
+  "2176": {
+    "href": "/parts/2nd/Logic/Monostable_Multivibrators_2176",
+    "name": "Monostable Multivibrators"
+  },
+  "2569": {
+    "href": "/parts/2nd/Logic/Parity_Generators_and_Checkers_2569",
+    "name": "Parity Generators and Checkers"
+  },
+  "2565": {
+    "href": "/parts/2nd/Logic/Receivers_Transceivers_2565",
+    "name": "Receivers &amp; Transceivers"
+  },
+  "2166": {
+    "href": "/parts/2nd/Logic/Shift_Registers_2166",
+    "name": "Shift Registers"
+  },
+  "2164": {
+    "href": "/parts/2nd/Logic/Signal_Switches_Multiplexers_Decoders_2164",
+    "name": "Signal Switches, Multiplexers, Decoders"
+  },
+  "2165": {
+    "href": "/parts/2nd/Logic/Specialty_Logic_2165",
+    "name": "Specialty Logic"
+  },
+  "2162": {
+    "href": "/parts/2nd/Logic/Translators_Level_Shifters_2162",
+    "name": "Translators, Level Shifters"
+  },
+  "70": {
+    "href": "/parts/1st/Magnetic_Sensors_70",
+    "name": "Magnetic Sensors"
+  },
+  "1635": {
+    "href": "/parts/2nd/Magnetic_Sensors/3D_Magnetic_Sensors_1635",
+    "name": "3D Magnetic Sensors"
+  },
+  "2159": {
+    "href": "/parts/2nd/Magnetic_Sensors/Current_Sensors_2159",
+    "name": "Current Sensors"
+  },
+  "1634": {
+    "href": "/parts/2nd/Magnetic_Sensors/Hall_Switches_1634",
+    "name": "Hall Switches"
+  },
+  "2150": {
+    "href": "/parts/2nd/Magnetic_Sensors/Linear_Hall_Sensors_2150",
+    "name": "Linear Hall Sensors"
+  },
+  "1633": {
+    "href": "/parts/2nd/Magnetic_Sensors/Magnetic_Angle_Sensors_1633",
+    "name": "Magnetic Angle Sensors"
+  },
+  "1636": {
+    "href": "/parts/2nd/Magnetic_Sensors/Reed_Switches_1636",
+    "name": "Reed Switches"
+  },
+  "51": {
+    "href": "/parts/1st/Measuring_tools_51",
+    "name": "Measuring tools"
+  },
+  "2690": {
+    "href": "/parts/2nd/Measuring_tools/Feeler_Gauge_2690",
+    "name": "Feeler Gauge"
+  },
+  "69": {
+    "href": "/parts/1st/Motor_Driver_ICs_69",
+    "name": "Motor Driver ICs"
+  },
+  "1628": {
+    "href": "/parts/2nd/Motor_Driver_ICs/Brushed_DC_Motor_Drivers_1628",
+    "name": "Brushed DC Motor Drivers"
+  },
+  "1627": {
+    "href": "/parts/2nd/Motor_Driver_ICs/Brushless_DC_(BLDC)_Motor_Driver_1627",
+    "name": "Brushless DC (BLDC) Motor Driver"
+  },
+  "2129": {
+    "href": "/parts/2nd/Motor_Driver_ICs/Gate_Drivers_2129",
+    "name": "Gate Drivers"
+  },
+  "1630": {
+    "href": "/parts/2nd/Motor_Driver_ICs/Relay__Coil_Drivers_1630",
+    "name": "Relay / Coil Drivers"
+  },
+  "1629": {
+    "href": "/parts/2nd/Motor_Driver_ICs/Stepper_Motor_Driver_1629",
+    "name": "Stepper Motor Driver"
+  },
+  "49": {
+    "href": "/parts/1st/Office_Daily_Use_49",
+    "name": "Office Daily Use"
+  },
+  "1107": {
+    "href": "/parts/2nd/Office_Daily_Use/Panel_Switch_Panel_Socket_1107",
+    "name": "Panel Switch/Panel Socket"
+  },
+  "3726": {
+    "href": "/parts/2nd/Office_Daily_Use/PDU_Socket_3726",
+    "name": "PDU Socket"
+  },
+  "3275": {
+    "href": "/parts/2nd/Office_Daily_Use/Power_cord_3275",
+    "name": "Power cord"
+  },
+  "1207": {
+    "href": "/parts/2nd/Office_Daily_Use/Reel_1207",
+    "name": "Reel"
+  },
+  "3719": {
+    "href": "/parts/2nd/Office_Daily_Use/RF_Antennas_3719",
+    "name": "RF Antennas"
+  },
+  "198": {
+    "href": "/parts/2nd/Office_Daily_Use/RJ_sheath_198",
+    "name": "RJ sheath"
+  },
+  "1317": {
+    "href": "/parts/2nd/Office_Daily_Use/Socket_panel_box_1317",
+    "name": "Socket panel box"
+  },
+  "3716": {
+    "href": "/parts/2nd/Office_Daily_Use/SSD_3716",
+    "name": "SSD"
+  },
+  "3717": {
+    "href": "/parts/2nd/Office_Daily_Use/TF_card_3717",
+    "name": "TF card"
+  },
+  "38": {
+    "href": "/parts/1st/old_batch_38",
+    "name": "old batch"
+  },
+  "3337": {
+    "href": "/parts/2nd/old_batch/old_batch_3337",
+    "name": "old batch"
+  },
+  "16": {
+    "href": "/parts/1st/Optoelectronics_16",
+    "name": "Optoelectronics"
+  },
+  "2546": {
+    "href": "/parts/2nd/Optoelectronics/Chip_On_Board_(COB)_Light_Sources_2546",
+    "name": "Chip On Board (COB) Light Sources"
+  },
+  "2196": {
+    "href": "/parts/2nd/Optoelectronics/Fiber_Optical_Transceivers_2196",
+    "name": "Fiber Optical Transceivers"
+  },
+  "3123": {
+    "href": "/parts/2nd/Optoelectronics/Infrared_LED_Emitters_3123",
+    "name": "Infrared LED Emitters"
+  },
+  "2234": {
+    "href": "/parts/2nd/Optoelectronics/Infrared_Remote_Receiver_(IRM)_2234",
+    "name": "Infrared Remote Receiver (IRM)"
+  },
+  "3237": {
+    "href": "/parts/2nd/Optoelectronics/IrDA_Transceiver_Modules_3237",
+    "name": "IrDA Transceiver Modules"
+  },
+  "2549": {
+    "href": "/parts/2nd/Optoelectronics/Laser_Diodes_2549",
+    "name": "Laser Diodes"
+  },
+  "71": {
+    "href": "/parts/2nd/Optoelectronics/LED_Indication_Discrete_71",
+    "name": "LED Indication - Discrete"
+  },
+  "3221": {
+    "href": "/parts/2nd/Optoelectronics/Optoelectronics_Accessories_3221",
+    "name": "Optoelectronics Accessories"
+  },
+  "2984": {
+    "href": "/parts/2nd/Optoelectronics/Photodiodes_2984",
+    "name": "Photodiodes"
+  },
+  "2986": {
+    "href": "/parts/2nd/Optoelectronics/Photointerrupters_Slot_Type_Transistor_Output_2986",
+    "name": "Photointerrupters - Slot Type - Transistor Output"
+  },
+  "2548": {
+    "href": "/parts/2nd/Optoelectronics/Phototransistors_2548",
+    "name": "Phototransistors"
+  },
+  "2534": {
+    "href": "/parts/2nd/Optoelectronics/Reflective_Optical_Interrupters_2534",
+    "name": "Reflective Optical Interrupters"
+  },
+  "2114": {
+    "href": "/parts/2nd/Optoelectronics/RGB_LEDs_2114",
+    "name": "RGB LEDs"
+  },
+  "2115": {
+    "href": "/parts/2nd/Optoelectronics/RGB_LEDs(Built-in_IC)_2115",
+    "name": "RGB LEDs(Built-in IC)"
+  },
+  "2547": {
+    "href": "/parts/2nd/Optoelectronics/Ultraviolet_LEDs_(UVLED)_2547",
+    "name": "Ultraviolet LEDs (UVLED)"
+  },
+  "64": {
+    "href": "/parts/1st/Optoisolators_64",
+    "name": "Optoisolators"
+  },
+  "2030": {
+    "href": "/parts/2nd/Optoisolators/Gate_Drive_Optocoupler_2030",
+    "name": "Gate Drive Optocoupler"
+  },
+  "2545": {
+    "href": "/parts/2nd/Optoisolators/Logic_Output_Optoisolators_2545",
+    "name": "Logic Output Optoisolators"
+  },
+  "3189": {
+    "href": "/parts/2nd/Optoisolators/Solid_State_Relays_(MOS_Output)_3189",
+    "name": "Solid State Relays (MOS Output)"
+  },
+  "2554": {
+    "href": "/parts/2nd/Optoisolators/Solid_State_Relays_(Triac_Output)_2554",
+    "name": "Solid State Relays (Triac Output)"
+  },
+  "2938": {
+    "href": "/parts/2nd/Optoisolators/Transistor_Photovoltaic_Output_Optoisolators_2938",
+    "name": "Transistor, Photovoltaic Output Optoisolators"
+  },
+  "3200": {
+    "href": "/parts/2nd/Optoisolators/Triac_SCR_Output_Optoisolators_3200",
+    "name": "Triac, SCR Output Optoisolators"
+  },
+  "60": {
+    "href": "/parts/1st/other_60",
+    "name": "other"
+  },
+  "2721": {
+    "href": "/parts/2nd/other/Button_Signal_Lamp_Main_Switch_2721",
+    "name": "Button/Signal Lamp/Main Switch"
+  },
+  "1659": {
+    "href": "/parts/2nd/other/Comprehensive_Electronic_1659",
+    "name": "Comprehensive Electronic"
+  },
+  "2715": {
+    "href": "/parts/2nd/other/Daily_Necessities_2715",
+    "name": "Daily Necessities"
+  },
+  "1690": {
+    "href": "/parts/2nd/other/electronic_cable_1690",
+    "name": "electronic cable"
+  },
+  "2272": {
+    "href": "/parts/2nd/other/Hand_Protection_2272",
+    "name": "Hand Protection"
+  },
+  "963": {
+    "href": "/parts/2nd/other/MRO_presale_new_products_963",
+    "name": "MRO presale new products"
+  },
+  "1701": {
+    "href": "/parts/2nd/other/Unclassified_goods_1701",
+    "name": "Unclassified goods"
+  },
+  "35": {
+    "href": "/parts/1st/Others_35",
+    "name": "Others"
+  },
+  "2244": {
+    "href": "/parts/2nd/Others/Abolished_Device_2244",
+    "name": "Abolished Device"
+  },
+  "1716": {
+    "href": "/parts/2nd/Others/BOM_allocation_1716",
+    "name": "BOM allocation"
+  },
+  "2221": {
+    "href": "/parts/2nd/Others/Consumables_for_Own_Use_2221",
+    "name": "Consumables for Own Use"
+  },
+  "1728": {
+    "href": "/parts/2nd/Others/Developed_by_Channel_Personnel_1728",
+    "name": "Developed by Channel Personnel"
+  },
+  "1724": {
+    "href": "/parts/2nd/Others/HWDG_1724",
+    "name": "HWDG"
+  },
+  "3297": {
+    "href": "/parts/2nd/Others/Lack_of_specifications_3297",
+    "name": "Lack of specifications"
+  },
+  "1725": {
+    "href": "/parts/2nd/Others/LCDH_1725",
+    "name": "LCDH"
+  },
+  "3286": {
+    "href": "/parts/2nd/Others/New_Arrivals_3286",
+    "name": "New Arrivals"
+  },
+  "2224": {
+    "href": "/parts/2nd/Others/No_specification_for_star_making_plan_2224",
+    "name": "No specification for star making plan"
+  },
+  "1479": {
+    "href": "/parts/2nd/Others/Panel_printing_materials_1479",
+    "name": "Panel printing materials"
+  },
+  "2302": {
+    "href": "/parts/2nd/Others/Panel_printing_product_2302",
+    "name": "Panel printing product"
+  },
+  "2248": {
+    "href": "/parts/2nd/Others/SMT_2248",
+    "name": "SMT"
+  },
+  "3302": {
+    "href": "/parts/2nd/Others/Uncategorized_3302",
+    "name": "Uncategorized"
+  },
+  "55": {
+    "href": "/parts/1st/Pneumatic_hydraulic_valves_pumps_55",
+    "name": "Pneumatic/hydraulic/valves/pumps"
+  },
+  "3627": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Air_Pump_3627",
+    "name": "Air Pump"
+  },
+  "3431": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Fire_Hydrant_3431",
+    "name": "Fire Hydrant"
+  },
+  "1203": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Other_pipes_1203",
+    "name": "Other pipes"
+  },
+  "3434": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Pipe_Elbow_3434",
+    "name": "Pipe Elbow"
+  },
+  "1247": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Sewage_pump_1247",
+    "name": "Sewage pump"
+  },
+  "3584": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Slide_table_cylinder_3584",
+    "name": "Slide table cylinder"
+  },
+  "3695": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/water_meter_3695",
+    "name": "water meter"
+  },
+  "3426": {
+    "href": "/parts/2nd/Pneumatic_hydraulic_valves_pumps/Welded_Elbow_3426",
+    "name": "Welded Elbow"
+  },
+  "68": {
+    "href": "/parts/1st/Power_Modules_68",
+    "name": "Power Modules"
+  },
+  "3118": {
+    "href": "/parts/2nd/Power_Modules/AC-DC_Power_Modules_3118",
+    "name": "AC-DC Power Modules"
+  },
+  "2118": {
+    "href": "/parts/2nd/Power_Modules/DC-AC_Module_(Inverter)_2118",
+    "name": "DC-AC Module (Inverter)"
+  },
+  "2116": {
+    "href": "/parts/2nd/Power_Modules/DC-DC_Power_Modules_2116",
+    "name": "DC-DC Power Modules"
+  },
+  "2117": {
+    "href": "/parts/2nd/Power_Modules/Isolated_Power_Modules_2117",
+    "name": "Isolated Power Modules"
+  },
+  "66": {
+    "href": "/parts/1st/Silicon_Carbide_(SiC)_Devices_66",
+    "name": "Silicon Carbide (SiC) Devices"
+  },
+  "2029": {
+    "href": "/parts/2nd/Silicon_Carbide_(SiC)_Devices/SiC_Diodes_2029",
+    "name": "SiC Diodes"
+  },
+  "2091": {
+    "href": "/parts/2nd/Silicon_Carbide_(SiC)_Devices/SiC_JFETs_2091",
+    "name": "SiC JFETs"
+  },
+  "2090": {
+    "href": "/parts/2nd/Silicon_Carbide_(SiC)_Devices/Silicon_Carbide_Field_Effect_Transistor_(MOSFET)_2090",
+    "name": "Silicon Carbide Field Effect Transistor (MOSFET)"
+  },
+  "3335": {
+    "href": "/parts/1st/Sourcing_Parts_3335",
+    "name": "Sourcing Parts"
+  },
+  "3336": {
+    "href": "/parts/2nd/Sourcing_Parts/Sourcing_Parts_3336",
+    "name": "Sourcing Parts"
+  },
+  "14": {
+    "href": "/parts/1st/Switches_14",
+    "name": "Switches"
+  },
+  "2971": {
+    "href": "/parts/2nd/Switches/DIP_Switches_2971",
+    "name": "DIP Switches"
+  },
+  "2531": {
+    "href": "/parts/2nd/Switches/Keylock_Switches_2531",
+    "name": "Keylock Switches"
+  },
+  "2969": {
+    "href": "/parts/2nd/Switches/Limit_Switches_2969",
+    "name": "Limit Switches"
+  },
+  "2212": {
+    "href": "/parts/2nd/Switches/Mechanical_Keyboard_Shaft_2212",
+    "name": "Mechanical Keyboard Shaft"
+  },
+  "3277": {
+    "href": "/parts/2nd/Switches/Metal_Dome_Pot_3277",
+    "name": "Metal Dome Pot"
+  },
+  "2976": {
+    "href": "/parts/2nd/Switches/Multi-Directional_Switches_2976",
+    "name": "Multi-Directional Switches"
+  },
+  "2099": {
+    "href": "/parts/2nd/Switches/Multidirectional_Switch_2099",
+    "name": "Multidirectional Switch"
+  },
+  "2100": {
+    "href": "/parts/2nd/Switches/Navigation_Switches_Joystick_2100",
+    "name": "Navigation Switches, Joystick"
+  },
+  "2968": {
+    "href": "/parts/2nd/Switches/Pushbutton_Switches_2968",
+    "name": "Pushbutton Switches"
+  },
+  "2967": {
+    "href": "/parts/2nd/Switches/Rocker_Switches_2967",
+    "name": "Rocker Switches"
+  },
+  "2097": {
+    "href": "/parts/2nd/Switches/Rotary_Coding_Switch_2097",
+    "name": "Rotary Coding Switch"
+  },
+  "3209": {
+    "href": "/parts/2nd/Switches/Rotary_Encoders_3209",
+    "name": "Rotary Encoders"
+  },
+  "3312": {
+    "href": "/parts/2nd/Switches/Rotary_Switches_3312",
+    "name": "Rotary Switches"
+  },
+  "2098": {
+    "href": "/parts/2nd/Switches/Rotary_Wheel_Switches_2098",
+    "name": "Rotary Wheel Switches"
+  },
+  "3138": {
+    "href": "/parts/2nd/Switches/Slide_Switches_3138",
+    "name": "Slide Switches"
+  },
+  "2190": {
+    "href": "/parts/2nd/Switches/Specialty_Switches_2190",
+    "name": "Specialty Switches"
+  },
+  "2130": {
+    "href": "/parts/2nd/Switches/Switch_Accessories__Caps_2130",
+    "name": "Switch Accessories / Caps"
+  },
+  "2970": {
+    "href": "/parts/2nd/Switches/Tactile_Switches_2970",
+    "name": "Tactile Switches"
+  },
+  "2532": {
+    "href": "/parts/2nd/Switches/Toggle_Switches_2532",
+    "name": "Toggle Switches"
+  },
+  "3357": {
+    "href": "/parts/1st/Terminal_3357",
+    "name": "Terminal"
+  },
+  "3369": {
+    "href": "/parts/2nd/Terminal/BV_Terminal_3369",
+    "name": "BV Terminal"
+  },
+  "3374": {
+    "href": "/parts/2nd/Terminal/Closed-End_Terminal_3374",
+    "name": "Closed-End Terminal"
+  },
+  "3367": {
+    "href": "/parts/2nd/Terminal/E_Terminal_3367",
+    "name": "E Terminal"
+  },
+  "3368": {
+    "href": "/parts/2nd/Terminal/EN_Terminal_3368",
+    "name": "EN Terminal"
+  },
+  "3372": {
+    "href": "/parts/2nd/Terminal/FRD__MPD_Terminal_3372",
+    "name": "FRD / MPD Terminal"
+  },
+  "3364": {
+    "href": "/parts/2nd/Terminal/Hook_Terminal_3364",
+    "name": "Hook Terminal"
+  },
+  "3366": {
+    "href": "/parts/2nd/Terminal/Knife_Terminal_3366",
+    "name": "Knife Terminal"
+  },
+  "3373": {
+    "href": "/parts/2nd/Terminal/Magnetic_Wire_Terminal_3373",
+    "name": "Magnetic Wire Terminal"
+  },
+  "3375": {
+    "href": "/parts/2nd/Terminal/No-Break_Wire_Clamp_3375",
+    "name": "No-Break Wire Clamp"
+  },
+  "104": {
+    "href": "/parts/2nd/Terminal/PCB_Welding_Terminal_104",
+    "name": "PCB Welding Terminal"
+  },
+  "3371": {
+    "href": "/parts/2nd/Terminal/Quick_Terminal_3371",
+    "name": "Quick Terminal"
+  },
+  "3361": {
+    "href": "/parts/2nd/Terminal/Ring_Terminal_3361",
+    "name": "Ring Terminal"
+  },
+  "3362": {
+    "href": "/parts/2nd/Terminal/SC_Terminal_3362",
+    "name": "SC Terminal"
+  },
+  "3377": {
+    "href": "/parts/2nd/Terminal/SMD_Quick_Terminal_3377",
+    "name": "SMD Quick Terminal"
+  },
+  "3370": {
+    "href": "/parts/2nd/Terminal/Solder_Ring_Terminal_3370",
+    "name": "Solder Ring Terminal"
+  },
+  "3363": {
+    "href": "/parts/2nd/Terminal/Spade_Terminal_3363",
+    "name": "Spade Terminal"
+  },
+  "3378": {
+    "href": "/parts/2nd/Terminal/Square_Copper_Terminal_3378",
+    "name": "Square Copper Terminal"
+  },
+  "3365": {
+    "href": "/parts/2nd/Terminal/Wire_Pin_Terminal_3365",
+    "name": "Wire Pin Terminal"
+  },
+  "50": {
+    "href": "/parts/1st/Tool_Equipment_50",
+    "name": "Tool Equipment"
+  },
+  "3715": {
+    "href": "/parts/2nd/Tool_Equipment/Charging_Port_Test_Board_3715",
+    "name": "Charging Port Test Board"
+  },
+  "3727": {
+    "href": "/parts/2nd/Tool_Equipment/Electric_Soldering_Iron_3727",
+    "name": "Electric Soldering Iron"
+  },
+  "882": {
+    "href": "/parts/2nd/Tool_Equipment/Grease_gun_882",
+    "name": "Grease gun"
+  },
+  "1754": {
+    "href": "/parts/2nd/Tool_Equipment/Hex_driver_sleeve_1754",
+    "name": "Hex driver sleeve"
+  },
+  "3730": {
+    "href": "/parts/2nd/Tool_Equipment/Soldering_Iron_Handle_3730",
+    "name": "Soldering Iron Handle"
+  },
+  "3733": {
+    "href": "/parts/2nd/Tool_Equipment/Soldering_Iron_Tip_Cleaner_3733",
+    "name": "Soldering Iron Tip Cleaner"
+  },
+  "3728": {
+    "href": "/parts/2nd/Tool_Equipment/Soldering_Tip_3728",
+    "name": "Soldering Tip"
+  },
+  "3734": {
+    "href": "/parts/2nd/Tool_Equipment/Specialty_Screwdriver_3734",
+    "name": "Specialty Screwdriver"
+  },
+  "2362": {
+    "href": "/parts/2nd/Tool_Equipment/Tile_drill_bits_2362",
+    "name": "Tile drill bits"
+  },
+  "61": {
+    "href": "/parts/1st/Wires_and_cables_61",
+    "name": "Wires and cables"
+  },
+  "1468": {
+    "href": "/parts/2nd/Wires_and_cables/Accessories_1468",
+    "name": "Accessories"
+  },
+  "1698": {
+    "href": "/parts/2nd/Wires_and_cables/Adapter_cable_1698",
+    "name": "Adapter cable"
+  },
+  "3731": {
+    "href": "/parts/2nd/Wires_and_cables/Audio_Video_Cables_3731",
+    "name": "Audio &amp; Video Cables"
+  },
+  "182": {
+    "href": "/parts/2nd/Wires_and_cables/Audio_cable_182",
+    "name": "Audio cable"
+  },
+  "3235": {
+    "href": "/parts/2nd/Wires_and_cables/Banana_Connectors__Alligator_Clips_3235",
+    "name": "Banana Connectors / Alligator Clips"
+  },
+  "1470": {
+    "href": "/parts/2nd/Wires_and_cables/Cable_Supports_and_Fasteners_1470",
+    "name": "Cable Supports and Fasteners"
+  },
+  "1163": {
+    "href": "/parts/2nd/Wires_and_cables/Cable_Terminals_and_Intermediate_Joints_1163",
+    "name": "Cable Terminals and Intermediate Joints"
+  },
+  "1462": {
+    "href": "/parts/2nd/Wires_and_cables/Cable_Trays_Ducts_1462",
+    "name": "Cable Trays, Ducts"
+  },
+  "917": {
+    "href": "/parts/2nd/Wires_and_cables/Cables_and_wire_clips_917",
+    "name": "Cables and wire clips"
+  },
+  "3644": {
+    "href": "/parts/2nd/Wires_and_cables/circular_connector_3644",
+    "name": "circular connector"
+  },
+  "1314": {
+    "href": "/parts/2nd/Wires_and_cables/Coaxial_cable_(RF)_1314",
+    "name": "Coaxial cable (RF)"
+  },
+  "185": {
+    "href": "/parts/2nd/Wires_and_cables/D-Sub_Cable_185",
+    "name": "D-Sub Cable"
+  },
+  "1447": {
+    "href": "/parts/2nd/Wires_and_cables/Dedicated_cable_assemblies_1447",
+    "name": "Dedicated cable assemblies"
+  },
+  "2999": {
+    "href": "/parts/2nd/Wires_and_cables/Dupont_wire__terminal_block_wire__electronic_wire_2999",
+    "name": "Dupont wire / terminal block wire / electronic wire"
+  },
+  "1457": {
+    "href": "/parts/2nd/Wires_and_cables/Fiber_Optic_Cables_1457",
+    "name": "Fiber Optic Cables"
+  },
+  "2003": {
+    "href": "/parts/2nd/Wires_and_cables/Fixed_Attenuator_2003",
+    "name": "Fixed Attenuator"
+  },
+  "181": {
+    "href": "/parts/2nd/Wires_and_cables/Hub_Adapter_181",
+    "name": "Hub/Adapter"
+  },
+  "1319": {
+    "href": "/parts/2nd/Wires_and_cables/Jumper_wire_enamelled_wire_pre-cable_1319",
+    "name": "Jumper wire/enamelled wire/pre-cable"
+  },
+  "1473": {
+    "href": "/parts/2nd/Wires_and_cables/Labels_tags_1473",
+    "name": "Labels, tags"
+  },
+  "3751": {
+    "href": "/parts/2nd/Wires_and_cables/M12_Cable_3751",
+    "name": "M12 Cable"
+  },
+  "3749": {
+    "href": "/parts/2nd/Wires_and_cables/M8_Cable_3749",
+    "name": "M8 Cable"
+  },
+  "1456": {
+    "href": "/parts/2nd/Wires_and_cables/Modular_Flat_Cables_1456",
+    "name": "Modular - Flat Cables"
+  },
+  "1448": {
+    "href": "/parts/2nd/Wires_and_cables/Multi-conductor_cables_1448",
+    "name": "Multi-conductor cables"
+  },
+  "1310": {
+    "href": "/parts/2nd/Wires_and_cables/Network_cable_modular_cable_1310",
+    "name": "Network cable/modular cable"
+  },
+  "1321": {
+    "href": "/parts/2nd/Wires_and_cables/Power_line_brake_line_extension_line_1321",
+    "name": "Power line/brake line/extension line"
+  },
+  "1459": {
+    "href": "/parts/2nd/Wires_and_cables/Protective_Hoses_Solid_Tubes_Sleeves_1459",
+    "name": "Protective Hoses, Solid Tubes, Sleeves"
+  },
+  "1451": {
+    "href": "/parts/2nd/Wires_and_cables/Rectangular_Cable_Assemblies_1451",
+    "name": "Rectangular Cable Assemblies"
+  },
+  "885": {
+    "href": "/parts/2nd/Wires_and_cables/Rubber_plug__rubber_cap__protective_cover_885",
+    "name": "Rubber plug / rubber cap / protective cover"
+  },
+  "422": {
+    "href": "/parts/2nd/Wires_and_cables/Servo_power_line_422",
+    "name": "Servo power line"
+  },
+  "434": {
+    "href": "/parts/2nd/Wires_and_cables/Single_wire_cable_(ground_wire)_434",
+    "name": "Single wire cable (ground wire)"
+  },
+  "1440": {
+    "href": "/parts/2nd/Wires_and_cables/Sleeve_connector_cable_1440",
+    "name": "Sleeve connector cable"
+  },
+  "1704": {
+    "href": "/parts/2nd/Wires_and_cables/Test_leads_1704",
+    "name": "Test leads"
+  },
+  "84": {
+    "href": "/parts/2nd/Wires_and_cables/USB_cable_data_cable_84",
+    "name": "USB cable/data cable"
+  },
+  "3732": {
+    "href": "/parts/2nd/Wires_and_cables/USB_to_Serial_Cable_3732",
+    "name": "USB to Serial Cable"
+  },
+  "1476": {
+    "href": "/parts/2nd/Wires_and_cables/Welding_sleeves_1476",
+    "name": "Welding sleeves"
+  }
+}

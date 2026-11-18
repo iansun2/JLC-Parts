@@ -1,0 +1,2970 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JLCPCB 離線元件搜尋器 (Vue 3 + SQLite)</title>
+  <script src="/vue.global.prod.js"></script>
+  <style>
+    :root {
+      --bg-body: #111318;
+      --bg-panel: #181b22;
+      --bg-subpanel: #14171e;
+      --bg-header-sub: #181c24;
+      --bg-card: #1a1e26;
+      --bg-input: #111318;
+      --bg-btn: #212631;
+      --bg-btn-hover: #2b313f;
+      --bg-hover: #1f242d;
+      --border: #282d37;
+      --border-light: #363d4a;
+      --text-title: #f8fafc;
+      --text-main: #e2e8f0;
+      --text-sub: #94a3b8;
+      --text-muted: #64748b;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-text: #93c5fd;
+    }
+
+    html[data-theme="light"] {
+      --bg-body: #f1f5f9;
+      --bg-panel: #ffffff;
+      --bg-subpanel: #f8fafc;
+      --bg-header-sub: #f1f5f9;
+      --bg-card: #ffffff;
+      --bg-input: #ffffff;
+      --bg-btn: #f8fafc;
+      --bg-btn-hover: #e2e8f0;
+      --bg-hover: #f1f5f9;
+      --border: #cbd5e1;
+      --border-light: #94a3b8;
+      --text-title: #0f172a;
+      --text-main: #1e293b;
+      --text-sub: #475569;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-text: #1d4ed8;
+    }
+
+    [v-cloak] { display: none; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-size: 13px;
+      line-height: 1.45;
+      min-height: 100vh;
+    }
+
+    #app {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .header-left h1 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-title);
+    }
+
+    .header-left span {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons & Inputs */
+    .btn {
+      background: var(--bg-btn);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      padding: 5px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.12s, border-color 0.12s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--bg-btn-hover);
+      border-color: var(--text-muted);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    .btn-sm {
+      padding: 2px 7px;
+      font-size: 11.5px;
+    }
+
+    input, select, textarea {
+      background: var(--bg-input);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      padding: 5px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    /* Main Workspace Layout: Left Category Tree Sidebar + Right Main Content */
+    .workspace-layout {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .cat-tree-sidebar {
+      width: 310px;
+      flex-shrink: 0;
+      background: #14171e;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .cat-tree-sidebar-header {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      background: #181c24;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .cat-tree-sidebar-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 8px;
+      display: block;
+    }
+
+    .nav-tree-group {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-panel);
+      margin-bottom: 5px;
+      overflow: hidden;
+    }
+
+    .nav-tree-group.active {
+      border-color: var(--accent);
+    }
+
+    .nav-tree-main {
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+      background: #1a1f29;
+      transition: background 0.12s, color 0.12s;
+    }
+
+    .nav-tree-main:hover {
+      background: #232a38;
+    }
+
+    .nav-tree-main.active {
+      background: rgba(59, 130, 246, 0.22);
+      color: #ffffff;
+    }
+
+    .nav-tree-arrow {
+      font-size: 10px;
+      color: var(--text-sub);
+      width: 16px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 3px;
+    }
+
+    .nav-tree-arrow:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .nav-tree-main-name {
+      flex: 1;
+      min-width: 0;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #e2e8f0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .nav-tree-main.active .nav-tree-main-name {
+      color: #93c5fd;
+    }
+
+    .nav-tree-cnt {
+      font-size: 11px;
+      color: var(--text-sub);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .nav-tree-main.active .nav-tree-cnt {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(96, 165, 250, 0.4);
+      color: #eff6ff;
+    }
+
+    .nav-tree-sub-list {
+      border-top: 1px solid var(--border);
+      background: #12151b;
+      padding: 3px 0;
+    }
+
+    .nav-tree-sub {
+      padding: 5px 10px 5px 14px;
+      border-left: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-sub);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.1s, color 0.1s, border-color 0.1s;
+    }
+
+    .nav-tree-sub:hover {
+      background: #1d2330;
+      color: #f1f5f9;
+    }
+
+    .nav-tree-sub.active {
+      background: rgba(59, 130, 246, 0.24);
+      border-left-color: #3b82f6;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    .nav-tree-branch {
+      color: var(--text-muted);
+      font-family: Consolas, monospace;
+      flex-shrink: 0;
+      width: 18px;
+      text-align: left;
+    }
+
+    .nav-tree-sub.active .nav-tree-branch {
+      color: #60a5fa;
+    }
+
+    .nav-tree-sub-name {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .nav-tree-sub-cnt {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .nav-tree-sub.active .nav-tree-sub-cnt {
+      color: #93c5fd;
+    }
+
+    .main-content-area {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .current-cat-badge {
+      background: #1c222e;
+      border: 1px solid #363d4a;
+      color: #93c5fd;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      max-width: 320px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Sticky Search & Filter Toggle Bar */
+    .control-bar {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 25;
+    }
+
+    .search-box-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box-wrap input {
+      width: 100%;
+      max-width: 500px;
+      padding: 6px 10px;
+    }
+
+    .result-counter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .remaining-count-box {
+      background: var(--bg-body);
+      border: 1px solid var(--border-light);
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12.5px;
+      color: var(--text-sub);
+    }
+
+    .remaining-count-box strong {
+      color: #f8fafc;
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 3px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .active-filter-badge {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    /* Filter Drawer */
+    .filter-drawer {
+      background: #14171e;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .filter-section-title {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.4px;
+      margin-bottom: 8px;
+    }
+
+    .filter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 9px 11px;
+      align-items: stretch;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+      background: #1a1e26;
+      border: 1px solid #363d4a;
+      border-radius: 5px;
+      padding: 8px 10px;
+      position: relative;
+    }
+
+    .filter-group:focus-within {
+      border-color: var(--accent);
+    }
+
+    .filter-group label {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-sub);
+    }
+
+    .range-inputs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .range-inputs input {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .range-inputs span {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    /* Multi-Select Vue Component */
+    .ms-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .ms-trigger {
+      background: var(--bg-input);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      padding: 5px 8px;
+      font-size: 12px;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      min-height: 28px;
+      user-select: none;
+    }
+
+    .ms-trigger:hover {
+      border-color: #4b5563;
+    }
+
+    .ms-trigger.has-val {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+    }
+
+    .ms-trigger-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .ms-trigger-text.placeholder {
+      color: var(--text-muted);
+    }
+
+    .ms-trigger-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .ms-clear-inline {
+      color: var(--text-sub);
+      font-size: 11px;
+      padding: 0 4px;
+      border-radius: 3px;
+    }
+
+    .ms-clear-inline:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .ms-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      min-width: 260px;
+      width: 100%;
+      background: #181c24;
+      border: 1px solid #475569;
+      border-radius: 5px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ms-header {
+      padding: 7px 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #14171e;
+    }
+
+    .ms-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .ms-act-btn {
+      background: #212631;
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+    }
+
+    .ms-act-btn:hover {
+      background: #2d3444;
+      border-color: #64748b;
+    }
+
+    .ms-list {
+      max-height: 230px;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+
+    .ms-group-header {
+      padding: 4px 10px 2px 10px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .ms-item {
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    .ms-item:hover {
+      background: var(--bg-hover);
+    }
+
+    .ms-item.checked {
+      background: rgba(59, 130, 246, 0.14);
+      color: #fff;
+    }
+
+    .ms-item-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+    }
+
+    .ms-item-left input[type="checkbox"] {
+      width: 13px;
+      height: 13px;
+      margin: 0;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .ms-item-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ms-item-cnt {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .preset-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .preset-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-light);
+      color: var(--text-sub);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      cursor: pointer;
+    }
+
+    .preset-btn:hover {
+      color: var(--text-main);
+      border-color: #475569;
+      background: #212631;
+    }
+
+    /* Table */
+    .table-container {
+      flex: 1;
+      overflow-x: auto;
+      padding: 0 20px 16px 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      font-variant-numeric: tabular-nums;
+    }
+
+    thead th {
+      background: #14171d;
+      color: var(--text-sub);
+      font-weight: 600;
+      font-size: 11.5px;
+      text-align: left;
+      padding: 8px 9px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    thead th:hover {
+      color: #f8fafc;
+      background: #1c2029;
+    }
+
+    thead th.sorted {
+      color: #f8fafc;
+      background: #1c2029;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:hover {
+      background: var(--bg-hover);
+    }
+
+    td {
+      padding: 6px 9px;
+      vertical-align: middle;
+    }
+
+    .code-link {
+      font-family: "Consolas", "Monaco", monospace;
+      color: #cbd5e1;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .code-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .model-link {
+      color: #f8fafc;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .model-link:hover {
+      text-decoration: underline;
+    }
+
+    .sub-text {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 11px;
+      border: 1px solid var(--border-light);
+      color: var(--text-sub);
+      background: var(--bg-body);
+      white-space: nowrap;
+    }
+
+    .tag-basic {
+      color: #d1fae5;
+      border-color: #065f46;
+      background: rgba(6, 78, 59, 0.35);
+    }
+
+    .tag-preferred {
+      color: #cffafe;
+      border-color: #155e75;
+      background: rgba(22, 78, 99, 0.35);
+    }
+
+    .tag-std-only {
+      color: #fef3c7;
+      border-color: #78350f;
+      background: rgba(120, 53, 15, 0.3);
+    }
+
+    .pkg-tag {
+      font-family: "Consolas", monospace;
+      font-size: 11.5px;
+      color: var(--text-main);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .pkg-tag:hover {
+      text-decoration: underline;
+    }
+
+    .desc-cell {
+      max-width: 280px;
+      min-width: 180px;
+      font-size: 11.5px;
+      color: var(--text-sub);
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .num-cell {
+      font-family: "Consolas", monospace;
+      white-space: nowrap;
+      text-align: right;
+      color: var(--text-main);
+      font-size: 12px;
+    }
+
+    .actions-cell {
+      white-space: nowrap;
+      display: flex;
+      gap: 4px;
+    }
+
+    /* Pagination */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+    }
+
+    .page-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      width: 100%;
+      max-width: 660px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h2 {
+      font-size: 14.5px;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .modal-footer {
+      padding: 10px 18px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .progress-box {
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    .progress-bar-outer {
+      width: 100%;
+      height: 6px;
+      background: #222731;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: var(--accent);
+      transition: width 0.2s;
+    }
+
+    /* Download Modal Split Layout & Category Tree */
+    .dl-split-grid {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 1020px) {
+      .dl-split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tree-panel {
+      background: #14171e;
+      border: 1px solid var(--border-light);
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      height: 560px;
+      min-height: 0;
+    }
+
+    .tree-panel-header {
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      background: #181c24;
+      flex-shrink: 0;
+    }
+
+    .tree-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 8px;
+      display: block;
+    }
+
+    .tree-cat-group {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-panel);
+      margin-bottom: 6px;
+    }
+
+    .tree-node-main {
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      background: #1a1f29;
+      border-radius: 3px;
+    }
+
+    .tree-node-main:hover {
+      background: #222836;
+    }
+
+    .tree-node-sub-list {
+      border-top: 1px solid var(--border);
+      background: #12151b;
+      padding: 4px 0;
+    }
+
+    .tree-node-sub {
+      padding: 5px 10px 5px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--text-sub);
+    }
+
+    .tree-node-sub:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    .tree-meta {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .tree-date {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      font-family: "Consolas", monospace;
+      white-space: nowrap;
+    }
+
+    .tree-cat-group.unfetched {
+      border-color: #212630;
+      background: #12151b;
+      opacity: 0.72;
+    }
+
+    .tree-cat-group.unfetched .tree-node-main {
+      background: #141820;
+    }
+
+    .tree-cat-group.unfetched .tree-node-main:hover {
+      background: #1b202b;
+    }
+
+    .tree-cat-group.unfetched .tree-main-title {
+      color: #64748b !important;
+      font-weight: 500 !important;
+    }
+
+    .tree-node-sub.unfetched {
+      color: #525c6e;
+    }
+
+    .tree-node-sub.unfetched:hover {
+      background: #181c24;
+      color: #94a3b8;
+    }
+
+    .tree-section-divider {
+      margin: 10px 2px 6px 2px;
+      padding: 4px 8px;
+      font-size: 11px;
+      color: #64748b;
+      background: #111318;
+      border: 1px dashed #262c38;
+      border-radius: 4px;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .detail-item {
+      background: var(--bg-body);
+      padding: 7px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .detail-item .k {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .detail-item .v {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 56px;
+      right: 20px;
+      background: #262b36;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      padding: 7px 14px;
+      border-radius: 4px;
+      font-size: 12px;
+      z-index: 200;
+    }
+
+    /* Light Theme Component Overrides */
+    html[data-theme="light"] .cat-tree-sidebar,
+    html[data-theme="light"] .filter-drawer,
+    html[data-theme="light"] .tree-panel,
+    html[data-theme="light"] .ms-header {
+      background: #f8fafc;
+    }
+
+    html[data-theme="light"] .cat-tree-sidebar-header,
+    html[data-theme="light"] .tree-panel-header,
+    html[data-theme="light"] thead th {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    html[data-theme="light"] thead th:hover,
+    html[data-theme="light"] thead th.sorted {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .nav-tree-main,
+    html[data-theme="light"] .tree-node-main {
+      background: #f8fafc;
+    }
+
+    html[data-theme="light"] .nav-tree-main:hover,
+    html[data-theme="light"] .tree-node-main:hover {
+      background: #eef2f6;
+    }
+
+    html[data-theme="light"] .nav-tree-main-name,
+    html[data-theme="light"] .tree-main-title {
+      color: #0f172a !important;
+    }
+
+    html[data-theme="light"] .nav-tree-main.active {
+      background: rgba(37, 99, 235, 0.14);
+      color: #1d4ed8;
+    }
+
+    html[data-theme="light"] .nav-tree-main.active .nav-tree-main-name {
+      color: #1d4ed8 !important;
+    }
+
+    html[data-theme="light"] .nav-tree-cnt {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    html[data-theme="light"] .nav-tree-main.active .nav-tree-cnt {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e40af;
+    }
+
+    html[data-theme="light"] .nav-tree-sub-list,
+    html[data-theme="light"] .tree-node-sub-list {
+      background: #ffffff;
+    }
+
+    html[data-theme="light"] .nav-tree-sub:hover,
+    html[data-theme="light"] .tree-node-sub:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .nav-tree-sub.active {
+      background: #dbeafe;
+      border-left-color: #2563eb;
+      color: #1d4ed8;
+    }
+
+    html[data-theme="light"] .nav-tree-sub.active .nav-tree-branch,
+    html[data-theme="light"] .nav-tree-sub.active .nav-tree-sub-cnt {
+      color: #1d4ed8;
+    }
+
+    html[data-theme="light"] .current-cat-badge {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: #1d4ed8;
+    }
+
+    html[data-theme="light"] .remaining-count-box strong {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .active-filter-badge {
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-color: #93c5fd;
+    }
+
+    html[data-theme="light"] .filter-group {
+      background: #ffffff;
+      border-color: #cbd5e1;
+    }
+
+    html[data-theme="light"] .ms-dropdown {
+      background: #ffffff;
+      border-color: #94a3b8;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+    }
+
+    html[data-theme="light"] .ms-act-btn {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #334155;
+    }
+
+    html[data-theme="light"] .ms-act-btn:hover {
+      background: #e2e8f0;
+    }
+
+    html[data-theme="light"] .ms-item.checked {
+      background: #dbeafe;
+      color: #1e40af;
+      font-weight: 600;
+    }
+
+    html[data-theme="light"] .preset-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
+    html[data-theme="light"] .code-link {
+      color: #1e293b;
+    }
+
+    html[data-theme="light"] .code-link:hover,
+    html[data-theme="light"] .model-link {
+      color: #0f172a;
+    }
+
+    html[data-theme="light"] .tag-basic {
+      color: #065f46;
+      border-color: #6ee7b7;
+      background: #d1fae5;
+    }
+
+    html[data-theme="light"] .tag-preferred {
+      color: #155e75;
+      border-color: #67e8f9;
+      background: #cffafe;
+    }
+
+    html[data-theme="light"] .tag-std-only {
+      color: #92400e;
+      border-color: #fcd34d;
+      background: #fef3c7;
+    }
+
+    html[data-theme="light"] .tree-cat-group.unfetched {
+      border-color: #e2e8f0;
+      background: #f8fafc;
+      opacity: 0.78;
+    }
+
+    html[data-theme="light"] .tree-cat-group.unfetched .tree-node-main {
+      background: #f1f5f9;
+    }
+
+    html[data-theme="light"] .tree-cat-group.unfetched .tree-main-title {
+      color: #94a3b8 !important;
+    }
+
+    html[data-theme="light"] .tree-node-sub.unfetched {
+      color: #94a3b8;
+    }
+
+    html[data-theme="light"] .tree-section-divider {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #64748b;
+    }
+
+    html[data-theme="light"] .progress-bar-outer {
+      background: #e2e8f0;
+    }
+
+    html[data-theme="light"] .toast {
+      background: #0f172a;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak @click="closeAllDropdowns">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>JLCPCB 離線元件搜尋器</h1>
+        <span>Vue 3 + SQLite 索引引擎 ({{ currentDbFile }} — 總計 {{ dbTotalCount.toLocaleString() }} 筆)</span>
+      </div>
+
+      <div class="header-actions">
+        <select v-model="currentDbFile" style="width:auto;" @change="onDbFileChange">
+          <option v-for="f in dbFiles" :key="f.filename" :value="f.filename">
+            {{ f.filename }} ({{ f.row_count.toLocaleString() }} 筆, {{ f.size_mb }} MB)
+          </option>
+        </select>
+
+        <button class="btn" :class="{ 'btn-primary': dlQueue.worker_running }" @click="showDownloadModal = true">
+          <span v-if="dlQueue.worker_running">
+            下載佇列執行中 (待處理 {{ dlQueue.queued_count + 1 }} 項)
+          </span>
+          <span v-else>
+            下載 / 擴充資料庫 (支援多連結佇列)
+          </span>
+        </button>
+
+        <button class="btn" @click="exportFilteredCsv" :disabled="filteredCount === 0">
+          匯出篩選結果 CSV ({{ filteredCount.toLocaleString() }})
+        </button>
+
+        <button
+          class="btn"
+          @click="toggleTheme"
+          :title="theme === 'dark' ? '切換至淺色主題 (Light Mode)' : '切換至深色主題 (Dark Mode)'"
+        >
+          {{ theme === 'dark' ? '☀ 淺色主題' : '☾ 深色主題' }}
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace Layout: Left Category Tree Sidebar + Right Content Area -->
+    <div class="workspace-layout">
+      <!-- Left Sidebar: Main & Subcategory Tree Selector -->
+      <aside class="cat-tree-sidebar" v-show="!isNavTreeCollapsed">
+        <div class="cat-tree-sidebar-header">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="font-size:12.5px; color:var(--text-title);">
+              主 / 次分類樹狀選單 ({{ categoryTree.length }} 類)
+            </strong>
+            <div style="display:flex; gap:4px;">
+              <button type="button" class="btn btn-sm" @click="expandAllNavCats" title="展開所有主分類">展開</button>
+              <button type="button" class="btn btn-sm" @click="collapseAllNavCats" title="收合所有主分類">收合</button>
+            </div>
+          </div>
+          <input
+            type="text"
+            v-model="navTreeSearch"
+            placeholder="搜尋主分類或次分類..."
+          />
+        </div>
+
+        <div class="cat-tree-sidebar-list">
+          <div v-if="filteredNavCategoryTree.length === 0" style="padding:20px; text-align:center; color:var(--text-muted); font-size:12px;">
+            無符合條件的分類
+          </div>
+
+          <div
+            v-for="cat in filteredNavCategoryTree"
+            :key="cat.category_1st"
+            class="nav-tree-group"
+            :class="{ active: selectedCat1 === cat.category_1st }"
+          >
+            <!-- Level 1: Main Category Node -->
+            <div
+              class="nav-tree-main"
+              :class="{ active: selectedCat1 === cat.category_1st }"
+            >
+              <span
+                class="nav-tree-arrow"
+                @click.stop="toggleNavTreeCat(cat.category_1st)"
+                title="點擊展開/收合次分類"
+              >
+                {{ isNavTreeCatExpanded(cat.category_1st) ? '▼' : '▶' }}
+              </span>
+              <span
+                class="nav-tree-main-name"
+                :title="cat.category_1st"
+                @click="onClickNavMainCat(cat.category_1st)"
+              >
+                {{ cat.category_1st }}
+              </span>
+              <span style="font-size:10.5px; color:var(--text-muted); white-space:nowrap; flex-shrink:0;">
+                ({{ cat.subcategories.length }})
+              </span>
+              <span class="nav-tree-cnt" @click="onClickNavMainCat(cat.category_1st)">
+                {{ cat.count.toLocaleString() }}
+              </span>
+            </div>
+
+            <!-- Level 2: Subcategory Children -->
+            <div v-if="isNavTreeCatExpanded(cat.category_1st)" class="nav-tree-sub-list">
+              <!-- "All in Main Category" Root Option -->
+              <div
+                class="nav-tree-sub"
+                :class="{ active: selectedCat1 === cat.category_1st && filters.cat2.length === 0 }"
+                @click="onSelectNavSubCat(cat.category_1st, null)"
+              >
+                <span class="nav-tree-branch">├─</span>
+                <span class="nav-tree-sub-name">全部 {{ cat.category_1st }}</span>
+                <span class="nav-tree-sub-cnt">{{ cat.count.toLocaleString() }}</span>
+              </div>
+
+              <!-- Individual Subcategory Nodes (Click to select/toggle with highlight color) -->
+              <div
+                v-for="(sc, sIdx) in cat.subcategories"
+                :key="sc.category_2nd"
+                class="nav-tree-sub"
+                :class="{ active: selectedCat1 === cat.category_1st && filters.cat2.includes(sc.category_2nd) }"
+                :title="`${sc.category_2nd} (點擊選取或取消選取，可複選多個次分類)`"
+                @click="onSelectNavSubCat(cat.category_1st, sc.category_2nd)"
+              >
+                <span class="nav-tree-branch">
+                  {{ sIdx === cat.subcategories.length - 1 ? '└─' : '├─' }}
+                </span>
+                <span class="nav-tree-sub-name">
+                  {{ sc.category_2nd }}
+                </span>
+                <span class="nav-tree-sub-cnt">
+                  {{ sc.count.toLocaleString() }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Content Area: Control Bar, Filter Drawer, Data Table, Pagination -->
+      <main class="main-content-area">
+        <!-- Sticky Search & Filter Toggle Bar -->
+        <div class="control-bar">
+          <div class="search-box-wrap">
+            <button
+              type="button"
+              class="btn"
+              @click="isNavTreeCollapsed = !isNavTreeCollapsed"
+              title="顯示或隱藏左側主/次分類樹狀選單"
+            >
+              {{ isNavTreeCollapsed ? '▶ 展開分類樹' : '◀ 收合分類樹' }}
+            </button>
+
+            <div class="current-cat-badge" v-if="selectedCat1">
+              <span>{{ selectedCat1 }}</span>
+              <span class="sub" v-if="filters.cat2.length === 0">/ 全部次分類</span>
+              <span class="sub" v-else-if="filters.cat2.length === 1">/ {{ filters.cat2[0] }}</span>
+              <span class="sub" v-else>/ 已選 {{ filters.cat2.length }} 個次分類</span>
+              <button
+                v-if="filters.cat2.length > 0"
+                type="button"
+                class="btn btn-sm"
+                style="padding:1px 5px; font-size:10.5px; margin-left:4px;"
+                @click="filters.cat2 = []; triggerQuery(1)"
+                title="清除次分類篩選，顯示主分類全部元件"
+              >
+                清除次分類
+              </button>
+            </div>
+
+            <input
+              type="text"
+              v-model="filters.keyword"
+              placeholder="全域關鍵字搜尋：C編號 / 型號 / 品牌 / 封裝 / Description（支援空白多詞與 -排除詞）"
+              @input="scheduleQuery"
+            />
+            <button class="btn" @click="isFilterCollapsed = !isFilterCollapsed">
+              <span>{{ isFilterCollapsed ? '展開篩選條件 ▼' : '收合篩選條件 ▲' }}</span>
+              <span v-if="activeFilterCount > 0" class="active-filter-badge">已套用 {{ activeFilterCount }} 項</span>
+            </button>
+            <button class="btn" @click="resetFilters">重置全部條件</button>
+          </div>
+
+          <div class="result-counter-bar">
+            <div class="remaining-count-box">
+              篩選後剩餘 <strong>{{ filteredCount.toLocaleString() }}</strong> 筆
+              <span style="color:var(--text-muted);">
+                / 主分類共 {{ totalInCategory.toLocaleString() }} 筆
+                (Basic/Preferred: {{ basicPrefCount.toLocaleString() }} | SQL: {{ lastQueryMs }} ms)
+              </span>
+            </div>
+          </div>
+        </div>
+
+    <!-- Collapsible Multi-Row Filter Drawer -->
+    <section class="filter-drawer" v-show="!isFilterCollapsed">
+      <!-- Section 1: Common Filters -->
+      <div>
+        <div class="filter-section-title">基本識別、封裝、品牌、庫別與 PCBA 製程（支援多選、搜尋、全選與清除）</div>
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label>LCSC 編號 (lcsc_code)</label>
+            <input type="text" v-model="filters.lcsc_code" placeholder="例如: C2557" @input="scheduleQuery" />
+          </div>
+
+          <div class="filter-group">
+            <label>製造商型號 (mfr_model)</label>
+            <input type="text" v-model="filters.mfr_model" placeholder="例如: AO3400, 1N4148" @input="scheduleQuery" />
+          </div>
+
+          <div class="filter-group">
+            <label>封裝 (package 多選)</label>
+            <multi-select
+              v-model="filters.package"
+              :options="commonFacets.package"
+              :placeholder="`全部封裝 (${commonFacets.package.length})`"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+
+          <div class="filter-group">
+            <label>品牌 / 製造商 (brand 多選)</label>
+            <multi-select
+              v-model="filters.brand"
+              :options="commonFacets.brand"
+              :placeholder="`全部品牌 (${commonFacets.brand.length})`"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+
+          <div class="filter-group">
+            <label>零件庫類型 (library_type 多選)</label>
+            <multi-select
+              v-model="filters.library"
+              :options="commonFacets.library"
+              placeholder="全部庫別 (All)"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+
+          <div class="filter-group">
+            <label>PCBA 組裝類型 (pcba_type 多選)</label>
+            <multi-select
+              v-model="filters.pcba"
+              :options="commonFacets.pcba"
+              placeholder="全部 PCBA 類型"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+
+          <div class="filter-group">
+            <label>次分類 (category_2nd 多選)</label>
+            <multi-select
+              v-model="filters.cat2"
+              :options="commonFacets.cat2"
+              :placeholder="`全部次分類 (${commonFacets.cat2.length})`"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+
+          <div class="filter-group">
+            <label>Description / 屬性描述</label>
+            <input type="text" v-model="filters.description" placeholder="描述內含字詞 (可空白分隔)" @input="scheduleQuery" />
+          </div>
+
+          <div class="filter-group">
+            <label>Datasheet 規格書</label>
+            <select v-model="filters.datasheet" @change="triggerQuery(1)">
+              <option value="all">全部 (All)</option>
+              <option value="has_pdf">有提供 Datasheet PDF</option>
+              <option value="no_pdf">無 Datasheet PDF</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Category-Specific Electrical Specifications -->
+      <div>
+        <div class="filter-section-title">{{ currentSchema.title }}（選項皆支援多選、全選與清除）</div>
+        <div class="filter-grid">
+          <div class="filter-group" v-for="spec in currentSchema.specs" :key="spec.id">
+            <label>{{ spec.label }}</label>
+            <div v-if="spec.kind === 'range'" class="range-inputs">
+              <input
+                type="number"
+                v-model="filters.specRanges[spec.id].min"
+                placeholder="Min"
+                step="any"
+                @input="scheduleQuery"
+              />
+              <span>~</span>
+              <input
+                type="number"
+                v-model="filters.specRanges[spec.id].max"
+                placeholder="Max"
+                step="any"
+                @input="scheduleQuery"
+              />
+            </div>
+            <multi-select
+              v-else
+              v-model="filters.specSelects[spec.id]"
+              :options="specFacets[spec.id] || []"
+              :placeholder="`全部 (${(specFacets[spec.id] || []).length})`"
+              @change="triggerQuery(1)"
+            ></multi-select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Stock, Pricing & Packaging -->
+      <div>
+        <div class="filter-section-title">庫存、各階梯單價 (USD) 與訂購包裝</div>
+        <div class="filter-grid">
+          <div class="filter-group">
+            <label>庫存數量 (stock)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.stock.min" placeholder="Min ≥" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.stock.max" placeholder="Max" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>單價 1+ (price_1 USD)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.price_1.min" placeholder="Min" step="any" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.price_1.max" placeholder="Max ≤" step="any" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>單價 10+ (price_10 USD)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.price_10.min" placeholder="Min" step="any" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.price_10.max" placeholder="Max ≤" step="any" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>單價 100+ (price_100 USD)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.price_100.min" placeholder="Min" step="any" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.price_100.max" placeholder="Max ≤" step="any" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>最小訂購量 (min_order)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.min_order.min" placeholder="Min" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.min_order.max" placeholder="Max ≤" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>整盤數量 (reel_qty)</label>
+            <div class="range-inputs">
+              <input type="number" v-model="filters.ranges.reel_qty.min" placeholder="Min" @input="scheduleQuery" />
+              <span>~</span>
+              <input type="number" v-model="filters.ranges.reel_qty.max" placeholder="Max" @input="scheduleQuery" />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label>每頁顯示筆數</label>
+            <select v-model.number="filters.pageSize" @change="triggerQuery(1)">
+              <option :value="50">50 筆 / 頁</option>
+              <option :value="100">100 筆 / 頁</option>
+              <option :value="250">250 筆 / 頁</option>
+              <option :value="500">500 筆 / 頁</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Presets -->
+      <div class="preset-row">
+        <div class="preset-list">
+          <span style="font-size:11.5px; color:var(--text-muted);">快速條件：</span>
+          <button
+            v-for="(pr, idx) in currentPresets"
+            :key="idx"
+            class="preset-btn"
+            @click="applyPreset(pr)"
+          >
+            {{ pr.label }}
+          </button>
+        </div>
+        <div style="font-size:12px; color:var(--text-sub);">
+          目前篩選剩餘：<strong style="color:var(--text-title);">{{ filteredCount.toLocaleString() }}</strong> 筆
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th @click="sortBy('lcsc_code', true)" :class="{ sorted: filters.sortField === 'lcsc_code' }">
+              LCSC 編號 <span v-if="filters.sortField === 'lcsc_code'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+            <th @click="sortBy('mfr_model', true)" :class="{ sorted: filters.sortField === 'mfr_model' }">
+              型號 / 品牌 <span v-if="filters.sortField === 'mfr_model'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+            <th @click="sortBy('library_type', true)" :class="{ sorted: filters.sortField === 'library_type' }">
+              庫別 / PCBA <span v-if="filters.sortField === 'library_type'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+            <th @click="sortBy('package', true)" :class="{ sorted: filters.sortField === 'package' }">
+              封裝 <span v-if="filters.sortField === 'package'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+
+            <th
+              v-for="spec in visibleTableSpecs"
+              :key="spec.id"
+              @click="sortBy(spec.kind === 'range' ? spec.numCol : spec.dbCol, !!spec.sortAscDefault)"
+              :class="{ sorted: filters.sortField === (spec.kind === 'range' ? spec.numCol : spec.dbCol) }"
+              :style="spec.kind === 'range' ? 'text-align:right;' : ''"
+            >
+              {{ spec.colLabel }}
+              <span v-if="filters.sortField === (spec.kind === 'range' ? spec.numCol : spec.dbCol)">
+                {{ filters.sortAsc ? '▲' : '▼' }}
+              </span>
+            </th>
+
+            <th>Description</th>
+            <th @click="sortBy('stock', false)" :class="{ sorted: filters.sortField === 'stock' }" style="text-align:right;">
+              庫存 <span v-if="filters.sortField === 'stock'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+            <th @click="sortBy('price_1', true)" :class="{ sorted: filters.sortField === 'price_1' }" style="text-align:right;">
+              單價 (USD) <span v-if="filters.sortField === 'price_1'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
+            </th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-if="isLoading">
+            <td :colspan="7 + visibleTableSpecs.length" style="text-align:center; padding:36px; color:var(--text-sub);">
+              正在查詢 SQLite 資料庫...
+            </td>
+          </tr>
+          <tr v-else-if="rows.length === 0">
+            <td :colspan="7 + visibleTableSpecs.length" style="text-align:center; padding:36px; color:var(--text-sub);">
+              無符合條件的元件（剩餘 0 筆），請調整或重置篩選條件。
+            </td>
+          </tr>
+          <tr v-else v-for="p in rows" :key="p.lcsc_code">
+            <td>
+              <span class="code-link" @click="copyText(p.lcsc_code)" title="點擊複製編號">{{ p.lcsc_code }}</span>
+            </td>
+            <td>
+              <a href="javascript:void(0)" @click="detailItem = p" class="model-link">{{ p.mfr_model }}</a>
+              <span class="sub-text" :title="p.brand">{{ p.brand }}</span>
+            </td>
+            <td>
+              <span class="tag" :class="{ 'tag-basic': p.library_type === 'Basic', 'tag-preferred': p.library_type === 'Preferred' }">
+                {{ p.library_type }}
+              </span>
+              <span v-if="p.pcba_type === 'Standard Only'" class="tag tag-std-only" style="margin-left:3px;">Std Only</span>
+              <span v-else class="sub-text" style="margin-top:2px;">Eco &amp; Std</span>
+            </td>
+            <td>
+              <span class="pkg-tag" @click="toggleArrayItem(filters.package, p.package); triggerQuery(1)" title="點擊加入/移除此封裝篩選">
+                {{ p.package || '-' }}
+              </span>
+            </td>
+
+            <td
+              v-for="spec in visibleTableSpecs"
+              :key="spec.id"
+              :class="spec.kind === 'range' ? 'num-cell' : ''"
+              :style="spec.kind !== 'range' ? 'font-size:11.5px; white-space:nowrap; color:var(--text-sub);' : ''"
+            >
+              <template v-if="spec.id === 'type_channel'">
+                {{ p[spec.dbCol] || '-' }}
+                <span v-if="p.config_number && p.config_number !== p[spec.dbCol]" class="sub-text">{{ p.config_number }}</span>
+              </template>
+              <template v-else-if="spec.id === 'diode_cfg'">
+                {{ p[spec.dbCol] || '-' }}
+                <span v-if="p.category_2nd" class="sub-text">{{ p.category_2nd }}</span>
+              </template>
+              <template v-else>
+                {{ p[spec.dbCol] || '-' }}
+              </template>
+            </td>
+
+            <td class="desc-cell">{{ p.description || '-' }}</td>
+            <td class="num-cell">{{ Number(p.stock || 0).toLocaleString() }}</td>
+            <td class="num-cell">
+              {{ p.price_1 !== null && p.price_1 !== '' ? '$' + Number(p.price_1).toFixed(4) : '-' }}
+              <span v-if="p.price_100" class="sub-text" style="text-align:right;">100+: ${{ Number(p.price_100).toFixed(4) }}</span>
+            </td>
+            <td>
+              <div class="actions-cell">
+                <a v-if="p.datasheet_url" class="btn btn-sm" :href="p.datasheet_url" target="_blank" rel="noopener">PDF</a>
+                <a class="btn btn-sm" :href="p.jlcpcb_url" target="_blank" rel="noopener">JLC</a>
+                <button class="btn btn-sm" @click="detailItem = p">詳情</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+        <!-- Pagination Footer -->
+        <footer class="pagination-bar">
+          <div style="color:var(--text-sub); font-size:12px;">
+            篩選後剩餘 {{ filteredCount.toLocaleString() }} 筆 (本頁顯示第 {{ pageStartIdx.toLocaleString() }} ~ {{ pageEndIdx.toLocaleString() }} 筆)
+          </div>
+          <div class="page-controls">
+            <button class="btn btn-sm" :disabled="filters.page <= 1" @click="triggerQuery(1)">第一頁</button>
+            <button class="btn btn-sm" :disabled="filters.page <= 1" @click="triggerQuery(filters.page - 1)">上一頁</button>
+            <span style="margin: 0 8px; font-size:12px;">{{ filters.page }} / {{ totalPages }}</span>
+            <button class="btn btn-sm" :disabled="filters.page >= totalPages" @click="triggerQuery(filters.page + 1)">下一頁</button>
+            <button class="btn btn-sm" :disabled="filters.page >= totalPages" @click="triggerQuery(totalPages)">最後頁</button>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Download Queue Modal (2-Column: Left Tree Preview + Right Queue Manager) -->
+    <div class="modal-backdrop" v-if="showDownloadModal" @click.self="showDownloadModal = false">
+      <div class="modal-box" style="max-width:1240px; width:96vw;">
+        <div class="modal-header">
+          <h2>資料庫分類樹狀預覽 &amp; JLCPCB 批次佇列下載</h2>
+          <button class="btn btn-sm" @click="showDownloadModal = false">關閉</button>
+        </div>
+        <div class="modal-body">
+          <div class="dl-split-grid">
+            <!-- Left Half: All JLCPCB Categories Tree Preview (Downloaded on top, Unfetched gray at bottom) -->
+            <div class="tree-panel">
+              <div class="tree-panel-header">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <strong style="font-size:12.5px; color:var(--text-title);">
+                    JLCPCB 全部分類 ({{ categoryTree.length }}/{{ catalogTree.length }} 主類已下載 | 共 {{ dbTotalCount.toLocaleString() }} 筆)
+                  </strong>
+                  <div style="display:flex; gap:5px;">
+                    <button type="button" class="btn btn-sm" @click="expandAllTreeCats">展開全部</button>
+                    <button type="button" class="btn btn-sm" @click="collapseAllTreeCats">收合全部</button>
+                  </div>
+                </div>
+                <input
+                  type="text"
+                  v-model="catTreeSearch"
+                  placeholder="搜尋 JLCPCB 全部 55 主分類或 868 次分類（未下載分類列於底部灰色區）..."
+                />
+              </div>
+
+              <div class="tree-list">
+                <div v-if="filteredCategoryTree.length === 0" style="padding:24px; text-align:center; color:var(--text-muted); font-size:12px;">
+                  無符合條件的分類
+                </div>
+
+                <template v-for="(cat, cIdx) in filteredCategoryTree" :key="cat.category_1st">
+                  <!-- Visual separator right before the first un-downloaded main category -->
+                  <div
+                    v-if="!cat.downloaded && (cIdx === 0 || filteredCategoryTree[cIdx - 1].downloaded)"
+                    class="tree-section-divider"
+                  >
+                    ── 以下為尚未下載的主分類（點擊右側「+ 下載」即可加入佇列）──
+                  </div>
+
+                  <div class="tree-cat-group" :class="{ unfetched: !cat.downloaded }">
+                    <!-- Main Category Row -->
+                    <div class="tree-node-main" @click="toggleTreeCat(cat.category_1st)">
+                      <div style="display:flex; align-items:center; gap:6px; flex:1; min-width:0;">
+                        <span style="font-size:10px; color:var(--text-sub); width:12px; flex-shrink:0;">
+                          {{ isTreeCatExpanded(cat.category_1st) ? '▼' : '▶' }}
+                        </span>
+                        <strong
+                          class="tree-main-title"
+                          style="font-size:12px; color:#f8fafc; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"
+                          :title="cat.category_1st"
+                        >
+                          {{ cat.category_1st }}
+                        </strong>
+                        <span style="font-size:11px; color:var(--text-muted); white-space:nowrap; flex-shrink:0;">
+                          ({{ cat.downloaded_sub_count ?? cat.subcategories.length }}/{{ cat.total_sub_count ?? cat.subcategories.length }} 子類)
+                        </span>
+                      </div>
+
+                      <div class="tree-meta">
+                        <span class="tree-date" :title="cat.downloaded ? '主分類最後更新時間' : '尚未下載'">
+                          {{ cat.downloaded ? (cat.last_updated || '-') : '未下載' }}
+                        </span>
+                        <span class="tag" :style="!cat.downloaded ? 'color:#525c6e; border-color:#222731;' : ''">
+                          {{ cat.count.toLocaleString() }}
+                        </span>
+                        <button
+                          type="button"
+                          class="btn btn-sm"
+                          :title="cat.downloaded ? '將此主分類加入右側下載輸入框以更新' : '將此主分類加入右側下載輸入框'"
+                          @click.stop="appendDlUrl(cat.url || cat.category_1st)"
+                        >
+                          {{ cat.downloaded ? '+ 更新' : '+ 下載' }}
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Subcategories Tree Children -->
+                    <div v-if="isTreeCatExpanded(cat.category_1st)" class="tree-node-sub-list">
+                      <div
+                        v-for="(sc, sIdx) in cat.subcategories"
+                        :key="sc.category_2nd"
+                        class="tree-node-sub"
+                        :class="{ unfetched: !sc.downloaded }"
+                      >
+                        <div style="display:flex; align-items:center; gap:6px; flex:1; min-width:0;">
+                          <span style="color:var(--text-muted); font-family:Consolas,monospace; flex-shrink:0;">
+                            {{ sIdx === cat.subcategories.length - 1 ? '└─' : '├─' }}
+                          </span>
+                          <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" :title="sc.category_2nd">
+                            {{ sc.category_2nd }}
+                          </span>
+                        </div>
+
+                        <div class="tree-meta">
+                          <span class="tree-date" :title="sc.downloaded ? '次分類最後更新時間' : '尚未下載'">
+                            {{ sc.downloaded ? (sc.last_updated || cat.last_updated || '-') : '未下載' }}
+                          </span>
+                          <span
+                            style="font-size:11px; font-family:Consolas,monospace;"
+                            :style="sc.downloaded ? 'color:var(--text-sub);' : 'color:#475569;'"
+                          >
+                            {{ sc.count.toLocaleString() }}
+                          </span>
+                          <button
+                            type="button"
+                            class="btn btn-sm"
+                            :title="sc.downloaded ? '將此次分類加入右側下載輸入框以更新' : '將此次分類加入右側下載輸入框'"
+                            @click.stop="appendDlUrl(sc.url || sc.category_2nd)"
+                          >
+                            {{ sc.downloaded ? '+ 更新' : '+ 下載' }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </template>
+              </div>
+            </div>
+
+            <!-- Right Half: Enqueue & Queue Progress -->
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div class="filter-group">
+                <label>
+                  <span>JLCPCB 分類網址、分類 ID 或關鍵字（每行一個，可從左側樹狀圖點「+ 更新」快速帶入）</span>
+                  <button type="button" class="btn btn-sm" @click="dlForm.urls = ''">清空輸入框</button>
+                </label>
+                <textarea
+                  v-model="dlForm.urls"
+                  rows="4"
+                  placeholder="每行貼上一個網址或分類名稱，例如：&#10;https://jlcpcb.com/parts/2nd/Transistors_Thyristors/MOSFETs_2954&#10;https://jlcpcb.com/parts/2nd/Capacitors/Capacitor_Networks_Arrays_2151&#10;https://jlcpcb.com/parts/1st/Diodes_4"
+                ></textarea>
+              </div>
+
+              <div class="preset-list">
+                <span style="font-size:11.5px; color:var(--text-muted);">快速帶入：</span>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/2nd/Transistors_Thyristors/MOSFETs_2954')">+ MOSFETs (2954)</button>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/1st/Diodes_4')">+ Diodes 全分類 (4)</button>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/1st/Resistors_1')">+ Resistors 全分類 (1)</button>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/2nd/Capacitors/Multilayer_Ceramic_Capacitors_MLCC_SMD_SMT_2923')">+ MLCC 貼片電容 (2923)</button>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/2nd/Capacitors/Capacitor_Networks_Arrays_2151')">+ 排容 Arrays (2151)</button>
+                <button class="preset-btn" @click="appendDlUrl('https://jlcpcb.com/parts/1st/Inductors_Chokes_Transformers_3')">+ 電感全分類 (3)</button>
+              </div>
+
+              <div class="form-grid">
+                <div class="filter-group">
+                  <label>每個連結最大下載筆數 (依庫存由高至低)</label>
+                  <select v-model.number="dlForm.max_items">
+                    <option :value="2000">前 2,000 筆</option>
+                    <option :value="5000">前 5,000 筆</option>
+                    <option :value="10000">前 10,000 筆</option>
+                    <option :value="20000">前 20,000 筆</option>
+                    <option :value="0">全部下載 (無上限)</option>
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label>零件庫範圍</label>
+                  <select v-model="dlForm.library_filter">
+                    <option value="all">全部 (Basic + Preferred + Extended)</option>
+                    <option value="base">僅 Basic 基礎庫</option>
+                    <option value="preferred">僅 Preferred 優先庫</option>
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label>PCBA 類型過濾</label>
+                  <select v-model="dlForm.pcba_filter">
+                    <option value="all">全部 (Economic + Standard)</option>
+                    <option value="economic">僅支援 Economic PCBA</option>
+                    <option value="standard">僅支援 Standard PCBA</option>
+                  </select>
+                </div>
+
+                <div class="filter-group">
+                  <label>目標資料庫檔案 (推薦 .db SQLite)</label>
+                  <input type="text" v-model="dlForm.filename" />
+                </div>
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding-top:2px;">
+                <div style="display:flex; gap:18px; align-items:center;">
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:12px;">
+                    <input type="checkbox" v-model="dlForm.in_stock_only" style="width:auto;" /> 僅抓有庫存 (In Stock)
+                  </label>
+                  <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:12px;">
+                    <input type="checkbox" v-model="dlForm.merge_existing" style="width:auto;" /> 合併至現有資料庫
+                  </label>
+                </div>
+
+                <button class="btn btn-primary" @click="enqueueDownloadJobs">
+                  加入下載佇列並執行
+                </button>
+              </div>
+
+              <!-- Queue List Section -->
+              <div style="border-top:1px solid var(--border); padding-top:10px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span class="filter-section-title" style="margin:0;">
+                    下載佇列清單 (共 {{ dlQueue.queue.length }} 項 | 待處理: {{ dlQueue.queued_count }} | 已完成: {{ dlQueue.completed_count }})
+                  </span>
+                  <div style="display:flex; gap:6px;">
+                    <button v-if="dlQueue.queued_count > 0" class="btn btn-sm" @click="controlQueue('clear_pending')">
+                      取消所有待處理 ({{ dlQueue.queued_count }})
+                    </button>
+                    <button v-if="dlQueue.completed_count > 0" class="btn btn-sm" @click="controlQueue('clear_history')">
+                      清除已完成紀錄
+                    </button>
+                  </div>
+                </div>
+
+                <div v-if="dlQueue.queue.length === 0" style="padding:16px; text-align:center; color:var(--text-muted); background:var(--bg-body); border:1px solid var(--border); border-radius:4px; font-size:12px;">
+                  目前佇列為空，請在上方貼上一個或多個連結並點擊「加入下載佇列並執行」。
+                </div>
+
+                <div v-else style="max-height:200px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;">
+                  <div
+                    v-for="job in dlQueue.queue"
+                    :key="job.id"
+                    class="progress-box"
+                    :style="{ borderColor: job.status === 'running' ? 'var(--accent)' : 'var(--border)' }"
+                  >
+                    <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12px;">
+                      <div style="display:flex; align-items:center; gap:8px; overflow:hidden;">
+                        <span v-if="job.status === 'running'" class="tag" style="color:#93c5fd; border-color:var(--accent);">執行中</span>
+                        <span v-else-if="job.status === 'queued'" class="tag">排隊中</span>
+                        <span v-else-if="job.status === 'completed'" class="tag tag-basic">已完成</span>
+                        <span v-else class="tag tag-std-only">錯誤</span>
+                        <strong style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" :title="job.url">
+                          #{{ job.id }} {{ job.label }}
+                        </strong>
+                      </div>
+
+                      <div style="display:flex; align-items:center; gap:8px; flex-shrink:0;">
+                        <span v-if="job.status === 'running'" style="color:var(--text-sub); font-family:Consolas,monospace;">
+                          分頁 {{ job.page }}/{{ job.total_pages }} ({{ Number(job.fetched || 0).toLocaleString() }} / {{ Number(job.target_count || 0).toLocaleString() }} 筆)
+                        </span>
+                        <span v-else-if="job.status === 'completed'" style="color:#d1fae5; font-family:Consolas,monospace;">
+                          抓取 {{ Number(job.fetched || 0).toLocaleString() }} 筆
+                        </span>
+                        <span v-else-if="job.status === 'error'" style="color:#fca5a5;">
+                          {{ job.error }}
+                        </span>
+                        <button v-if="job.status === 'queued'" class="btn btn-sm" @click="controlQueue('remove', job.id)">移除</button>
+                      </div>
+                    </div>
+
+                    <div v-if="job.status === 'running'" class="progress-bar-outer" style="margin-bottom:0;">
+                      <div
+                        class="progress-bar-inner"
+                        :style="{ width: (job.target_count > 0 ? Math.min(100, Math.round((job.fetched / job.target_count) * 100)) : 50) + '%' }"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" @click="showDownloadModal = false">關閉視窗（背景繼續執行）</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-backdrop" v-if="detailItem" @click.self="detailItem = null">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h2>{{ detailItem.lcsc_code }} — {{ detailItem.mfr_model }} ({{ detailItem.brand }})</h2>
+          <button class="btn btn-sm" @click="detailItem = null">關閉</button>
+        </div>
+        <div class="modal-body">
+          <div class="detail-item">
+            <div class="k">Description</div>
+            <div class="v">{{ detailItem.description || '-' }}</div>
+          </div>
+          <div class="detail-grid">
+            <div class="detail-item"><div class="k">LCSC 編號</div><div class="v">{{ detailItem.lcsc_code }}</div></div>
+            <div class="detail-item"><div class="k">製造商型號</div><div class="v">{{ detailItem.mfr_model }}</div></div>
+            <div class="detail-item"><div class="k">封裝 (Package)</div><div class="v">{{ detailItem.package }}</div></div>
+            <div class="detail-item"><div class="k">庫別 / PCBA 類型</div><div class="v">{{ detailItem.library_type }} / {{ detailItem.pcba_type }}</div></div>
+            <div class="detail-item"><div class="k">庫存數量</div><div class="v">{{ Number(detailItem.stock || 0).toLocaleString() }} pcs (Min: {{ detailItem.min_order }}, Reel: {{ detailItem.reel_qty || '-' }})</div></div>
+            <div class="detail-item"><div class="k">分類</div><div class="v">{{ detailItem.category_1st }} &gt; {{ detailItem.category_2nd }}</div></div>
+          </div>
+          <div class="detail-item">
+            <div class="k">價格階梯 (USD)</div>
+            <div class="v" style="font-family:Consolas,monospace;">{{ detailItem.price_tiers || '-' }}</div>
+          </div>
+          <div class="filter-section-title" style="margin-top:4px; margin-bottom:0;">電氣參數</div>
+          <div class="detail-grid">
+            <div class="detail-item" v-for="(pair, idx) in parsedDetailAttrs" :key="idx">
+              <div class="k">{{ pair.k }}</div>
+              <div class="v">{{ pair.v }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" @click="copyText(detailItem.lcsc_code)">複製 {{ detailItem.lcsc_code }}</button>
+          <button class="btn" @click="copyText(detailItem.mfr_model)">複製型號</button>
+          <a v-if="detailItem.datasheet_url" class="btn btn-primary" :href="detailItem.datasheet_url" target="_blank">開啟 Datasheet PDF</a>
+          <a class="btn" :href="detailItem.jlcpcb_url" target="_blank">JLCPCB 頁面</a>
+          <a v-if="detailItem.lcsc_url" class="btn" :href="detailItem.lcsc_url" target="_blank">LCSC 頁面</a>
+          <button class="btn" @click="detailItem = null">關閉</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" v-if="toastMsg">{{ toastMsg }}</div>
+  </div>
+
+  <!-- Reusable Multi-Select Component Template -->
+  <script type="text/x-template" id="multi-select-tpl">
+    <div class="ms-wrap" @click.stop>
+      <div class="ms-trigger" :class="{ 'has-val': modelValue.length > 0 }" @click="toggleOpen">
+        <span class="ms-trigger-text" :class="{ placeholder: modelValue.length === 0 }" :title="displayLabel">
+          {{ displayLabel }}
+        </span>
+        <div class="ms-trigger-actions">
+          <span v-if="modelValue.length > 0" class="ms-clear-inline" @click.stop="clearAll" title="一鍵清除">✕</span>
+          <span style="font-size:10px; color:var(--text-muted);">▼</span>
+        </div>
+      </div>
+
+      <div class="ms-dropdown" v-if="isOpen">
+        <div class="ms-header">
+          <input
+            ref="searchInput"
+            type="text"
+            v-model="searchQuery"
+            placeholder="搜尋選項 (例如 SOT-23)..."
+          />
+          <div class="ms-actions-row">
+            <button type="button" class="ms-act-btn" @click="selectAllFiltered">
+              全選目前項目 ({{ filteredOptions.length }})
+            </button>
+            <button type="button" class="ms-act-btn" @click="clearAll">一鍵清除</button>
+          </div>
+        </div>
+
+        <div class="ms-list">
+          <div v-if="filteredOptions.length === 0" style="padding:10px; color:var(--text-muted); text-align:center; font-size:11.5px;">
+            無符合選項
+          </div>
+          <template v-for="(opt, idx) in visibleOptions" :key="opt.value">
+            <div
+              v-if="opt.group && (idx === 0 || visibleOptions[idx - 1].group !== opt.group)"
+              class="ms-group-header"
+            >
+              {{ opt.group }}
+            </div>
+            <div
+              class="ms-item"
+              :class="{ checked: selectedSet.has(opt.value) }"
+              @click="toggleOption(opt.value)"
+            >
+              <div class="ms-item-left">
+                <input type="checkbox" :checked="selectedSet.has(opt.value)" @click.stop="toggleOption(opt.value)" />
+                <span class="ms-item-label" :title="opt.label">{{ opt.label }}</span>
+              </div>
+              <span v-if="opt.count !== undefined" class="ms-item-cnt">{{ opt.count.toLocaleString() }}</span>
+            </div>
+          </template>
+          <div v-if="filteredOptions.length > 250" style="padding:6px 10px; color:var(--text-muted); font-size:11px; text-align:center;">
+            僅顯示前 250 項，請輸入關鍵字縮小範圍（全選會勾選全部 {{ filteredOptions.length }} 項符合項目）
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script>
+    const { createApp, ref, shallowRef, reactive, computed, nextTick, onMounted } = Vue;
+
+    // Global bus to close other open multi-select dropdowns
+    const openDropdownClosers = new Set();
+    function closeAllDropdowns() {
+      openDropdownClosers.forEach(fn => fn());
+    }
+
+    const MultiSelect = {
+      template: '#multi-select-tpl',
+      props: {
+        modelValue: { type: Array, default: () => [] },
+        options: { type: Array, default: () => [] },
+        placeholder: { type: String, default: '全部 (All)' }
+      },
+      emits: ['update:modelValue', 'change'],
+      setup(props, { emit }) {
+        const isOpen = ref(false);
+        const searchQuery = ref('');
+        const searchInput = ref(null);
+
+        const closeSelf = () => { isOpen.value = false; };
+        openDropdownClosers.add(closeSelf);
+
+        const selectedSet = computed(() => new Set(props.modelValue));
+
+        const displayLabel = computed(() => {
+          const len = props.modelValue.length;
+          if (len === 0) return props.placeholder;
+          const map = new Map(props.options.map(o => [o.value, o.label]));
+          const labels = props.modelValue.map(v => map.get(v) || v);
+          if (len <= 2) return labels.join(', ');
+          return `已選 ${len} 項 (${labels.slice(0, 2).join(', ')}…)`;
+        });
+
+        const filteredOptions = computed(() => {
+          const q = searchQuery.value.trim().toLowerCase();
+          if (!q) return props.options;
+          return props.options.filter(o =>
+            o.label.toLowerCase().includes(q) || o.value.toLowerCase().includes(q)
+          );
+        });
+
+        const visibleOptions = computed(() => filteredOptions.value.slice(0, 250));
+
+        const toggleOpen = () => {
+          const next = !isOpen.value;
+          closeAllDropdowns();
+          isOpen.value = next;
+          if (next) {
+            nextTick(() => searchInput.value?.focus());
+          }
+        };
+
+        const toggleOption = (val) => {
+          const next = new Set(props.modelValue);
+          if (next.has(val)) next.delete(val);
+          else next.add(val);
+          const arr = Array.from(next);
+          emit('update:modelValue', arr);
+          emit('change', arr);
+        };
+
+        const selectAllFiltered = () => {
+          const next = new Set(props.modelValue);
+          for (const o of filteredOptions.value) {
+            next.add(o.value);
+          }
+          const arr = Array.from(next);
+          emit('update:modelValue', arr);
+          emit('change', arr);
+        };
+
+        const clearAll = () => {
+          searchQuery.value = '';
+          emit('update:modelValue', []);
+          emit('change', []);
+        };
+
+        return {
+          isOpen,
+          searchQuery,
+          searchInput,
+          selectedSet,
+          displayLabel,
+          filteredOptions,
+          visibleOptions,
+          toggleOpen,
+          toggleOption,
+          selectAllFiltered,
+          clearAll
+        };
+      }
+    };
+
+    const app = createApp({
+      components: { MultiSelect },
+      setup() {
+        const theme = ref(localStorage.getItem('jlc_theme') || 'dark');
+        document.documentElement.setAttribute('data-theme', theme.value);
+
+        const toggleTheme = () => {
+          theme.value = theme.value === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('jlc_theme', theme.value);
+          document.documentElement.setAttribute('data-theme', theme.value);
+        };
+
+        const dbFiles = ref([]);
+        const currentDbFile = ref('jlc_parts.db');
+        const dbTotalCount = ref(0);
+        const categoryTree = ref([]);
+        const catalogTree = ref([]);
+        const selectedCat1 = ref('');
+        const isFilterCollapsed = ref(false);
+        const isLoading = ref(false);
+
+        const currentSchema = ref({ title: '專屬電氣規格', specs: [] });
+        const commonFacets = reactive({
+          package: [],
+          brand: [],
+          library: [],
+          pcba: [],
+          cat2: []
+        });
+        const specFacets = reactive({});
+
+        const createDefaultFilters = (specs = []) => {
+          const specRanges = {};
+          const specSelects = {};
+          for (const s of specs) {
+            if (s.kind === 'range') specRanges[s.id] = { min: '', max: '' };
+            else specSelects[s.id] = [];
+          }
+          return {
+            keyword: '',
+            lcsc_code: '',
+            mfr_model: '',
+            description: '',
+            datasheet: 'all',
+            package: [],
+            brand: [],
+            library: [],
+            pcba: [],
+            cat2: [],
+            ranges: {
+              stock: { min: 1, max: '' },
+              price_1: { min: '', max: '' },
+              price_10: { min: '', max: '' },
+              price_100: { min: '', max: '' },
+              min_order: { min: '', max: '' },
+              reel_qty: { min: '', max: '' }
+            },
+            specRanges,
+            specSelects,
+            sortField: 'stock',
+            sortAsc: false,
+            page: 1,
+            pageSize: 100
+          };
+        };
+
+        const filters = reactive(createDefaultFilters());
+
+        // Use shallowRef for table rows so Vue doesn't deep-proxy row properties
+        const rows = shallowRef([]);
+        const totalInCategory = ref(0);
+        const filteredCount = ref(0);
+        const basicPrefCount = ref(0);
+        const lastQueryMs = ref(0);
+
+        const detailItem = ref(null);
+        const toastMsg = ref('');
+        const showDownloadModal = ref(false);
+        const dlForm = reactive({
+          urls: '',
+          max_items: 5000,
+          library_filter: 'all',
+          pcba_filter: 'all',
+          filename: 'jlc_parts.db',
+          in_stock_only: true,
+          merge_existing: true
+        });
+        const dlQueue = reactive({
+          worker_running: false,
+          queued_count: 0,
+          completed_count: 0,
+          completed_revision: 0,
+          queue: []
+        });
+        let queuePollTimer = null;
+
+        let queryTimer = null;
+
+        const currentSubcategories = computed(() => {
+          const found = categoryTree.value.find(c => c.category_1st === selectedCat1.value);
+          return found ? (found.subcategories || []) : [];
+        });
+
+        const currentMainCategoryCount = computed(() => {
+          const found = categoryTree.value.find(c => c.category_1st === selectedCat1.value);
+          return found ? found.count : 0;
+        });
+
+        const visibleTableSpecs = computed(() =>
+          (currentSchema.value.specs || []).filter(s => s.showInTable)
+        );
+
+        const totalPages = computed(() =>
+          Math.max(1, Math.ceil(filteredCount.value / filters.pageSize))
+        );
+
+        const pageStartIdx = computed(() =>
+          filteredCount.value === 0 ? 0 : (filters.page - 1) * filters.pageSize + 1
+        );
+
+        const pageEndIdx = computed(() =>
+          Math.min(filters.page * filters.pageSize, filteredCount.value)
+        );
+
+        const activeFilterCount = computed(() => {
+          let c = 0;
+          if (filters.keyword.trim()) c++;
+          if (filters.lcsc_code.trim()) c++;
+          if (filters.mfr_model.trim()) c++;
+          if (filters.description.trim()) c++;
+          if (filters.datasheet !== 'all') c++;
+          if (filters.package.length) c++;
+          if (filters.brand.length) c++;
+          if (filters.library.length) c++;
+          if (filters.pcba.length) c++;
+          if (filters.cat2.length) c++;
+          for (const [k, r] of Object.entries(filters.ranges)) {
+            if (k === 'stock') {
+              if ((r.min !== '' && r.min !== 1 && r.min !== '1') || r.max !== '') c++;
+            } else if (r.min !== '' || r.max !== '') {
+              c++;
+            }
+          }
+          for (const r of Object.values(filters.specRanges)) {
+            if (r.min !== '' || r.max !== '') c++;
+          }
+          for (const arr of Object.values(filters.specSelects)) {
+            if (arr && arr.length > 0) c++;
+          }
+          return c;
+        });
+
+        const currentPresets = computed(() => {
+          const cat = selectedCat1.value;
+          if (cat === 'Transistors/Thyristors') {
+            return [
+              { label: 'Basic/Preferred + N-Ch + SOT-23 系列', run: () => {
+                filters.library = ['Basic', 'Preferred'];
+                filters.specSelects.type_channel = ['N-Channel'];
+                filters.package = commonFacets.package.filter(o => o.value.toLowerCase().includes('sot-23')).map(o => o.value);
+              }},
+              { label: 'Economic PCBA + Basic/Preferred', run: () => {
+                filters.library = ['Basic', 'Preferred'];
+                filters.pcba = ['Economic & Standard', 'Economic Only'];
+              }},
+              { label: '邏輯電平 Vgs(th) ≤ 2.2V', run: () => { filters.specRanges.vgsth.max = 2.2; } },
+              { label: '低內阻 Rds(on) ≤ 10mΩ', run: () => { filters.specRanges.rdson.max = 10; } },
+              { label: '低閘極電荷 Qg ≤ 15nC', run: () => { filters.specRanges.qg.max = 15; } },
+              { label: '雙通道 Dual (2 Channels)', run: () => { filters.specSelects.config_number = ['cnt:2']; } },
+              { label: '高壓 Vds ≥ 100V', run: () => { filters.specRanges.vds.min = 100; } },
+              { label: '大電流 Id ≥ 30A', run: () => { filters.specRanges.id_cur.min = 30; } }
+            ];
+          }
+          if (cat === 'Diodes') {
+            return [
+              { label: 'Basic/Preferred 二極體', run: () => { filters.library = ['Basic', 'Preferred']; } },
+              { label: '低壓降蕭特基 Vf ≤ 0.45V', run: () => { filters.specRanges.vf.max = 0.45; } },
+              { label: '高速恢復 trr ≤ 35ns', run: () => { filters.specRanges.trr.max = 35; } },
+              { label: '高反向耐壓 Vr ≥ 100V', run: () => { filters.specRanges.vr.min = 100; } },
+              { label: '大整流電流 Io ≥ 3A', run: () => { filters.specRanges.io.min = 3; } },
+              { label: '低漏電 Ir ≤ 1μA', run: () => { filters.specRanges.ir.max = 1; } },
+              { label: '3.3V 齊納 (Vz 3.2~3.4V)', run: () => { filters.specRanges.vz.min = 3.2; filters.specRanges.vz.max = 3.4; } },
+              { label: '5.1V 齊納 (Vz 5.0~5.2V)', run: () => { filters.specRanges.vz.min = 5.0; filters.specRanges.vz.max = 5.2; } }
+            ];
+          }
+          if (cat === 'Resistors') {
+            return [
+              { label: 'Basic/Preferred 電阻', run: () => { filters.library = ['Basic', 'Preferred']; } },
+              { label: '0402 + ±1% + Basic/Preferred', run: () => {
+                filters.library = ['Basic', 'Preferred'];
+                filters.package = ['0402'];
+                filters.specSelects.tol = ['±1%'];
+              }},
+              { label: '0603 + ±1% + Basic/Preferred', run: () => {
+                filters.library = ['Basic', 'Preferred'];
+                filters.package = ['0603'];
+                filters.specSelects.tol = ['±1%'];
+              }},
+              { label: '高精度 ≤ ±0.1%', run: () => {
+                filters.specSelects.tol = (specFacets.tol || []).filter(o => o.value.includes('0.1%') || o.value.includes('0.05%') || o.value.includes('0.01%')).map(o => o.value);
+              }},
+              { label: '低溫漂 ≤ ±25ppm/℃', run: () => {
+                filters.specSelects.tcr = (specFacets.tcr || []).filter(o => /±(5|10|15|20|25)ppm/i.test(o.value)).map(o => o.value);
+              }},
+              { label: '大功率 Pd ≥ 1W', run: () => { filters.specRanges.pd.min = 1; } }
+            ];
+          }
+          return [
+            { label: 'Basic + Preferred 優先元件', run: () => { filters.library = ['Basic', 'Preferred']; } },
+            { label: '支援 Economic PCBA', run: () => { filters.pcba = ['Economic & Standard', 'Economic Only']; } }
+          ];
+        });
+
+        const parsedDetailAttrs = computed(() => {
+          if (!detailItem.value || !detailItem.value.attributes_summary) return [];
+          return detailItem.value.attributes_summary.split(' ; ').filter(Boolean).map(pair => {
+            const idx = pair.indexOf(':');
+            return {
+              k: idx > -1 ? pair.slice(0, idx).trim() : '屬性',
+              v: idx > -1 ? pair.slice(idx + 1).trim() : pair
+            };
+          });
+        });
+
+        const showToast = (msg) => {
+          toastMsg.value = msg;
+          setTimeout(() => { toastMsg.value = ''; }, 1600);
+        };
+
+        const copyText = (txt) => {
+          navigator.clipboard.writeText(txt).then(() => showToast(`已複製: ${txt}`));
+        };
+
+        const toggleArrayItem = (arr, item) => {
+          if (!item) return;
+          const idx = arr.indexOf(item);
+          if (idx > -1) arr.splice(idx, 1);
+          else arr.push(item);
+        };
+
+        const refreshFileList = async () => {
+          const res = await fetch('/api/files');
+          if (!res.ok) return;
+          const data = await res.json();
+          dbFiles.value = data.files || [];
+          if (dbFiles.value.length > 0 && !dbFiles.value.some(f => f.filename === currentDbFile.value)) {
+            currentDbFile.value = dbFiles.value[0].filename;
+          }
+        };
+
+        const loadDatabaseCategories = async (preferCat1 = '') => {
+          const res = await fetch(`/api/categories?file=${encodeURIComponent(currentDbFile.value)}`);
+          if (!res.ok) return;
+          const data = await res.json();
+          categoryTree.value = data.categories || [];
+          catalogTree.value = data.catalog || data.categories || [];
+          dbTotalCount.value = data.total || 0;
+
+          if (expandedTreeCats.value.size === 0 && categoryTree.value.length > 0) {
+            expandedTreeCats.value = new Set(categoryTree.value.slice(0, 3).map(c => c.category_1st));
+          }
+
+          if (categoryTree.value.length === 0) {
+            rows.value = [];
+            filteredCount.value = 0;
+            return;
+          }
+
+          let target = preferCat1;
+          if (!target || !categoryTree.value.some(c => c.category_1st === target)) {
+            const mos = categoryTree.value.find(c => c.category_1st.includes('Transistors'));
+            target = mos ? mos.category_1st : categoryTree.value[0].category_1st;
+          }
+          await selectPrimaryCategory(target);
+        };
+
+        const selectPrimaryCategory = async (cat1, initialCat2 = []) => {
+          selectedCat1.value = cat1;
+          const nextExpanded = new Set(expandedNavCats.value);
+          nextExpanded.add(cat1);
+          expandedNavCats.value = nextExpanded;
+
+          isLoading.value = true;
+          const res = await fetch(`/api/facets?file=${encodeURIComponent(currentDbFile.value)}&category_1st=${encodeURIComponent(cat1)}`);
+          const data = await res.json();
+
+          currentSchema.value = data.schema || { title: '', specs: [] };
+          Object.assign(commonFacets, data.commonFacets || {});
+          for (const k in specFacets) delete specFacets[k];
+          Object.assign(specFacets, data.specFacets || {});
+
+          const fresh = createDefaultFilters(currentSchema.value.specs);
+          fresh.cat2 = Array.isArray(initialCat2) ? [...initialCat2] : [];
+          Object.assign(filters, fresh);
+
+          await triggerQuery(1);
+        };
+
+        const triggerQuery = async (page = 1) => {
+          filters.page = page;
+          isLoading.value = true;
+          try {
+            const payload = {
+              file: currentDbFile.value,
+              category_1st: selectedCat1.value,
+              ...filters
+            };
+            const res = await fetch('/api/query', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            rows.value = data.rows || [];
+            totalInCategory.value = data.total_in_category || 0;
+            filteredCount.value = data.filtered_count || 0;
+            basicPrefCount.value = data.basic_pref_count || 0;
+            lastQueryMs.value = data.query_ms || 0;
+          } finally {
+            isLoading.value = false;
+          }
+        };
+
+        const scheduleQuery = () => {
+          clearTimeout(queryTimer);
+          queryTimer = setTimeout(() => triggerQuery(1), 140);
+        };
+
+        const sortBy = (field, defaultAsc = false) => {
+          if (filters.sortField === field) {
+            filters.sortAsc = !filters.sortAsc;
+          } else {
+            filters.sortField = field;
+            filters.sortAsc = defaultAsc;
+          }
+          triggerQuery(1);
+        };
+
+        const resetFilters = () => {
+          const fresh = createDefaultFilters(currentSchema.value.specs);
+          fresh.pageSize = filters.pageSize;
+          Object.assign(filters, fresh);
+          triggerQuery(1);
+        };
+
+        const applyPreset = (pr) => {
+          const fresh = createDefaultFilters(currentSchema.value.specs);
+          fresh.pageSize = filters.pageSize;
+          Object.assign(filters, fresh);
+          if (pr && pr.run) pr.run();
+          triggerQuery(1);
+        };
+
+        const onDbFileChange = async () => {
+          await loadDatabaseCategories(selectedCat1.value);
+        };
+
+        const exportFilteredCsv = async () => {
+          showToast('正在產生 CSV 檔案...');
+          const payload = {
+            file: currentDbFile.value,
+            category_1st: selectedCat1.value,
+            ...filters
+          };
+          const res = await fetch('/api/export', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) {
+            showToast('匯出失敗');
+            return;
+          }
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `jlc_${selectedCat1.value.replace(/\W+/g, '_')}_${filteredCount.value}_parts.csv`;
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast(`已匯出 ${filteredCount.value.toLocaleString()} 筆元件`);
+        };
+
+        const appendDlUrl = (u) => {
+          const cur = dlForm.urls.trim();
+          dlForm.urls = cur ? `${cur}\n${u}` : u;
+          showToast(`已帶入: ${u}`);
+        };
+
+        // Left Navigation Category Tree State & Actions
+        const isNavTreeCollapsed = ref(false);
+        const navTreeSearch = ref('');
+        const expandedNavCats = ref(new Set());
+
+        const filteredNavCategoryTree = computed(() => {
+          const q = navTreeSearch.value.trim().toLowerCase();
+          if (!q) return categoryTree.value;
+          const res = [];
+          for (const cat of categoryTree.value) {
+            const mainMatch = cat.category_1st.toLowerCase().includes(q);
+            const matchedSubs = (cat.subcategories || []).filter(sc =>
+              sc.category_2nd.toLowerCase().includes(q)
+            );
+            if (mainMatch) {
+              res.push(cat);
+            } else if (matchedSubs.length > 0) {
+              res.push({
+                ...cat,
+                subcategories: matchedSubs
+              });
+            }
+          }
+          return res;
+        });
+
+        const isNavTreeCatExpanded = (cat1) => {
+          if (navTreeSearch.value.trim() !== '') return true;
+          return expandedNavCats.value.has(cat1);
+        };
+
+        const toggleNavTreeCat = (cat1) => {
+          const next = new Set(expandedNavCats.value);
+          if (next.has(cat1)) next.delete(cat1);
+          else next.add(cat1);
+          expandedNavCats.value = next;
+        };
+
+        const expandAllNavCats = () => {
+          expandedNavCats.value = new Set(categoryTree.value.map(c => c.category_1st));
+        };
+
+        const collapseAllNavCats = () => {
+          expandedNavCats.value = new Set();
+        };
+
+        const onClickNavMainCat = async (cat1) => {
+          if (selectedCat1.value !== cat1) {
+            await selectPrimaryCategory(cat1, []);
+          } else {
+            toggleNavTreeCat(cat1);
+            if (filters.cat2.length > 0) {
+              filters.cat2 = [];
+              await triggerQuery(1);
+            }
+          }
+        };
+
+        const onSelectNavSubCat = async (cat1, cat2) => {
+          if (selectedCat1.value !== cat1) {
+            await selectPrimaryCategory(cat1, cat2 ? [cat2] : []);
+          } else {
+            if (!cat2) {
+              filters.cat2 = [];
+            } else {
+              toggleArrayItem(filters.cat2, cat2);
+            }
+            await triggerQuery(1);
+          }
+        };
+
+        // Download Modal Category Tree State & Actions (Uses full 55-category catalogTree)
+        const catTreeSearch = ref('');
+        const expandedTreeCats = ref(new Set());
+
+        const filteredCategoryTree = computed(() => {
+          const source = catalogTree.value.length > 0 ? catalogTree.value : categoryTree.value;
+          const q = catTreeSearch.value.trim().toLowerCase();
+          if (!q) return source;
+          const res = [];
+          for (const cat of source) {
+            const mainMatch = cat.category_1st.toLowerCase().includes(q);
+            const matchedSubs = (cat.subcategories || []).filter(sc =>
+              sc.category_2nd.toLowerCase().includes(q)
+            );
+            if (mainMatch) {
+              res.push(cat);
+            } else if (matchedSubs.length > 0) {
+              res.push({
+                ...cat,
+                subcategories: matchedSubs
+              });
+            }
+          }
+          return res;
+        });
+
+        const isTreeCatExpanded = (cat1) => {
+          if (catTreeSearch.value.trim() !== '') return true;
+          return expandedTreeCats.value.has(cat1);
+        };
+
+        const toggleTreeCat = (cat1) => {
+          const next = new Set(expandedTreeCats.value);
+          if (next.has(cat1)) next.delete(cat1);
+          else next.add(cat1);
+          expandedTreeCats.value = next;
+        };
+
+        const expandAllTreeCats = () => {
+          const source = catalogTree.value.length > 0 ? catalogTree.value : categoryTree.value;
+          expandedTreeCats.value = new Set(source.map(c => c.category_1st));
+        };
+
+        const collapseAllTreeCats = () => {
+          expandedTreeCats.value = new Set();
+        };
+
+        const syncQueueStatus = async () => {
+          try {
+            const res = await fetch('/api/download/status');
+            if (!res.ok) return;
+            const st = await res.json();
+            const prevRev = dlQueue.completed_revision;
+            dlQueue.worker_running = !!st.worker_running;
+            dlQueue.queued_count = st.queued_count || 0;
+            dlQueue.completed_count = st.completed_count || 0;
+            dlQueue.completed_revision = st.completed_revision || 0;
+            dlQueue.queue = st.queue || [];
+
+            if (dlQueue.completed_revision > prevRev && prevRev >= 0) {
+              await refreshFileList();
+              await loadDatabaseCategories(selectedCat1.value);
+            }
+            if (!dlQueue.worker_running && queuePollTimer) {
+              clearInterval(queuePollTimer);
+              queuePollTimer = null;
+            }
+          } catch (e) {}
+        };
+
+        const ensureQueuePolling = () => {
+          if (!queuePollTimer) {
+            queuePollTimer = setInterval(syncQueueStatus, 650);
+          }
+        };
+
+        const enqueueDownloadJobs = async () => {
+          if (!dlForm.urls.trim()) {
+            showToast('請輸入至少一個分類網址或關鍵字');
+            return;
+          }
+          try {
+            const res = await fetch('/api/download', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(dlForm)
+            });
+            const data = await res.json();
+            if (!res.ok || !data.ok) throw new Error(data.error || '加入佇列失敗');
+            dlForm.urls = '';
+            if (data.state) {
+              dlQueue.worker_running = !!data.state.worker_running;
+              dlQueue.queued_count = data.state.queued_count || 0;
+              dlQueue.completed_count = data.state.completed_count || 0;
+              dlQueue.queue = data.state.queue || [];
+            }
+            showToast(`已將 ${data.added_count} 個連結加入下載佇列`);
+            ensureQueuePolling();
+          } catch (e) {
+            showToast(`錯誤: ${e.message}`);
+          }
+        };
+
+        const controlQueue = async (action, jobId = null) => {
+          const res = await fetch('/api/download/control', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action, job_id: jobId })
+          });
+          const data = await res.json();
+          if (data.state) {
+            dlQueue.worker_running = !!data.state.worker_running;
+            dlQueue.queued_count = data.state.queued_count || 0;
+            dlQueue.completed_count = data.state.completed_count || 0;
+            dlQueue.queue = data.state.queue || [];
+          }
+        };
+
+        onMounted(async () => {
+          await refreshFileList();
+          await loadDatabaseCategories();
+          await syncQueueStatus();
+          if (dlQueue.worker_running) ensureQueuePolling();
+        });
+
+        return {
+          theme,
+          toggleTheme,
+          dbFiles,
+          currentDbFile,
+          dbTotalCount,
+          categoryTree,
+          catalogTree,
+          selectedCat1,
+          currentSubcategories,
+          currentMainCategoryCount,
+          isFilterCollapsed,
+          isLoading,
+          currentSchema,
+          visibleTableSpecs,
+          commonFacets,
+          specFacets,
+          filters,
+          rows,
+          totalInCategory,
+          filteredCount,
+          basicPrefCount,
+          lastQueryMs,
+          totalPages,
+          pageStartIdx,
+          pageEndIdx,
+          activeFilterCount,
+          currentPresets,
+          detailItem,
+          parsedDetailAttrs,
+          toastMsg,
+          showDownloadModal,
+          dlForm,
+          dlQueue,
+          isNavTreeCollapsed,
+          navTreeSearch,
+          filteredNavCategoryTree,
+          isNavTreeCatExpanded,
+          toggleNavTreeCat,
+          expandAllNavCats,
+          collapseAllNavCats,
+          onClickNavMainCat,
+          onSelectNavSubCat,
+          catTreeSearch,
+          filteredCategoryTree,
+          isTreeCatExpanded,
+          toggleTreeCat,
+          expandAllTreeCats,
+          collapseAllTreeCats,
+          closeAllDropdowns,
+          selectPrimaryCategory,
+          triggerQuery,
+          scheduleQuery,
+          sortBy,
+          resetFilters,
+          applyPreset,
+          onDbFileChange,
+          exportFilteredCsv,
+          appendDlUrl,
+          enqueueDownloadJobs,
+          controlQueue,
+          copyText,
+          toggleArrayItem
+        };
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
