@@ -247,7 +247,7 @@ def _build_dynamic_schema(cur: sqlite3.Cursor, category_1st: str) -> Dict[str, A
             "id": f"dyn{idx}",
             "dbCol": f"dyn{idx}",
             "attrKey": nk,
-            "colLabel": label if len(label) <= 18 else label[:17] + "…",
+            "colLabel": label,
             "showInTable": idx < DYN_TABLE_SPECS,
         }
         if is_range:

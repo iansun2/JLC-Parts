@@ -153,6 +153,30 @@
       font-size: 11.5px;
     }
 
+    /* Prominent toggle buttons (category tree / filter panel expand & collapse) */
+    .btn-toggle {
+      background: rgba(59, 130, 246, 0.16);
+      border-color: var(--accent);
+      color: var(--accent-text);
+      font-weight: 600;
+    }
+
+    .btn-toggle:hover:not(:disabled) {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-toggle.is-collapsed {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-toggle.is-collapsed:hover:not(:disabled) {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
     input, select, textarea {
       background: var(--bg-input);
       color: var(--text-main);
@@ -395,12 +419,20 @@
       gap: 8px;
       flex: 1;
       min-width: 280px;
+      flex-wrap: wrap;
     }
 
-    .search-box-wrap input {
-      width: 100%;
+    .search-box-wrap > input {
+      flex: 1 1 220px;
+      min-width: 220px;
       max-width: 500px;
       padding: 6px 10px;
+    }
+
+    .search-box-wrap > .btn,
+    .search-box-wrap > .current-cat-badge,
+    .search-box-wrap > .col-picker-wrap {
+      flex-shrink: 0;
     }
 
     .result-counter-bar {
@@ -833,12 +865,106 @@
     }
 
     .desc-cell {
-      max-width: 280px;
-      min-width: 180px;
+      max-width: 560px;
+      min-width: 380px;
       font-size: 11.5px;
       color: var(--text-sub);
       line-height: 1.35;
       word-break: break-word;
+    }
+
+    .col-picker-wrap {
+      position: relative;
+    }
+
+    .col-picker-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+    }
+
+    .col-picker-panel {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 6px);
+      z-index: 91;
+      width: 340px;
+      max-width: calc(100vw - 32px);
+      max-height: 70vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      padding: 10px 12px;
+      font-size: 12.5px;
+    }
+
+    .col-picker-actions {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .col-picker-group-title {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin: 8px 0 4px;
+    }
+
+    .col-picker-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 2px;
+      cursor: pointer;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .col-picker-item input {
+      flex: none;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+
+    .col-picker-item span {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .col-picker-item:hover {
+      background: var(--bg-hover);
+      border-radius: 4px;
+    }
+
+    thead th.spec-th {
+      white-space: normal;
+      min-width: 96px;
+      max-width: 150px;
+      vertical-align: bottom;
+      line-height: 1.3;
+    }
+
+    .spec-th-label {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+    }
+
+    td.spec-cell {
+      text-align: left;
+      white-space: nowrap;
+      font-size: 12px;
+      color: var(--text-main);
+    }
+
+    td.spec-cell.spec-num {
+      font-family: "Consolas", monospace;
     }
 
     .num-cell {
@@ -1370,8 +1496,8 @@
               主 / 次分類樹狀選單 ({{ categoryTree.length }} 類)
             </strong>
             <div style="display:flex; gap:4px;">
-              <button type="button" class="btn btn-sm" @click="expandAllNavCats" title="展開所有主分類">展開</button>
-              <button type="button" class="btn btn-sm" @click="collapseAllNavCats" title="收合所有主分類">收合</button>
+              <button type="button" class="btn btn-sm btn-toggle" @click="expandAllNavCats" title="展開所有主分類">展開全部 ▼</button>
+              <button type="button" class="btn btn-sm btn-toggle" @click="collapseAllNavCats" title="收合所有主分類">收合全部 ▲</button>
             </div>
           </div>
           <input
@@ -1463,7 +1589,8 @@
           <div class="search-box-wrap">
             <button
               type="button"
-              class="btn"
+              class="btn btn-toggle"
+              :class="{ 'is-collapsed': isNavTreeCollapsed }"
               @click="isNavTreeCollapsed = !isNavTreeCollapsed"
               title="顯示或隱藏左側主/次分類樹狀選單"
             >
@@ -1493,11 +1620,38 @@
               placeholder="全域關鍵字搜尋：C編號 / 型號 / 品牌 / 封裝 / Description（支援空白多詞與 -排除詞）"
               @input="scheduleQuery"
             />
-            <button class="btn" @click="isFilterCollapsed = !isFilterCollapsed">
+            <button class="btn btn-toggle" :class="{ 'is-collapsed': isFilterCollapsed }" @click="isFilterCollapsed = !isFilterCollapsed">
               <span>{{ isFilterCollapsed ? '展開篩選條件 ▼' : '收合篩選條件 ▲' }}</span>
               <span v-if="activeFilterCount > 0" class="active-filter-badge">已套用 {{ activeFilterCount }} 項</span>
             </button>
             <button class="btn" @click="resetFilters">重置全部條件</button>
+            <div class="col-picker-wrap">
+              <button class="btn" @click="showColPicker = !showColPicker" title="選擇表格要顯示的欄位">
+                顯示欄位 ({{ visibleColumnCount }}/{{ allColumnCount }}) ▾
+              </button>
+              <template v-if="showColPicker">
+                <div class="col-picker-backdrop" @click="showColPicker = false"></div>
+                <div class="col-picker-panel">
+                  <div class="col-picker-actions">
+                    <button class="btn btn-sm" @click="setAllColumns(true)">全選</button>
+                    <button class="btn btn-sm" @click="setAllColumns(false)">全不選</button>
+                    <button class="btn btn-sm" @click="resetColumns">恢復預設</button>
+                  </div>
+                  <div class="col-picker-group-title">基本欄位</div>
+                  <label class="col-picker-item" v-for="c in BASE_OPTIONAL_COLUMNS" :key="c.id">
+                    <input type="checkbox" :checked="isColVisible(c.id)" @change="toggleColumn(c.id)" />
+                    <span>{{ c.label }}</span>
+                  </label>
+                  <template v-if="(currentSchema.specs || []).length">
+                    <div class="col-picker-group-title">規格欄位（{{ selectedCat1 }}）</div>
+                    <label class="col-picker-item" v-for="spec in currentSchema.specs" :key="spec.id">
+                      <input type="checkbox" :checked="isColVisible(spec.id)" @change="toggleColumn(spec.id)" />
+                      <span>{{ spec.colLabel }}</span>
+                    </label>
+                  </template>
+                </div>
+              </template>
+            </div>
           </div>
 
           <div class="result-counter-bar">
@@ -1727,31 +1881,29 @@
             <th @click="sortBy('mfr_model', true)" :class="{ sorted: filters.sortField === 'mfr_model' }">
               型號 / 品牌 <span v-if="filters.sortField === 'mfr_model'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
             </th>
-            <th @click="sortBy('library_type', true)" :class="{ sorted: filters.sortField === 'library_type' }">
+            <th v-if="isColVisible('_lib')" @click="sortBy('library_type', true)" :class="{ sorted: filters.sortField === 'library_type' }">
               庫別 / PCBA <span v-if="filters.sortField === 'library_type'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
             </th>
-            <th @click="sortBy('package', true)" :class="{ sorted: filters.sortField === 'package' }">
+            <th v-if="isColVisible('_pkg')" @click="sortBy('package', true)" :class="{ sorted: filters.sortField === 'package' }">
               封裝 <span v-if="filters.sortField === 'package'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
             </th>
 
             <th
               v-for="spec in visibleTableSpecs"
               :key="spec.id"
+              class="spec-th"
               @click="sortBy(spec.kind === 'range' ? spec.numCol : spec.dbCol, !!spec.sortAscDefault)"
               :class="{ sorted: filters.sortField === (spec.kind === 'range' ? spec.numCol : spec.dbCol) }"
-              :style="spec.kind === 'range' ? 'text-align:right;' : ''"
+              :title="spec.label"
             >
-              {{ spec.colLabel }}
-              <span v-if="filters.sortField === (spec.kind === 'range' ? spec.numCol : spec.dbCol)">
-                {{ filters.sortAsc ? '▲' : '▼' }}
-              </span>
+              <span class="spec-th-label">{{ spec.colLabel }}<span v-if="filters.sortField === (spec.kind === 'range' ? spec.numCol : spec.dbCol)"> {{ filters.sortAsc ? '▲' : '▼' }}</span></span>
             </th>
 
-            <th>Description</th>
-            <th @click="sortBy('stock', false)" :class="{ sorted: filters.sortField === 'stock' }" style="text-align:right;">
+            <th v-if="isColVisible('_desc')">Description</th>
+            <th v-if="isColVisible('_stock')" @click="sortBy('stock', false)" :class="{ sorted: filters.sortField === 'stock' }" style="text-align:right;">
               庫存 <span v-if="filters.sortField === 'stock'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
             </th>
-            <th @click="sortBy('price_1', true)" :class="{ sorted: filters.sortField === 'price_1' }" style="text-align:right;">
+            <th v-if="isColVisible('_price')" @click="sortBy('price_1', true)" :class="{ sorted: filters.sortField === 'price_1' }" style="text-align:right;">
               單價 (USD) <span v-if="filters.sortField === 'price_1'">{{ filters.sortAsc ? '▲' : '▼' }}</span>
             </th>
             <th>操作</th>
@@ -1759,12 +1911,12 @@
         </thead>
         <tbody>
           <tr v-if="isLoading">
-            <td :colspan="7 + visibleTableSpecs.length" style="text-align:center; padding:36px; color:var(--text-sub);">
+            <td :colspan="3 + visibleColumnCount" style="text-align:center; padding:36px; color:var(--text-sub);">
               正在查詢 SQLite 資料庫...
             </td>
           </tr>
           <tr v-else-if="rows.length === 0">
-            <td :colspan="7 + visibleTableSpecs.length" style="text-align:center; padding:36px; color:var(--text-sub);">
+            <td :colspan="3 + visibleColumnCount" style="text-align:center; padding:36px; color:var(--text-sub);">
               無符合條件的元件（剩餘 0 筆），請調整或重置篩選條件。
             </td>
           </tr>
@@ -1776,14 +1928,14 @@
               <a href="javascript:void(0)" @click="detailItem = p" class="model-link">{{ p.mfr_model }}</a>
               <span class="sub-text" :title="p.brand">{{ p.brand }}</span>
             </td>
-            <td>
+            <td v-if="isColVisible('_lib')">
               <span class="tag" :class="{ 'tag-basic': p.library_type === 'Basic', 'tag-preferred': p.library_type === 'Preferred' }">
                 {{ p.library_type }}
               </span>
               <span v-if="p.pcba_type === 'Standard Only'" class="tag tag-std-only" style="margin-left:3px;">Std Only</span>
               <span v-else class="sub-text" style="margin-top:2px;">Eco &amp; Std</span>
             </td>
-            <td>
+            <td v-if="isColVisible('_pkg')">
               <span class="pkg-tag" @click="toggleArrayItem(filters.package, p.package); triggerQuery(1)" title="點擊加入/移除此封裝篩選">
                 {{ p.package || '-' }}
               </span>
@@ -1792,8 +1944,8 @@
             <td
               v-for="spec in visibleTableSpecs"
               :key="spec.id"
-              :class="spec.kind === 'range' ? 'num-cell' : ''"
-              :style="spec.kind !== 'range' ? 'font-size:11.5px; white-space:nowrap; color:var(--text-sub);' : ''"
+              class="spec-cell"
+              :class="{ 'spec-num': spec.kind === 'range' }"
             >
               <template v-if="spec.id === 'type_channel'">
                 {{ p[spec.dbCol] || '-' }}
@@ -1808,9 +1960,9 @@
               </template>
             </td>
 
-            <td class="desc-cell">{{ p.description || '-' }}</td>
-            <td class="num-cell">{{ Number(p.stock || 0).toLocaleString() }}</td>
-            <td class="num-cell">
+            <td v-if="isColVisible('_desc')" class="desc-cell">{{ p.description || '-' }}</td>
+            <td v-if="isColVisible('_stock')" class="num-cell">{{ Number(p.stock || 0).toLocaleString() }}</td>
+            <td v-if="isColVisible('_price')" class="num-cell">
               {{ p.price_1 !== null && p.price_1 !== '' ? '$' + Number(p.price_1).toFixed(4) : '-' }}
               <span v-if="p.price_100" class="sub-text" style="text-align:right;">100+: ${{ Number(p.price_100).toFixed(4) }}</span>
             </td>
@@ -2409,6 +2561,8 @@
         let queuePollTimer = null;
 
         let queryTimer = null;
+        let facetReqSeq = 0;
+        let queryReqSeq = 0;
 
         const currentSubcategories = computed(() => {
           const found = categoryTree.value.find(c => c.category_1st === selectedCat1.value);
@@ -2420,8 +2574,56 @@
           return found ? found.count : 0;
         });
 
+        // ---- Column visibility (per primary category, persisted in localStorage) ----
+        const BASE_OPTIONAL_COLUMNS = [
+          { id: '_lib', label: '庫別 / PCBA' },
+          { id: '_pkg', label: '封裝' },
+          { id: '_desc', label: 'Description' },
+          { id: '_stock', label: '庫存' },
+          { id: '_price', label: '單價 (USD)' }
+        ];
+        const COL_PREFS_KEY = 'jlc_column_prefs';
+        const loadColPrefs = () => {
+          try { return JSON.parse(localStorage.getItem(COL_PREFS_KEY) || '{}') || {}; } catch (e) { return {}; }
+        };
+        const columnPrefs = reactive(loadColPrefs());
+        const showColPicker = ref(false);
+        const saveColPrefs = () => {
+          try { localStorage.setItem(COL_PREFS_KEY, JSON.stringify(columnPrefs)); } catch (e) { /* ignore */ }
+        };
+        const colPrefKey = computed(() => selectedCat1.value || 'all');
+        const defaultVisibleIds = () => [
+          ...BASE_OPTIONAL_COLUMNS.map(c => c.id),
+          ...(currentSchema.value.specs || []).filter(s => s.showInTable).map(s => s.id)
+        ];
+        const visibleIdSet = computed(() => {
+          const saved = columnPrefs[colPrefKey.value];
+          return new Set(Array.isArray(saved) ? saved : defaultVisibleIds());
+        });
+        const isColVisible = (id) => visibleIdSet.value.has(id);
+        const allColumnIds = () => [
+          ...BASE_OPTIONAL_COLUMNS.map(c => c.id),
+          ...(currentSchema.value.specs || []).map(s => s.id)
+        ];
+        const allColumnCount = computed(() => allColumnIds().length);
+        const visibleColumnCount = computed(() => allColumnIds().filter(id => visibleIdSet.value.has(id)).length);
+        const toggleColumn = (id) => {
+          const next = new Set(visibleIdSet.value);
+          if (next.has(id)) next.delete(id); else next.add(id);
+          columnPrefs[colPrefKey.value] = [...next];
+          saveColPrefs();
+        };
+        const setAllColumns = (on) => {
+          columnPrefs[colPrefKey.value] = on ? allColumnIds() : [];
+          saveColPrefs();
+        };
+        const resetColumns = () => {
+          delete columnPrefs[colPrefKey.value];
+          saveColPrefs();
+        };
+
         const visibleTableSpecs = computed(() =>
-          (currentSchema.value.specs || []).filter(s => s.showInTable)
+          (currentSchema.value.specs || []).filter(s => visibleIdSet.value.has(s.id))
         );
 
         const totalPages = computed(() =>
@@ -2595,8 +2797,10 @@
           expandedNavCats.value = nextExpanded;
 
           isLoading.value = true;
+          const reqId = ++facetReqSeq;
           const res = await fetch(`/api/facets?file=${encodeURIComponent(currentDbFile.value)}&category_1st=${encodeURIComponent(cat1)}`);
           const data = await res.json();
+          if (reqId !== facetReqSeq) return; // a newer category selection superseded this one
 
           currentSchema.value = data.schema || { title: '', specs: [] };
           Object.assign(commonFacets, data.commonFacets || {});
@@ -2613,6 +2817,7 @@
         const triggerQuery = async (page = 1) => {
           filters.page = page;
           isLoading.value = true;
+          const reqId = ++queryReqSeq;
           try {
             const payload = {
               file: currentDbFile.value,
@@ -2625,13 +2830,14 @@
               body: JSON.stringify(payload)
             });
             const data = await res.json();
+            if (reqId !== queryReqSeq) return; // stale response
             rows.value = data.rows || [];
             totalInCategory.value = data.total_in_category || 0;
             filteredCount.value = data.filtered_count || 0;
             basicPrefCount.value = data.basic_pref_count || 0;
             lastQueryMs.value = data.query_ms || 0;
           } finally {
-            isLoading.value = false;
+            if (reqId === queryReqSeq) isLoading.value = false;
           }
         };
 
@@ -2898,6 +3104,14 @@
         });
 
         return {
+          BASE_OPTIONAL_COLUMNS,
+          showColPicker,
+          isColVisible,
+          toggleColumn,
+          setAllColumns,
+          resetColumns,
+          allColumnCount,
+          visibleColumnCount,
           theme,
           toggleTheme,
           dbFiles,

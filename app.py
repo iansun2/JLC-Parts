@@ -444,6 +444,19 @@ class JLCRequestHandler(SimpleHTTPRequestHandler):
         self.send_error(404, "Not Found")
 
 
+def warm_facet_cache(db_path: str) -> None:
+    """Pre-compute facets/schemas for every category so the first click on a category is instant."""
+    try:
+        t0 = time.perf_counter()
+        with sqlite3.connect(db_path) as conn:
+            cats = [r[0] for r in conn.execute("SELECT DISTINCT category_1st FROM parts WHERE category_1st IS NOT NULL")]
+        for cat in cats:
+            db_engine.get_facets_for_category(db_path, cat)
+        print(f"[快取預熱] 已預先計算 {len(cats)} 個分類的篩選條件 (耗時 {time.perf_counter() - t0:.1f} s)")
+    except Exception as e:  # warming is best-effort
+        print(f"[快取預熱] 失敗: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="JLCPCB Offline Parts Search Web Server")
     parser.add_argument("--port", "-p", type=int, default=8080, help="Port to listen on (default: 8080)")
@@ -452,6 +465,7 @@ def main():
     args = parser.parse_args()
 
     ensure_default_sqlite_db()
+    threading.Thread(target=warm_facet_cache, args=(DEFAULT_DB_PATH,), daemon=True).start()
 
     server = ThreadedHTTPServer((args.host, args.port), JLCRequestHandler)
     url = f"http://{args.host}:{args.port}"
