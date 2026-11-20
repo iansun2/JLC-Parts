@@ -1594,7 +1594,7 @@
       </div>
 
       <!-- Section 2: Category-Specific Electrical Specifications -->
-      <div>
+      <div v-if="currentSchema.specs && currentSchema.specs.length">
         <div class="filter-section-title">{{ currentSchema.title }}（選項皆支援多選、全選與清除）</div>
         <div class="filter-grid">
           <div class="filter-group" v-for="spec in currentSchema.specs" :key="spec.id">

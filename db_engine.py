@@ -10,6 +10,7 @@ import os
 import re
 import sqlite3
 import time
+from functools import lru_cache
 from typing import Any, Dict, List, Optional, Tuple
 
 from jlc_fetcher import parse_number_with_unit
@@ -161,6 +162,144 @@ CATEGORY_SCHEMAS: Dict[str, Dict[str, Any]] = {
         ],
     },
 }
+
+
+# ---------------------------------------------------------------------------
+# Dynamic (auto-generated) schemas for categories without a hand-written schema.
+# Specs are derived from the most common keys found in attributes_summary.
+# ---------------------------------------------------------------------------
+DYNAMIC_SCHEMA_CACHE: Dict[Tuple[str, float, str], Dict[str, Any]] = {}
+DYN_MAX_SPECS = 18
+DYN_TABLE_SPECS = 8
+DYN_MIN_COVERAGE = 0.03
+DYN_MAX_SELECT_OPTIONS = 400
+_SI_PREFIXES = [("p", 1e-12), ("n", 1e-9), ("u", 1e-6), ("m", 1e-3), ("", 1.0), ("k", 1e3), ("M", 1e6), ("G", 1e9)]
+_UNIT_RE = re.compile(r"^\s*[+-]?\d+(?:\.\d+)?\s*([mμunpkMG]?)([A-Za-zΩ℃%/√]+)")
+
+
+def norm_attr_key(k: str) -> str:
+    return re.sub(r"[\s_]+", "", (k or "").lower())
+
+
+@lru_cache(maxsize=300000)
+def _parsed_attrs_norm(summary: str) -> Dict[str, str]:
+    out: Dict[str, str] = {}
+    for k, v in parse_attrs_from_summary(summary).items():
+        nk = norm_attr_key(k)
+        if nk not in out:
+            out[nk] = v
+    return out
+
+
+def sql_attr_val(summary: Optional[str], nkey: str) -> Optional[str]:
+    if not summary:
+        return None
+    return _parsed_attrs_norm(summary).get(nkey)
+
+
+def sql_attr_num(summary: Optional[str], nkey: str, mult: float) -> Optional[float]:
+    v = sql_attr_val(summary, nkey)
+    if not v:
+        return None
+    return parse_number_with_unit(v, mult)
+
+
+def register_attr_functions(conn: sqlite3.Connection) -> None:
+    conn.create_function("attr_val", 2, sql_attr_val, deterministic=True)
+    conn.create_function("attr_num", 3, sql_attr_num, deterministic=True)
+
+
+def _build_dynamic_schema(cur: sqlite3.Cursor, category_1st: str) -> Dict[str, Any]:
+    summaries = [r[0] for r in cur.execute(
+        "SELECT attributes_summary FROM parts WHERE category_1st = ? AND attributes_summary IS NOT NULL AND attributes_summary != ''",
+        [category_1st],
+    )]
+    total = max(1, cur.execute("SELECT COUNT(*) FROM parts WHERE category_1st = ?", [category_1st]).fetchone()[0])
+
+    key_count: Dict[str, int] = {}
+    key_label: Dict[str, Dict[str, int]] = {}
+    key_values: Dict[str, List[str]] = {}
+    for sm in summaries:
+        seen = set()
+        for k, v in parse_attrs_from_summary(sm).items():
+            nk = norm_attr_key(k)
+            if not nk or nk in seen:
+                continue
+            seen.add(nk)
+            key_count[nk] = key_count.get(nk, 0) + 1
+            key_label.setdefault(nk, {})
+            key_label[nk][k] = key_label[nk].get(k, 0) + 1
+            key_values.setdefault(nk, []).append(v)
+
+    keys = [k for k, c in sorted(key_count.items(), key=lambda x: -x[1]) if c / total >= DYN_MIN_COVERAGE][:DYN_MAX_SPECS]
+    specs: List[Dict[str, Any]] = []
+    for idx, nk in enumerate(keys):
+        label = max(key_label[nk].items(), key=lambda x: x[1])[0]
+        vals = key_values[nk]
+        distinct = len(set(vals))
+        # parse in pico-units so tiny values (nA, pF...) are not rounded away, then convert back
+        parsed = [None if x is None else x * 1e-12 for x in (parse_number_with_unit(v, 1e12) for v in vals)]
+        n_ok = sum(1 for x in parsed if x is not None)
+        n_multi = sum(1 for v in vals if "~" in v or "、" in v or "," in v)
+        is_range = distinct > 12 and n_ok / len(vals) >= 0.85 and n_multi / len(vals) < 0.2
+
+        spec: Dict[str, Any] = {
+            "id": f"dyn{idx}",
+            "dbCol": f"dyn{idx}",
+            "attrKey": nk,
+            "colLabel": label if len(label) <= 18 else label[:17] + "…",
+            "showInTable": idx < DYN_TABLE_SPECS,
+        }
+        if is_range:
+            units: Dict[str, int] = {}
+            for v in vals:
+                m = _UNIT_RE.match(v)
+                if m:
+                    units[m.group(2)] = units.get(m.group(2), 0) + 1
+            unit = max(units.items(), key=lambda x: x[1])[0] if units else ""
+            nums = sorted(x for x in parsed if x is not None and x > 0)
+            prefix, pscale = "", 1.0
+            if unit and nums and unit not in ("℃", "%", "dB", "dBm", "bit", "bits"):
+                med = nums[len(nums) // 2]
+                for pf, sc in _SI_PREFIXES:
+                    if med / sc >= 1:
+                        prefix, pscale = pf, sc
+            unit_lbl = f"{prefix}{unit}" if unit else ""
+            spec.update({
+                "label": f"{label} ({unit_lbl})" if unit_lbl else label,
+                "kind": "range",
+                "numCol": f"dyn{idx}_num",
+                "mult": float(round(1.0 / pscale)) if pscale < 1 else 1.0 / pscale,
+                "sortAscDefault": True,
+            })
+        else:
+            spec.update({"label": f"{label} (多選)", "kind": "select"})
+        specs.append(spec)
+
+    return {"title": f"{category_1st} 專屬規格 (依資料庫屬性自動產生)", "specs": specs, "dynamic": True}
+
+
+def get_schema_for_category(db_path: str, category_1st: Optional[str]) -> Dict[str, Any]:
+    if not category_1st or category_1st == "all":
+        return {"title": "", "specs": []}
+    if category_1st in CATEGORY_SCHEMAS:
+        return CATEGORY_SCHEMAS[category_1st]
+    if not os.path.isfile(db_path):
+        return {"title": "", "specs": []}
+    key = (os.path.abspath(db_path), os.path.getmtime(db_path), category_1st)
+    if key not in DYNAMIC_SCHEMA_CACHE:
+        with sqlite3.connect(db_path) as conn:
+            DYNAMIC_SCHEMA_CACHE[key] = _build_dynamic_schema(conn.cursor(), category_1st)
+    return DYNAMIC_SCHEMA_CACHE[key]
+
+
+def spec_value_expr(spec: Dict[str, Any], numeric: bool) -> Tuple[str, List[Any]]:
+    """SQL expression (and params) yielding a spec's text or numeric value for a row."""
+    if spec.get("attrKey"):
+        if numeric:
+            return "attr_num(attributes_summary, ?, ?)", [spec["attrKey"], spec.get("mult", 1.0)]
+        return "attr_val(attributes_summary, ?)", [spec["attrKey"]]
+    return (spec["numCol"] if numeric else spec["dbCol"]), []
 
 
 def compute_channel_or_unit_count(cfg_str: str) -> Optional[int]:
@@ -449,16 +588,21 @@ def get_facets_for_category(db_path: str, category_1st: str) -> Dict[str, Any]:
             "cat2": group_counts("category_2nd"),
         }
 
-        schema_cat = category_1st
-        if not schema_cat or schema_cat == "all":
-            first_row = cur.execute("SELECT category_1st FROM parts LIMIT 1").fetchone()
-            schema_cat = first_row[0] if first_row else "Transistors/Thyristors"
-
-        schema_obj = CATEGORY_SCHEMAS.get(schema_cat, CATEGORY_SCHEMAS["Transistors/Thyristors"])
+        schema_obj = get_schema_for_category(db_path, category_1st)
+        register_attr_functions(conn)
         spec_facets: Dict[str, List[Dict[str, Any]]] = {}
 
         for spec in schema_obj["specs"]:
             if spec["kind"] == "range":
+                continue
+            if spec.get("attrKey"):
+                cond_a = f"{where_cat} {'AND' if where_cat else 'WHERE'} attributes_summary LIKE ?"
+                a_rows = cur.execute(
+                    f"SELECT attr_val(attributes_summary, ?) AS v, COUNT(*) AS cnt FROM parts {cond_a} "
+                    f"GROUP BY v HAVING v IS NOT NULL AND v != '' ORDER BY cnt DESC LIMIT {DYN_MAX_SELECT_OPTIONS}",
+                    [spec["attrKey"]] + params + ["%:%"],
+                ).fetchall()
+                spec_facets[spec["id"]] = [{"value": str(r[0]), "label": str(r[0]), "count": int(r[1])} for r in a_rows]
                 continue
             col = spec["dbCol"]
             raw_opts = group_counts(col)
@@ -497,7 +641,7 @@ def get_facets_for_category(db_path: str, category_1st: str) -> Dict[str, Any]:
     return res
 
 
-def build_sql_where_and_params(filters: Dict[str, Any]) -> Tuple[str, List[Any], Dict[str, Any]]:
+def build_sql_where_and_params(filters: Dict[str, Any], schema_obj: Dict[str, Any]) -> Tuple[str, List[Any], Dict[str, Any]]:
     """Translate frontend filter payload into parameterized SQL WHERE clause."""
     clauses: List[str] = []
     params: List[Any] = []
@@ -585,15 +729,23 @@ def build_sql_where_and_params(filters: Dict[str, Any]) -> Tuple[str, List[Any],
         if rk in ranges:
             add_range(col, ranges[rk].get("min"), ranges[rk].get("max"))
 
-    schema_cat = cat1 if (cat1 and cat1 in CATEGORY_SCHEMAS) else "Transistors/Thyristors"
-    schema_obj = CATEGORY_SCHEMAS.get(schema_cat, CATEGORY_SCHEMAS["Transistors/Thyristors"])
     spec_map = {s["id"]: s for s in schema_obj["specs"]}
 
     spec_ranges = filters.get("specRanges") or {}
     for sid, r_obj in spec_ranges.items():
         spec = spec_map.get(sid)
         if spec and spec.get("numCol"):
-            add_range(spec["numCol"], r_obj.get("min"), r_obj.get("max"))
+            expr, eparams = spec_value_expr(spec, numeric=True)
+            for bound, op in (("min", ">="), ("max", "<=")):
+                bv = r_obj.get(bound)
+                if bv is None or bv == "":
+                    continue
+                try:
+                    fv = float(bv)
+                except (TypeError, ValueError):
+                    continue
+                clauses.append(f"{expr} {op} ?")
+                params.extend(eparams + [fv])
 
     spec_selects = filters.get("specSelects") or {}
     for sid, sel_list in spec_selects.items():
@@ -601,6 +753,11 @@ def build_sql_where_and_params(filters: Dict[str, Any]) -> Tuple[str, List[Any],
             continue
         spec = spec_map.get(sid)
         if not spec:
+            continue
+        if spec.get("attrKey"):
+            ph = ", ".join(["?"] * len(sel_list))
+            clauses.append(f"attr_val(attributes_summary, ?) IN ({ph})")
+            params.extend([spec["attrKey"]] + list(sel_list))
             continue
         col = spec["dbCol"]
         if spec["kind"] == "channel_count":
@@ -634,18 +791,29 @@ def execute_parts_query(db_path: str, filters: Dict[str, Any], export_all: bool 
         return {"total_in_category": 0, "filtered_count": 0, "basic_pref_count": 0, "rows": []}
 
     t0 = time.perf_counter()
-    where_sql, params, schema_obj = build_sql_where_and_params(filters)
-
     cat1 = filters.get("category_1st")
+    schema_obj = get_schema_for_category(db_path, cat1)
+    where_sql, params, schema_obj = build_sql_where_and_params(filters, schema_obj)
     cat_where = "WHERE category_1st = ?" if (cat1 and cat1 != "all") else ""
     cat_params = [cat1] if (cat1 and cat1 != "all") else []
 
     sort_field = filters.get("sortField") or "stock"
-    if sort_field not in COLUMN_NAMES:
-        sort_field = "stock"
+    sort_params: List[Any] = []
+    dyn_sort = None
+    for sp in schema_obj.get("specs", []):
+        if sp.get("attrKey") and sort_field in (sp.get("dbCol"), sp.get("numCol")):
+            dyn_sort = sp
+            break
+    if dyn_sort is not None:
+        sort_expr, sort_params = spec_value_expr(dyn_sort, numeric=(sort_field == dyn_sort.get("numCol")))
+    else:
+        if sort_field not in COLUMN_NAMES:
+            sort_field = "stock"
+        sort_expr = sort_field
     sort_asc = bool(filters.get("sortAsc", False))
     dir_sql = "ASC" if sort_asc else "DESC"
-    order_sql = f"ORDER BY CASE WHEN {sort_field} IS NULL OR {sort_field} = '' THEN 1 ELSE 0 END ASC, {sort_field} {dir_sql}"
+    order_sql = f"ORDER BY CASE WHEN {sort_expr} IS NULL OR {sort_expr} = '' THEN 1 ELSE 0 END ASC, {sort_expr} {dir_sql}"
+    order_params = sort_params * 3
 
     page = max(1, int(filters.get("page") or 1))
     page_size = max(1, min(1000, int(filters.get("pageSize") or 100)))
@@ -653,6 +821,7 @@ def execute_parts_query(db_path: str, filters: Dict[str, Any], export_all: bool 
 
     with sqlite3.connect(db_path) as conn:
         conn.row_factory = sqlite3.Row
+        register_attr_functions(conn)
         cur = conn.cursor()
 
         total_in_cat = cur.execute(f"SELECT COUNT(*) FROM parts {cat_where}", cat_params).fetchone()[0]
@@ -671,15 +840,22 @@ def execute_parts_query(db_path: str, filters: Dict[str, Any], export_all: bool 
         basic_pref_count = int(stat_row[1] or 0)
 
         if export_all:
-            rows = [dict(r) for r in cur.execute(f"SELECT * FROM parts {where_sql} {order_sql}", params).fetchall()]
+            rows = [dict(r) for r in cur.execute(f"SELECT * FROM parts {where_sql} {order_sql}", params + order_params).fetchall()]
         else:
             rows = [
                 dict(r)
                 for r in cur.execute(
                     f"SELECT * FROM parts {where_sql} {order_sql} LIMIT ? OFFSET ?",
-                    params + [page_size, offset],
+                    params + order_params + [page_size, offset],
                 ).fetchall()
             ]
+
+    dyn_specs = [sp for sp in schema_obj.get("specs", []) if sp.get("attrKey")]
+    if dyn_specs:
+        for r in rows:
+            attrs = _parsed_attrs_norm(r.get("attributes_summary") or "")
+            for sp in dyn_specs:
+                r[sp["dbCol"]] = attrs.get(sp["attrKey"], "")
 
     elapsed_ms = round((time.perf_counter() - t0) * 1000, 2)
     return {
