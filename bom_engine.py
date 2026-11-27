@@ -25,7 +25,10 @@ import jlc_fetcher
 LCSC_RE = re.compile(r"^C\d{2,}$")
 XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 REL_NS = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
-EXTENDED_FEE_USD = 3.0  # JLCPCB Economic PCBA loading fee per unique (true) Extended part
+# JLCPCB feeder loading fee (https://jlcpcb.com/help/article/pcb-assembly-price, updated Oct 22, 2026):
+#   Economic PCBA: $3.07 per Extended part; Standard PCBA: $1.53 per Basic/Extended part
+EXTENDED_FEE_USD = 3.07
+STANDARD_FEEDER_FEE_USD = 1.53
 LIVE_LOOKUP_WORKERS = 6
 MAX_LIVE_LOOKUPS = 300
 
@@ -350,5 +353,6 @@ def analyze_bom(data: bytes, filename: str, db_path: str, live: str = "missing")
         "missing_codes": sorted(c for c in codes if c not in local and c not in live_rows),
         "extended_fee_estimate": len(unique["Extended"]) * EXTENDED_FEE_USD,
         "extended_fee_per_part": EXTENDED_FEE_USD,
+        "standard_fee_per_part": STANDARD_FEEDER_FEE_USD,
     }
     return {"filename": filename, "meta": meta, "items": items, "summary": summary}

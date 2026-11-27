@@ -966,8 +966,54 @@
     .bom-card.c-basic { border-left: 4px solid #10b981; }
     .bom-card.c-pref { border-left: 4px solid #06b6d4; }
     .bom-card.c-bp { border-left: 4px solid #3b82f6; }
+
+    .bom-split {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    .bom-split span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 4px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .bom-split span:hover,
+    .bom-split span.on {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    .bom-split .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .bom-split .dot-basic { background: #10b981; }
+    .bom-split .dot-pref { background: #06b6d4; }
     .bom-card.c-ext { border-left: 4px solid #f59e0b; }
-    .bom-card.c-relabel { border-left: 4px solid #a855f7; }
+    .bom-card.c-cost { border-left: 4px solid #a855f7; }
+
+    .bom-qty-input {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .bom-qty-input input {
+      width: 80px !important;
+    }
     .bom-card.c-unmatched { border-left: 4px solid #ef4444; }
 
     .bom-toolbar {
@@ -2505,30 +2551,27 @@
             <div class="bom-meta" v-if="bomResult.meta && bomResult.meta.length">{{ bomResult.meta.slice(1, 3).join('\n') }}</div>
 
             <div class="bom-cards">
-              <div class="bom-card c-bp" :class="{ active: bomFilter === 'bp' }" @click="bomFilter = 'bp'">
-                <div class="k">Basic + Preferred（免換料費）</div>
-                <div class="v">{{ bomResult.summary.basic_pref_unique }} <small>種</small></div>
-                <div class="sub">{{ bomResult.summary.placements.Basic + bomResult.summary.placements.Preferred }} 個貼片點位</div>
-              </div>
-              <div class="bom-card c-basic" :class="{ active: bomFilter === 'Basic' }" @click="bomFilter = 'Basic'">
-                <div class="k">Basic</div>
-                <div class="v">{{ bomResult.summary.unique.Basic }} <small>種</small></div>
-                <div class="sub">{{ bomResult.summary.placements.Basic }} 個點位</div>
-              </div>
-              <div class="bom-card c-pref" :class="{ active: bomFilter === 'Preferred' }" @click="bomFilter = 'Preferred'">
-                <div class="k">Preferred (優先擴充庫)</div>
-                <div class="v">{{ bomResult.summary.unique.Preferred }} <small>種</small></div>
-                <div class="sub">{{ bomResult.summary.placements.Preferred }} 個點位</div>
+              <div class="bom-card c-bp" :class="{ active: ['bp', 'Basic', 'Preferred'].includes(bomFilter) }" @click="bomFilter = 'bp'">
+                <div class="k">Basic + Preferred</div>
+                <div class="v">{{ bomResult.summary.basic_pref_unique }} <small>種 · {{ bomResult.summary.placements.Basic + bomResult.summary.placements.Preferred }} 個點位</small></div>
+                <div class="bom-split">
+                  <span :class="{ on: bomFilter === 'Basic' }" @click.stop="bomFilter = 'Basic'" title="只顯示 Basic">
+                    <i class="dot dot-basic"></i>Basic {{ bomResult.summary.unique.Basic }} 種 / {{ bomResult.summary.placements.Basic }} 點
+                  </span>
+                  <span :class="{ on: bomFilter === 'Preferred' }" @click.stop="bomFilter = 'Preferred'" title="只顯示 Preferred">
+                    <i class="dot dot-pref"></i>Preferred {{ bomResult.summary.unique.Preferred }} 種 / {{ bomResult.summary.placements.Preferred }} 點
+                  </span>
+                </div>
               </div>
               <div class="bom-card c-ext" :class="{ active: bomFilter === 'Extended' }" @click="bomFilter = 'Extended'">
                 <div class="k">真正 Extended</div>
                 <div class="v">{{ bomResult.summary.unique.Extended }} <small>種</small></div>
-                <div class="sub">{{ bomResult.summary.placements.Extended }} 個點位 · 換料費約 ${{ bomResult.summary.extended_fee_estimate.toFixed(0) }}</div>
+                <div class="sub">{{ bomResult.summary.placements.Extended }} 個點位<template v-if="bomPcbaType === 'economic'"> · 換料費 ${{ bomCost.feeTotal.toFixed(2) }}</template></div>
               </div>
-              <div class="bom-card c-relabel" :class="{ active: bomFilter === 'relabeled' }" @click="bomFilter = 'relabeled'">
-                <div class="k">BOM 標 Extended，實為 Preferred</div>
-                <div class="v">{{ bomResult.summary.relabeled_count }} <small>種</small></div>
-                <div class="sub">不算 Extended 換料費</div>
+              <div class="bom-card c-cost" style="cursor:default;">
+                <div class="k">預計總費用 (USD)</div>
+                <div class="v">${{ (bomCost.partsTotal + bomCost.feeTotal).toFixed(2) }}</div>
+                <div class="sub">零件 ${{ bomCost.partsTotal.toFixed(2) }} + 換料費 ${{ bomCost.feeTotal.toFixed(2) }}</div>
               </div>
               <div class="bom-card c-unmatched" :class="{ active: bomFilter === 'Unmatched' }" @click="bomFilter = 'Unmatched'">
                 <div class="k">未匹配 / 無 LCSC 編號</div>
@@ -2540,12 +2583,24 @@
             <div class="bom-toolbar">
               <button class="btn btn-sm" :class="{ 'btn-primary': bomFilter === 'all' }" @click="bomFilter = 'all'">全部 ({{ bomResult.items.length }} 行)</button>
               <input type="text" v-model="bomSearch" placeholder="搜尋 Designator / Comment / LCSC / 型號 / 封裝..." />
+              <label class="bom-qty-input" title="Economic：每種 Extended 料 $3.07；Standard：每種 Basic / Extended 料 $1.53（JLCPCB PCB Assembly Price, 2026-10-22）">
+                PCBA
+                <select v-model="bomPcbaType" style="width:auto;">
+                  <option value="economic">Economic</option>
+                  <option value="standard">Standard</option>
+                </select>
+              </label>
+              <label class="bom-qty-input" title="留空則使用 BOM 檔中的訂購數量；填入板數則以 點位 × 板數 計算（不足最小訂購量時以最小訂購量計）">
+                組裝板數
+                <input type="number" min="1" step="1" v-model="bomBoardQty" :placeholder="bomHasQty ? '依 BOM' : '1'" />
+              </label>
               <span style="font-size:11.5px; color:var(--text-muted);">
                 共 {{ bomResult.summary.unique_parts }} 種元件
                 <template v-if="bomResult.summary.excluded_lines"> · {{ bomResult.summary.excluded_lines }} 行數量為 0（未下單）不計入統計</template>
                 <template v-if="bomResult.summary.live_looked_up"> · 線上查詢 {{ bomResult.summary.live_found }}/{{ bomResult.summary.live_looked_up }}</template>
                 <template v-if="bomResult.summary.missing_codes.length"> · 查無：{{ bomResult.summary.missing_codes.join(', ') }}</template>
-                · 換料費以每種 Extended ${{ bomResult.summary.extended_fee_per_part }} 估算
+                · 換料費：{{ bomCost.feeNote }}
+                <template v-if="bomCost.unpriced"> · {{ bomCost.unpriced }} 種無價格資料未計入</template>
               </span>
               <span style="margin-left:auto; font-size:12px; color:var(--text-sub);">顯示 {{ bomRowsFiltered.length }} 行</span>
             </div>
@@ -2565,13 +2620,14 @@
                     <th style="text-align:right;">訂購數</th>
                     <th style="text-align:right;">庫存</th>
                     <th style="text-align:right;">單價 (USD)</th>
+                    <th style="text-align:right;">小計 (USD)</th>
                     <th>Description</th>
                     <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-if="bomRowsFiltered.length === 0">
-                    <td colspan="13" style="text-align:center; padding:28px; color:var(--text-sub);">沒有符合條件的 BOM 行</td>
+                    <td colspan="14" style="text-align:center; padding:28px; color:var(--text-sub);">沒有符合條件的 BOM 行</td>
                   </tr>
                   <tr
                     v-for="(it, idx) in bomRowsFiltered"
@@ -2621,9 +2677,17 @@
                       <span v-if="it.match_status && it.lib_class !== 'Unmatched'" class="sub-text">{{ it.match_status }}</span>
                     </td>
                     <td class="num-cell">{{ it.designator_count }}</td>
-                    <td class="num-cell">{{ it.bom_qty !== null && it.bom_qty !== undefined ? it.bom_qty : '-' }}</td>
+                    <td class="num-cell">
+                      <template v-if="bomLineCost(it)">{{ bomLineCost(it).qty.toLocaleString() }}</template>
+                      <template v-else>{{ it.bom_qty !== null && it.bom_qty !== undefined ? it.bom_qty : '-' }}</template>
+                    </td>
                     <td class="num-cell">{{ it.part ? Number(it.part.stock || 0).toLocaleString() : '-' }}</td>
-                    <td class="num-cell">{{ it.part && it.part.price_1 ? '$' + Number(it.part.price_1).toFixed(4) : '-' }}</td>
+                    <td class="num-cell">{{ bomLineCost(it) && bomLineCost(it).unit !== null ? '$' + bomLineCost(it).unit.toFixed(4) : (it.part && it.part.price_1 ? '$' + Number(it.part.price_1).toFixed(4) : '-') }}</td>
+                    <td class="num-cell">
+                      <template v-if="bomLineCost(it) && bomLineCost(it).first">{{ bomLineCost(it).subtotal !== null ? '$' + bomLineCost(it).subtotal.toFixed(4) : '-' }}</template>
+                      <span v-else-if="bomLineCost(it)" class="sub-text" title="同一料號已在上方行合併計算">同上</span>
+                      <template v-else>-</template>
+                    </td>
                     <td class="desc-cell" style="min-width:300px;">{{ (it.part && it.part.description) || '-' }}</td>
                     <td>
                       <div class="actions-cell">
@@ -2960,6 +3024,7 @@
             bomResult.value = data;
             bomFilter.value = 'all';
             bomSearch.value = '';
+            bomBoardQty.value = '';
             try { localStorage.setItem(BOM_CACHE_KEY, JSON.stringify(data)); } catch (e) { /* quota / private mode */ }
           } catch (e) {
             bomError.value = `解析失敗：${e}`;
@@ -2978,6 +3043,65 @@
           bomDragOver.value = false;
           const f = ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0];
           if (f) analyzeBom(f);
+        };
+
+        const bomBoardQty = ref('');
+        const bomPcbaType = ref('economic');
+        const bomHasQty = computed(() => !!(bomResult.value && bomResult.value.items.some(it => it.bom_qty !== null && it.bom_qty !== undefined)));
+
+        const parsePriceTiers = (part) => {
+          const tiers = [];
+          const re = /(\d+)\+\s*:\s*\$?\s*([\d.]+)/g;
+          let m;
+          while ((m = re.exec(part.price_tiers || '')) !== null) tiers.push([Number(m[1]), Number(m[2])]);
+          if (!tiers.length && part.price_1) tiers.push([1, Number(part.price_1)]);
+          return tiers.sort((a, b) => a[0] - b[0]);
+        };
+
+        // Cost per unique LCSC code (JLC exports repeat the same aggregated qty on every line of a shared part)
+        const bomCost = computed(() => {
+          const r = bomResult.value;
+          const out = { partsTotal: 0, feeTotal: 0, feeNote: '', unpriced: 0, byCode: {}, firstIdx: {} };
+          if (!r) return out;
+          const boards = parseInt(bomBoardQty.value, 10);
+          const groups = {};
+          r.items.forEach((it, idx) => {
+            if (it.excluded || !it.lcsc_code || !it.part) return;
+            const g = groups[it.lcsc_code] || (groups[it.lcsc_code] = { part: it.part, placements: 0, bomQty: null, firstIdx: idx });
+            g.placements += it.designator_count || 0;
+            if (it.bom_qty !== null && it.bom_qty !== undefined) g.bomQty = Math.max(g.bomQty || 0, it.bom_qty);
+          });
+          for (const [code, g] of Object.entries(groups)) {
+            let qty = boards > 0 ? g.placements * boards : (g.bomQty !== null ? g.bomQty : g.placements);
+            if (qty > 0) qty = Math.max(qty, Number(g.part.min_order) || 1);
+            const tiers = parsePriceTiers(g.part);
+            let unit = null;
+            for (const [minQ, price] of tiers) if (qty >= minQ || unit === null) unit = price;
+            const subtotal = unit !== null ? unit * qty : null;
+            if (subtotal === null) out.unpriced++;
+            else out.partsTotal += subtotal;
+            out.byCode[code] = { qty, unit, subtotal };
+            out.firstIdx[code] = g.firstIdx;
+          }
+          const u = r.summary.unique;
+          if (bomPcbaType.value === 'standard') {
+            const per = r.summary.standard_fee_per_part || 1.53;
+            const n = u.Basic + u.Preferred + u.Extended;
+            out.feeTotal = n * per;
+            out.feeNote = 'Standard 每種 Basic / Extended $' + per + ' × ' + n + ' 種';
+          } else {
+            const per = r.summary.extended_fee_per_part || 3.07;
+            out.feeTotal = u.Extended * per;
+            out.feeNote = 'Economic 每種 Extended $' + per + ' × ' + u.Extended + ' 種（Basic / Preferred 免）';
+          }
+          return out;
+        });
+
+        const bomLineCost = (it) => {
+          const c = bomCost.value.byCode[it.lcsc_code];
+          if (!c || it.excluded) return null;
+          const idx = bomResult.value.items.indexOf(it);
+          return { ...c, first: bomCost.value.firstIdx[it.lcsc_code] === idx };
         };
 
         const bomRowsFiltered = computed(() => {
@@ -3000,7 +3124,7 @@
           const r = bomResult.value;
           if (!r) return;
           const cols = ['Designator', 'Comment', 'Footprint', 'LCSC', 'MPN', 'Brand', 'Package', 'Actual Lib Type', 'BOM Lib Type',
-            'Placements', 'BOM Qty', 'Stock', 'Price 1+ (USD)', 'Source', 'Warning', 'Description'];
+            'Placements', 'BOM Qty', 'Order Qty', 'Unit Price (USD)', 'Subtotal (USD)', 'Stock', 'Source', 'Warning', 'Description'];
           const esc = v => {
             const s = v === null || v === undefined ? '' : String(v);
             return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
@@ -3009,7 +3133,9 @@
           for (const it of r.items) {
             const p = it.part || {};
             lines.push([it.designator, it.comment, it.footprint, it.lcsc_code, p.mfr_model || it.bom_mpn, p.brand || it.bom_manufacturer,
-              p.package, it.lib_class, it.bom_lib_type, it.designator_count, it.bom_qty, p.stock, p.price_1, it.source,
+              p.package, it.lib_class, it.bom_lib_type, it.designator_count, it.bom_qty,
+              ...(() => { const c = bomLineCost(it); return c ? [c.qty, c.unit, c.first ? c.subtotal : ''] : ['', '', '']; })(),
+              p.stock, it.source,
               it.warning, p.description].map(esc).join(','));
           }
           const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
@@ -3596,6 +3722,11 @@
           onBomDrop,
           bomRowsFiltered,
           exportBomCsv,
+          bomBoardQty,
+          bomPcbaType,
+          bomHasQty,
+          bomCost,
+          bomLineCost,
           BASE_OPTIONAL_COLUMNS,
           showColPicker,
           isColVisible,
