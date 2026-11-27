@@ -846,6 +846,207 @@
       background: rgba(22, 78, 99, 0.35);
     }
 
+    .tag-extended {
+      color: #fde68a;
+      border-color: #b45309;
+      background: rgba(180, 83, 9, 0.28);
+    }
+
+    .tag-unmatched {
+      color: #fecaca;
+      border-color: #991b1b;
+      background: rgba(153, 27, 27, 0.28);
+    }
+
+    /* ---------- BOM lookup modal ---------- */
+    .modal-box.bom-modal-box {
+      max-width: 1500px;
+      width: 97vw;
+      height: 92vh;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-box.bom-modal-box .modal-body {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .bom-upload-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .bom-drop {
+      flex: 1 1 360px;
+      border: 1.5px dashed var(--border-light);
+      border-radius: 6px;
+      padding: 12px 14px;
+      text-align: center;
+      color: var(--text-sub);
+      font-size: 12.5px;
+      cursor: pointer;
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .bom-drop:hover,
+    .bom-drop.drag-over {
+      border-color: var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+      color: var(--text-main);
+    }
+
+    .bom-drop strong {
+      color: var(--accent-text);
+    }
+
+    .bom-upload-row select {
+      width: auto;
+    }
+
+    .bom-meta {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      white-space: pre-line;
+    }
+
+    .bom-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 8px;
+    }
+
+    .bom-card {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 11px;
+      background: var(--bg-body);
+      cursor: pointer;
+      transition: border-color 0.12s;
+    }
+
+    .bom-card:hover {
+      border-color: var(--text-muted);
+    }
+
+    .bom-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent) inset;
+    }
+
+    .bom-card .k {
+      font-size: 11.5px;
+      color: var(--text-sub);
+    }
+
+    .bom-card .v {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text-title);
+      line-height: 1.25;
+    }
+
+    .bom-card .v small {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .bom-card .sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .bom-card.c-basic { border-left: 4px solid #10b981; }
+    .bom-card.c-pref { border-left: 4px solid #06b6d4; }
+    .bom-card.c-bp { border-left: 4px solid #3b82f6; }
+    .bom-card.c-ext { border-left: 4px solid #f59e0b; }
+    .bom-card.c-relabel { border-left: 4px solid #a855f7; }
+    .bom-card.c-unmatched { border-left: 4px solid #ef4444; }
+
+    .bom-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .bom-toolbar input {
+      width: 280px;
+    }
+
+    .bom-table-wrap {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .bom-table-wrap table {
+      margin-top: 0;
+      border: none;
+    }
+
+    .bom-table-wrap thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      cursor: default;
+    }
+
+    .bom-table-wrap td {
+      font-size: 12px;
+      vertical-align: middle;
+    }
+
+    .bom-row-ext td:first-child { box-shadow: inset 4px 0 0 #f59e0b; }
+    .bom-row-relabel td:first-child { box-shadow: inset 4px 0 0 #a855f7; }
+    .bom-row-unmatched td:first-child { box-shadow: inset 4px 0 0 #ef4444; }
+
+    .bom-row-excluded {
+      opacity: 0.45;
+    }
+
+    .bom-des {
+      max-width: 220px;
+      white-space: normal;
+      word-break: break-word;
+      font-family: "Consolas", monospace;
+      font-size: 11.5px;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .bom-note {
+      display: inline-block;
+      font-size: 11px;
+      padding: 0 5px;
+      border-radius: 3px;
+      margin: 1px 3px 1px 0;
+      white-space: nowrap;
+    }
+
+    .bom-note-relabel { color: #e9d5ff; background: rgba(168, 85, 247, 0.25); }
+    .bom-note-warn { color: #fde68a; background: rgba(245, 158, 11, 0.2); cursor: help; }
+    .bom-note-live { color: #bfdbfe; background: rgba(59, 130, 246, 0.22); }
+    .bom-note-excl { color: var(--text-sub); background: var(--bg-hover); }
+
+    html[data-theme="light"] .tag-extended { color: #92400e; border-color: #fcd34d; background: #fef3c7; }
+    html[data-theme="light"] .tag-unmatched { color: #991b1b; border-color: #fca5a5; background: #fee2e2; }
+    html[data-theme="light"] .bom-note-relabel { color: #6b21a8; background: #f3e8ff; }
+    html[data-theme="light"] .bom-note-warn { color: #92400e; background: #fef3c7; }
+    html[data-theme="light"] .bom-note-live { color: #1d4ed8; background: #dbeafe; }
+
     .tag-std-only {
       color: #fef3c7;
       border-color: #78350f;
@@ -1470,6 +1671,10 @@
           <span v-else>
             下載 / 擴充資料庫 (支援多連結佇列)
           </span>
+        </button>
+
+        <button class="btn btn-toggle" @click="showBomModal = true" title="上傳 JLC BOM 表，快速查看元件詳情與 Basic / Preferred / Extended 統計">
+          BOM 表查詢
         </button>
 
         <button class="btn" @click="exportFilteredCsv" :disabled="filteredCount === 0">
@@ -2262,6 +2467,180 @@
     </div>
 
     <!-- Detail Modal -->
+    <!-- BOM Lookup Modal -->
+    <div class="modal-backdrop" v-if="showBomModal" @click.self="showBomModal = false">
+      <div class="modal-box bom-modal-box">
+        <div class="modal-header">
+          <h2>JLC BOM 表查詢 <span v-if="bomResult" style="font-weight:400; color:var(--text-sub); font-size:12.5px;">— {{ bomResult.filename }}</span></h2>
+          <button class="btn btn-sm" @click="showBomModal = false">關閉</button>
+        </div>
+        <div class="modal-body">
+          <div class="bom-upload-row">
+            <label
+              class="bom-drop"
+              :class="{ 'drag-over': bomDragOver }"
+              @dragover.prevent="bomDragOver = true"
+              @dragleave.prevent="bomDragOver = false"
+              @drop.prevent="onBomDrop"
+            >
+              <input type="file" accept=".xls,.xlsx,.csv,.tsv,.txt" style="display:none;" @change="onBomFilePicked" />
+              <span v-if="bomLoading">正在解析並查詢 {{ bomFileName }} ...</span>
+              <span v-else>📄 <strong>點擊選擇</strong>或拖放 BOM 檔案（JLC BOM Matching 匯出的 .xls / .xlsx，或含 LCSC 編號欄位的 .csv）</span>
+            </label>
+            <div style="display:flex; flex-direction:column; gap:4px; font-size:11.5px; color:var(--text-sub);">
+              <span>線上查詢 (JLCPCB)</span>
+              <select v-model="bomLiveMode" :disabled="bomLoading">
+                <option value="missing">只查本地資料庫沒有的元件</option>
+                <option value="all">全部向線上更新 (最新庫存 / 庫別)</option>
+                <option value="none">僅使用本地資料庫</option>
+              </select>
+            </div>
+            <button class="btn" :disabled="!bomFileObj || bomLoading" @click="analyzeBom(bomFileObj)">重新查詢</button>
+            <button class="btn" :disabled="!bomResult" @click="exportBomCsv">匯出分析 CSV</button>
+          </div>
+
+          <div v-if="bomError" class="bom-note bom-note-warn" style="font-size:12.5px; padding:6px 10px; white-space:normal;">{{ bomError }}</div>
+
+          <template v-if="bomResult">
+            <div class="bom-meta" v-if="bomResult.meta && bomResult.meta.length">{{ bomResult.meta.slice(1, 3).join('\n') }}</div>
+
+            <div class="bom-cards">
+              <div class="bom-card c-bp" :class="{ active: bomFilter === 'bp' }" @click="bomFilter = 'bp'">
+                <div class="k">Basic + Preferred（免換料費）</div>
+                <div class="v">{{ bomResult.summary.basic_pref_unique }} <small>種</small></div>
+                <div class="sub">{{ bomResult.summary.placements.Basic + bomResult.summary.placements.Preferred }} 個貼片點位</div>
+              </div>
+              <div class="bom-card c-basic" :class="{ active: bomFilter === 'Basic' }" @click="bomFilter = 'Basic'">
+                <div class="k">Basic</div>
+                <div class="v">{{ bomResult.summary.unique.Basic }} <small>種</small></div>
+                <div class="sub">{{ bomResult.summary.placements.Basic }} 個點位</div>
+              </div>
+              <div class="bom-card c-pref" :class="{ active: bomFilter === 'Preferred' }" @click="bomFilter = 'Preferred'">
+                <div class="k">Preferred (優先擴充庫)</div>
+                <div class="v">{{ bomResult.summary.unique.Preferred }} <small>種</small></div>
+                <div class="sub">{{ bomResult.summary.placements.Preferred }} 個點位</div>
+              </div>
+              <div class="bom-card c-ext" :class="{ active: bomFilter === 'Extended' }" @click="bomFilter = 'Extended'">
+                <div class="k">真正 Extended</div>
+                <div class="v">{{ bomResult.summary.unique.Extended }} <small>種</small></div>
+                <div class="sub">{{ bomResult.summary.placements.Extended }} 個點位 · 換料費約 ${{ bomResult.summary.extended_fee_estimate.toFixed(0) }}</div>
+              </div>
+              <div class="bom-card c-relabel" :class="{ active: bomFilter === 'relabeled' }" @click="bomFilter = 'relabeled'">
+                <div class="k">BOM 標 Extended，實為 Preferred</div>
+                <div class="v">{{ bomResult.summary.relabeled_count }} <small>種</small></div>
+                <div class="sub">不算 Extended 換料費</div>
+              </div>
+              <div class="bom-card c-unmatched" :class="{ active: bomFilter === 'Unmatched' }" @click="bomFilter = 'Unmatched'">
+                <div class="k">未匹配 / 無 LCSC 編號</div>
+                <div class="v">{{ bomResult.summary.unmatched_lines }} <small>行</small></div>
+                <div class="sub">{{ bomResult.summary.placements.Unmatched }} 個點位</div>
+              </div>
+            </div>
+
+            <div class="bom-toolbar">
+              <button class="btn btn-sm" :class="{ 'btn-primary': bomFilter === 'all' }" @click="bomFilter = 'all'">全部 ({{ bomResult.items.length }} 行)</button>
+              <input type="text" v-model="bomSearch" placeholder="搜尋 Designator / Comment / LCSC / 型號 / 封裝..." />
+              <span style="font-size:11.5px; color:var(--text-muted);">
+                共 {{ bomResult.summary.unique_parts }} 種元件
+                <template v-if="bomResult.summary.excluded_lines"> · {{ bomResult.summary.excluded_lines }} 行數量為 0（未下單）不計入統計</template>
+                <template v-if="bomResult.summary.live_looked_up"> · 線上查詢 {{ bomResult.summary.live_found }}/{{ bomResult.summary.live_looked_up }}</template>
+                <template v-if="bomResult.summary.missing_codes.length"> · 查無：{{ bomResult.summary.missing_codes.join(', ') }}</template>
+                · 換料費以每種 Extended ${{ bomResult.summary.extended_fee_per_part }} 估算
+              </span>
+              <span style="margin-left:auto; font-size:12px; color:var(--text-sub);">顯示 {{ bomRowsFiltered.length }} 行</span>
+            </div>
+
+            <div class="bom-table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Designator</th>
+                    <th>Comment / BOM 封裝</th>
+                    <th>LCSC 編號</th>
+                    <th>型號 / 品牌</th>
+                    <th>封裝</th>
+                    <th>實際庫別</th>
+                    <th>備註</th>
+                    <th style="text-align:right;">點位</th>
+                    <th style="text-align:right;">訂購數</th>
+                    <th style="text-align:right;">庫存</th>
+                    <th style="text-align:right;">單價 (USD)</th>
+                    <th>Description</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-if="bomRowsFiltered.length === 0">
+                    <td colspan="13" style="text-align:center; padding:28px; color:var(--text-sub);">沒有符合條件的 BOM 行</td>
+                  </tr>
+                  <tr
+                    v-for="(it, idx) in bomRowsFiltered"
+                    :key="idx"
+                    :class="{
+                      'bom-row-ext': it.lib_class === 'Extended',
+                      'bom-row-relabel': it.relabeled,
+                      'bom-row-unmatched': it.lib_class === 'Unmatched',
+                      'bom-row-excluded': it.excluded
+                    }"
+                  >
+                    <td><div class="bom-des" :title="it.designator">{{ it.designator || '-' }}</div></td>
+                    <td>
+                      <div style="font-weight:600;">{{ it.comment || '-' }}</div>
+                      <span class="sub-text" :title="it.footprint">{{ it.footprint }}</span>
+                    </td>
+                    <td>
+                      <span v-if="it.lcsc_code" class="code-link" @click="copyText(it.lcsc_code)" title="點擊複製編號">{{ it.lcsc_code }}</span>
+                      <span v-else style="color:var(--text-muted);">-</span>
+                    </td>
+                    <td>
+                      <template v-if="it.part">
+                        <a href="javascript:void(0)" class="model-link" @click="detailItem = it.part">{{ it.part.mfr_model }}</a>
+                        <span class="sub-text" :title="it.part.brand">{{ it.part.brand }}</span>
+                      </template>
+                      <template v-else>
+                        <span>{{ it.bom_mpn || '-' }}</span>
+                        <span class="sub-text">{{ it.bom_manufacturer }}</span>
+                      </template>
+                    </td>
+                    <td><span class="pkg-tag" style="cursor:default;">{{ (it.part && it.part.package) || '-' }}</span></td>
+                    <td>
+                      <span class="tag" :class="{
+                        'tag-basic': it.lib_class === 'Basic',
+                        'tag-preferred': it.lib_class === 'Preferred',
+                        'tag-extended': it.lib_class === 'Extended',
+                        'tag-unmatched': it.lib_class === 'Unmatched'
+                      }">{{ it.lib_class === 'Unmatched' ? '未匹配' : it.lib_class }}</span>
+                      <span v-if="it.part && it.part.pcba_type" class="sub-text">{{ it.part.pcba_type === 'Standard Only' ? 'Std Only' : 'Eco & Std' }}</span>
+                    </td>
+                    <td style="white-space:normal; max-width:220px;">
+                      <span v-if="it.relabeled" class="bom-note bom-note-relabel">BOM 標 {{ it.bom_lib_type }}</span>
+                      <span v-if="it.excluded" class="bom-note bom-note-excl">數量 0 未下單</span>
+                      <span v-if="it.source === 'live'" class="bom-note bom-note-live">線上資料</span>
+                      <span v-if="it.source === 'bom'" class="bom-note bom-note-excl">僅 BOM 資料</span>
+                      <span v-if="it.warning" class="bom-note bom-note-warn" :title="it.warning">⚠ JLC 警告</span>
+                      <span v-if="it.match_status && it.lib_class !== 'Unmatched'" class="sub-text">{{ it.match_status }}</span>
+                    </td>
+                    <td class="num-cell">{{ it.designator_count }}</td>
+                    <td class="num-cell">{{ it.bom_qty !== null && it.bom_qty !== undefined ? it.bom_qty : '-' }}</td>
+                    <td class="num-cell">{{ it.part ? Number(it.part.stock || 0).toLocaleString() : '-' }}</td>
+                    <td class="num-cell">{{ it.part && it.part.price_1 ? '$' + Number(it.part.price_1).toFixed(4) : '-' }}</td>
+                    <td class="desc-cell" style="min-width:300px;">{{ (it.part && it.part.description) || '-' }}</td>
+                    <td>
+                      <div class="actions-cell">
+                        <a v-if="it.part && it.part.datasheet_url" class="btn btn-sm" :href="it.part.datasheet_url" target="_blank" rel="noopener">PDF</a>
+                        <a v-if="it.part && it.part.jlcpcb_url" class="btn btn-sm" :href="it.part.jlcpcb_url" target="_blank" rel="noopener">JLC</a>
+                        <button v-if="it.part" class="btn btn-sm" @click="detailItem = it.part">詳情</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-backdrop" v-if="detailItem" @click.self="detailItem = null">
       <div class="modal-box">
         <div class="modal-header">
@@ -2542,6 +2921,104 @@
         const detailItem = ref(null);
         const toastMsg = ref('');
         const showDownloadModal = ref(false);
+
+        // ---- BOM lookup ----
+        const BOM_CACHE_KEY = 'jlc_last_bom_result';
+        const loadCachedBom = () => {
+          try { return JSON.parse(localStorage.getItem(BOM_CACHE_KEY) || 'null'); } catch (e) { return null; }
+        };
+        const showBomModal = ref(false);
+        const bomResult = shallowRef(loadCachedBom());
+        const bomLoading = ref(false);
+        const bomError = ref('');
+        const bomFilter = ref('all');
+        const bomSearch = ref('');
+        const bomLiveMode = ref('missing');
+        const bomDragOver = ref(false);
+        const bomFileObj = shallowRef(null);
+        const bomFileName = ref('');
+
+        const analyzeBom = async (file) => {
+          if (!file) return;
+          bomFileObj.value = file;
+          bomFileName.value = file.name;
+          bomLoading.value = true;
+          bomError.value = '';
+          try {
+            const buf = await file.arrayBuffer();
+            const qs = `file=${encodeURIComponent(currentDbFile.value)}&name=${encodeURIComponent(file.name)}&live=${bomLiveMode.value}`;
+            const res = await fetch(`/api/bom/parse?${qs}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/octet-stream' },
+              body: buf
+            });
+            const data = await res.json();
+            if (!res.ok || data.error) {
+              bomError.value = data.error || `解析失敗 (HTTP ${res.status})`;
+              return;
+            }
+            bomResult.value = data;
+            bomFilter.value = 'all';
+            bomSearch.value = '';
+            try { localStorage.setItem(BOM_CACHE_KEY, JSON.stringify(data)); } catch (e) { /* quota / private mode */ }
+          } catch (e) {
+            bomError.value = `解析失敗：${e}`;
+          } finally {
+            bomLoading.value = false;
+          }
+        };
+
+        const onBomFilePicked = (ev) => {
+          const f = ev.target.files && ev.target.files[0];
+          if (f) analyzeBom(f);
+          ev.target.value = '';
+        };
+
+        const onBomDrop = (ev) => {
+          bomDragOver.value = false;
+          const f = ev.dataTransfer && ev.dataTransfer.files && ev.dataTransfer.files[0];
+          if (f) analyzeBom(f);
+        };
+
+        const bomRowsFiltered = computed(() => {
+          const r = bomResult.value;
+          if (!r) return [];
+          const q = bomSearch.value.trim().toLowerCase();
+          const f = bomFilter.value;
+          return r.items.filter(it => {
+            if (f === 'bp' && !(it.lib_class === 'Basic' || it.lib_class === 'Preferred')) return false;
+            if (f === 'relabeled' && !it.relabeled) return false;
+            if (['Basic', 'Preferred', 'Extended', 'Unmatched'].includes(f) && it.lib_class !== f) return false;
+            if (!q) return true;
+            const p = it.part || {};
+            return [it.designator, it.comment, it.footprint, it.lcsc_code, it.bom_mpn, p.mfr_model, p.brand, p.package, p.description]
+              .some(v => v && String(v).toLowerCase().includes(q));
+          });
+        });
+
+        const exportBomCsv = () => {
+          const r = bomResult.value;
+          if (!r) return;
+          const cols = ['Designator', 'Comment', 'Footprint', 'LCSC', 'MPN', 'Brand', 'Package', 'Actual Lib Type', 'BOM Lib Type',
+            'Placements', 'BOM Qty', 'Stock', 'Price 1+ (USD)', 'Source', 'Warning', 'Description'];
+          const esc = v => {
+            const s = v === null || v === undefined ? '' : String(v);
+            return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+          };
+          const lines = [cols.join(',')];
+          for (const it of r.items) {
+            const p = it.part || {};
+            lines.push([it.designator, it.comment, it.footprint, it.lcsc_code, p.mfr_model || it.bom_mpn, p.brand || it.bom_manufacturer,
+              p.package, it.lib_class, it.bom_lib_type, it.designator_count, it.bom_qty, p.stock, p.price_1, it.source,
+              it.warning, p.description].map(esc).join(','));
+          }
+          const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = (r.filename || 'bom').replace(/\.[^.]+$/, '') + '_analysis.csv';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+        };
         const dlForm = reactive({
           urls: '',
           max_items: 5000,
@@ -3104,6 +3581,21 @@
         });
 
         return {
+          showBomModal,
+          bomResult,
+          bomLoading,
+          bomError,
+          bomFilter,
+          bomSearch,
+          bomLiveMode,
+          bomDragOver,
+          bomFileObj,
+          bomFileName,
+          analyzeBom,
+          onBomFilePicked,
+          onBomDrop,
+          bomRowsFiltered,
+          exportBomCsv,
           BASE_OPTIONAL_COLUMNS,
           showColPicker,
           isColVisible,

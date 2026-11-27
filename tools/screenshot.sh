@@ -1,5 +1,6 @@
 #!/bin/sh
-# Usage: tools/screenshot.sh OUT.png [CATEGORY] [CLICK_TEXT1,CLICK_TEXT2]
+# Usage: tools/screenshot.sh OUT.png [CATEGORY] [ACTIONS]  (see screenshot.py for action syntax;
+# files placed next to OUT.png are visible in the container under /out/)
 # Takes a screenshot of the running app (port 8385) with headless Chromium in Docker.
 OUT_DIR=$(cd "$(dirname "$1")" && pwd)
 docker run --rm --network host -v "$(cd "$(dirname "$0")" && pwd)":/tools:ro -v "$OUT_DIR":/out \

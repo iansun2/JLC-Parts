@@ -25,6 +25,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from socketserver import ThreadingMixIn
 from typing import Any, Dict, List
 
+import bom_engine
 import db_engine
 import jlc_fetcher
 
@@ -32,6 +33,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 DEFAULT_DB_PATH = os.path.join(DATA_DIR, "jlc_parts.db")
+MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 DEFAULT_CSV_PATH = os.path.join(DATA_DIR, "jlc_parts_db.csv")
 
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -385,9 +387,28 @@ class JLCRequestHandler(SimpleHTTPRequestHandler):
     def do_POST(self) -> None:
         parsed = urllib.parse.urlparse(self.path)
         length = int(self.headers.get("Content-Length") or 0)
-        raw = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
+        if length > MAX_UPLOAD_BYTES:
+            self.send_json({"error": f"上傳檔案過大 (上限 {MAX_UPLOAD_BYTES // (1024 * 1024)} MB)"}, status=413)
+            return
+        raw_bytes = self.rfile.read(length) if length > 0 else b""
+
+        if parsed.path == "/api/bom/parse":
+            qs = urllib.parse.parse_qs(parsed.query)
+            fname = os.path.basename((qs.get("file") or ["jlc_parts.db"])[0])
+            upload_name = (qs.get("name") or ["bom"])[0]
+            live = (qs.get("live") or ["missing"])[0]
+            if live not in ("none", "missing", "all"):
+                live = "missing"
+            db_path = resolve_sqlite_path_for_file(fname)
+            try:
+                res = bom_engine.analyze_bom(raw_bytes, upload_name, db_path, live=live)
+                self.send_json(res)
+            except Exception as e:
+                self.send_json({"error": f"BOM 解析失敗：{e}"}, status=400)
+            return
+
         try:
-            params = json.loads(raw)
+            params = json.loads(raw_bytes.decode("utf-8") or "{}")
         except Exception:
             params = {}
 

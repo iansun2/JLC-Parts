@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
-COPY app.py db_engine.py jlc_fetcher.py ./
+COPY app.py db_engine.py bom_engine.py jlc_fetcher.py ./
 COPY static/ ./static/
 
 EXPOSE 8080

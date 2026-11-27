@@ -5,6 +5,8 @@ from playwright.sync_api import sync_playwright
 url = sys.argv[1]
 out = sys.argv[2]
 category = sys.argv[3] if len(sys.argv) > 3 else ""
+# actions: comma-separated; plain text = click element with that text,
+# "upload:/out/file" = set file on the first <input type=file>, "wait:ms", "type:text"
 actions = sys.argv[4].split(",") if len(sys.argv) > 4 and sys.argv[4] else []
 
 with sync_playwright() as p:
@@ -18,6 +20,17 @@ with sync_playwright() as p:
         pg.get_by_text(category, exact=True).first.click()
         pg.wait_for_load_state("networkidle")
     for a in actions:
+        if a.startswith("upload:"):
+            pg.locator("input[type=file]").first.set_input_files(a[len("upload:"):])
+            pg.wait_for_load_state("networkidle")
+            pg.wait_for_timeout(1500)
+            continue
+        if a.startswith("wait:"):
+            pg.wait_for_timeout(int(a[len("wait:"):]))
+            continue
+        if a.startswith("type:"):
+            pg.keyboard.type(a[len("type:"):])
+            continue
         pg.get_by_text(a).first.click()
         pg.wait_for_load_state("networkidle")
         pg.wait_for_timeout(300)
